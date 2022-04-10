@@ -157,6 +157,7 @@
         android:textAllCaps="false"
         android:textStyle="bold"
         android:textSize="15sp"
+        android:background="@drawable/button_background"
         android:onClick="loginAccount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
