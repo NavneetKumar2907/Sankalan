@@ -9,6 +9,113 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/not_registered" />
 
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/royal_purple"
+        app:cardCornerRadius="8dp"
+        app:cardMaxElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        android:layout_margin="8dp"
+        app:cardUseCompatPadding="false">
+
+    <RelativeLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+
+        <ImageView
+            android:id="@+id/event_poster_card"
+            android:layout_width="185dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+
+            android:src="@drawable/valo_wars" />
+
+        <TextView
+            android:id="@+id/event_title_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/valo_wars"
+            android:textAlignment="viewStart"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/event_type_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/event_title_card"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/non_technical"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/event_nos_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/event_type_card"
+            android:layout_marginStart="20dp"
+            android:fontFamily="sans-serif-medium"
+
+            android:text="@string/team"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/event_venue_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/event_nos_card"
+            android:layout_marginStart="20dp"
+            android:fontFamily="sans-serif-medium"
+
+            android:text="@string/venue"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/event_timing_img_card"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/event_venue_card"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/event_timing_card" />
+
+        <TextView
+            android:id="@+id/event_timing_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/event_venue_card"
+
+            android:layout_marginTop="18dp"
+            android:layout_toEndOf="@id/event_timing_img_card"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="3sp"
+            android:lines="3"
+            android:text="@string/valo_wars_time"
+            android:textColor="#28917E"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
 </FrameLayout>
