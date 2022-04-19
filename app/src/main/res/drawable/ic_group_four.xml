@@ -2,7 +2,8 @@
     android:width="2200dp"
     android:height="2009dp"
     android:viewportWidth="2200"
-    android:viewportHeight="2009">
+    android:viewportHeight="2009"
+    android:alpha="0.4">
   <path
       android:pathData="M0,0L0,2009L2200,2009L2200,0L0,0z"
       android:strokeColor="#00000000"/>

@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sankalan.MainViewModel
 import com.example.sankalan.adapter.EventListAdapter
 import com.example.sankalan.databinding.FragmentHomeBinding
 
@@ -21,6 +23,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var recycleEventList:RecyclerView
     private lateinit var adapter:EventListAdapter
+   private val homeViewModel :MainViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -28,8 +31,6 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -37,8 +38,7 @@ class HomeFragment : Fragment() {
         recycleEventList.setHasFixedSize(true)
         recycleEventList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
 
-        val viewmodel = ViewModelProvider(requireActivity()).get(HomeViewModel::class.java)
-        viewmodel.getEvent().observe(viewLifecycleOwner, Observer {
+        homeViewModel.getEvent().observe(viewLifecycleOwner, Observer {
             adapter = EventListAdapter(it)
             recycleEventList.adapter = adapter
         })

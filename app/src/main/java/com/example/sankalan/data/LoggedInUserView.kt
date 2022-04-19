@@ -1,4 +1,4 @@
-package com.example.sankalan.ui.data
+package com.example.sankalan.data
 
 data class LoggedInUserView(
     val name:String = "",
