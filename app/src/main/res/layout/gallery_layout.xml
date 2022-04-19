@@ -21,7 +21,7 @@
                  android:importantForAccessibility="no"
                  android:scaleType="centerCrop"
                  tools:ignore="ImageContrastCheck" />
-git
+
 
      </LinearLayout>
 
