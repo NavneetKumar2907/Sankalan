@@ -10,7 +10,6 @@
         android:id="@+id/imageView"
         android:layout_width="397dp"
         android:layout_height="163dp"
-        android:contentDescription="@string/sankalanimg"
         app:layout_constraintBottom_toTopOf="@+id/about_scroll"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

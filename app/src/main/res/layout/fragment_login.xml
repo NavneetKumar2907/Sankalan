@@ -106,21 +106,6 @@
         app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
         tools:ignore="LabelFor,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
-    <ImageButton
-        android:id="@+id/viewPassword"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:onClick="viewPassword"
-        android:contentDescription="@string/view_Password"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextPassword"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
-        app:layout_constraintHorizontal_bias="0.976"
-        app:layout_constraintStart_toStartOf="@+id/editTextPassword"
-        app:layout_constraintTop_toTopOf="@+id/editTextPassword"
-        app:layout_constraintVertical_bias="0.652"
-        app:srcCompat="@drawable/view_password"
-        tools:ignore="UsingOnClickInXml" />
-
     <TextView
         android:id="@+id/forgot_password"
         android:layout_width="wrap_content"
@@ -143,6 +128,7 @@
         android:layout_width="315dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
+        android:background="@drawable/background_round_btn"
         android:enabled="false"
         android:onClick="loginAccount"
         android:text="@string/login"

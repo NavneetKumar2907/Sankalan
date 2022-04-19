@@ -1,18 +1,21 @@
 package com.example.sankalan.ui.login.model
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.sankalan.R
 import com.example.sankalan.ui.login.data.LoggedInUser
 import com.example.sankalan.ui.login.data.LoginFormState
+import com.example.sankalan.ui.login.data.LoginResult
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.coroutines.launch
 
 class AuthenticationViewModel(private val repository: AuthenticationRepository):ViewModel() {
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginForm:LiveData<LoginFormState> = _loginForm
 
-     val user: MutableLiveData<FirebaseUser> = repository.firebaseUser
 
 
     private val _signUpForm = MutableLiveData<LoginFormState>()
@@ -20,21 +23,26 @@ class AuthenticationViewModel(private val repository: AuthenticationRepository):
 
 
     private val passwordRegex = Regex("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$")
+    val result_login = MutableLiveData<LoginResult>()
 
     fun login(email: String, password: String){
         if(isValidEmail(email) && isValidPassword(password)){
-            Thread(Runnable {
-                repository.login(email,password)
-            }).start()
+            viewModelScope.launch {
+                val v:LoginResult = repository.login(email,password)
+                result_login.value = v
+            }
+
         }else{
             _loginForm.value = LoginFormState(emailError = R.string.invalid_email, passError = R.string.invalid_password)
         }
 
     }
     fun signUp(email: String, password: String, data:LoggedInUser){
-        Thread(Runnable {
-            repository.signUp(email, password, data)
-        }).start()
+       viewModelScope.launch {
+           val res:LoginResult = repository.signUp(email, password, data)
+           result_login.value = res
+       }
+
     }
 
 

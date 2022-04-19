@@ -110,10 +110,14 @@ class SignUpFragment : Fragment() {
             }
 
         })
-        signupViewmodel.user.observe(viewLifecycleOwner, Observer {
-            if(it!=null){
+        signupViewmodel.result_login.observe(viewLifecycleOwner, Observer {
+            if(it.success!=null){
                 startActivity(Intent(activity, MainActivity::class.java))
                 activity?.finish()
+            }
+            if(it.failed!=null){
+                Toast.makeText(context,it.failed,Toast.LENGTH_SHORT).show()
+                loading.visibility = View.GONE
             }
         })
         loginHere.setOnClickListener {
@@ -132,8 +136,10 @@ class SignUpFragment : Fragment() {
                 data = LoggedInUser(name = name.text.toString(),
                 course = course.text.toString(),
                 institute = institute.text.toString(),
-                year = year.text.toString().toLong(),
-                mobile = mobile.text.toString())
+                year = year.text.toString().toInt(),
+                mobile = mobile.text.toString(),
+                isVerified = false
+                )
                 try{
                     loading.visibility = View.VISIBLE
 

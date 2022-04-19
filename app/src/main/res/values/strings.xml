@@ -18,11 +18,15 @@
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
-
+    <string name="not_verfied_button_string">Verify Account First.</string>
+    <string name="register">Register</string>
+<string name="already_registered">Already Registered.</string>
+    <string name="Success">SuccessFull Login.</string>
+    <string name="Failed">Failed Login.</string>
 
     <string name="login_failed">"Login failed"</string>
     <string name="sign_up">Sign Up</string>
-    <string name="already_registered">Already Registered ?</string>
+    <string name="already_registered_login">Already Registered ?</string>
     <string name="login_here"><u>Login here</u></string>
     <string name="full_name">Full Name</string>
     <string name="Enter_Name">Enter Full Name</string>
@@ -40,13 +44,13 @@
     <string name="enter_new_password">Enter new password</string>
     <string name="change_password">Reset Password</string>
     <string name="event_name">Event Name</string>
-    <string name="member_1">Member 1</string>
+    <string name="member_1">Enter Registered Email of Member 1</string>
     <string name="full_name1">Full Name</string>
-    <string name="member_2">Member 1</string>
+    <string name="member_2">Enter Registered Email of Member 2</string>
     <string name="full_name2">Full Name</string>
-    <string name="member_3">Member 1</string>
+    <string name="member_3">Enter Registered Email of Member 3</string>
     <string name="full_name3">Full Name</string>
-    <string name="member_4">Member 1</string>
+    <string name="member_4">Enter Registered Email of Member 4</string>
     <string name="full_name4">Full Name</string>
 
 
@@ -101,4 +105,6 @@
     <string name="events">Events</string>
     <string name="dept_title">dept title</string>
     <string name="desc">none</string>
+    <string name="scroll_description">Selected Event  Details</string>
+    <string name="sucess_register">Registered Successfully.</string>
 </resources>
