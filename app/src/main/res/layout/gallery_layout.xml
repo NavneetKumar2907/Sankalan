@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,12 +9,20 @@
     android:layout_margin="10dp"
     app:cardElevation="8dp">
 
-        <ImageView
+     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:id="@+id/image"
-            android:scaleType="fitXY"
-            android:src="@drawable/sankalan1"
-            android:contentDescription="@string/desc" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+             <ImageView
+                 android:id="@+id/image"
+                 android:layout_width="match_parent"
+                 android:layout_height="194dp"
+                 android:importantForAccessibility="no"
+                 android:scaleType="centerCrop"
+                 tools:ignore="ImageContrastCheck" />
+git
+
+     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
