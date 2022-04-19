@@ -1,15 +1,14 @@
 package com.example.sankalan.activities
 
 import android.os.Bundle
-
 import android.view.Menu
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.fragment.NavHostFragment
 import com.example.sankalan.R
 import com.example.sankalan.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView

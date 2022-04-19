@@ -1,14 +1,10 @@
 package com.example.sankalan.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
-import android.view.WindowManager
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
-import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.sankalan.R
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
