@@ -19,12 +19,12 @@
     <fragment
         android:id="@+id/aboutUsFragment"
         android:name="com.example.sankalan.ui.about.AboutUsFragment"
-        android:label="fragment_about_us"
+        android:label="@string/AboutUs"
         tools:layout="@layout/fragment_about_us" />
     <fragment
         android:id="@+id/myEventsFragment"
         android:name="com.example.sankalan.ui.myevents.MyEventsFragment"
-        android:label="fragment_my_events"
+        android:label="@string/MyEvents"
         tools:layout="@layout/fragment_my_events" />
     <fragment
         android:id="@+id/myProfileFragment"
@@ -34,17 +34,17 @@
     <fragment
         android:id="@+id/helpFragment"
         android:name="com.example.sankalan.ui.helpandfeedback.HelpFragment"
-        android:label="fragment_help"
+        android:label="@string/HelpandFeedBack"
         tools:layout="@layout/fragment_help" />
     <fragment
         android:id="@+id/myTeamFragment"
         android:name="com.example.sankalan.ui.myteam.MyTeamFragment"
-        android:label="fragment_my_team"
+        android:label="@string/MyTeam"
         tools:layout="@layout/fragment_my_team" />
     <fragment
         android:id="@+id/scoreboardFragment"
         android:name="com.example.sankalan.ui.scoreboard.ScoreboardFragment"
-        android:label="fragment_scoreboard"
+        android:label="@string/ScoreBoard"
         tools:layout="@layout/fragment_scoreboard" />
 
 </navigation>

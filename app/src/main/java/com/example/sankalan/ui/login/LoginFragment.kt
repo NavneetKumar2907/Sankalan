@@ -20,6 +20,8 @@ import com.example.sankalan.activities.MainActivity
 import com.example.sankalan.databinding.FragmentLoginBinding
 import com.example.sankalan.ui.login.model.AuthenticationViewModel
 import com.example.sankalan.ui.login.model.AuthenticationViewModelFactory
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -70,7 +72,6 @@ class LoginFragment : Fragment(), View.OnClickListener {
         val registerText = LoginFragmentBinding.registerHere
         val loading = LoginFragmentBinding.loading
         val forgotPassword = LoginFragmentBinding.forgotPassword
-        val showPasswordIcon = LoginFragmentBinding.viewPassword
         navController = Navigation.findNavController(view)
 
         //ViewModel
@@ -78,13 +79,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
             this,
             AuthenticationViewModelFactory()
         ).get(AuthenticationViewModel::class.java)
-        //Observe Changes
-        authViewModel.user.observe(viewLifecycleOwner, Observer {
-            if (it != null) {
-                startActivity(Intent(activity, MainActivity::class.java))
-                activity?.finish()
-            }
-        })
+
         authViewModel.loginForm.observe(viewLifecycleOwner, Observer {
             loginButton.isEnabled = it.isValid
 
@@ -109,6 +104,17 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 password = it.toString()
             )
         }
+        //result observer
+        authViewModel.result_login.observe(viewLifecycleOwner, Observer {
+            if(it.failed!=null){
+                Toast.makeText(context,it.failed,Toast.LENGTH_SHORT).show()
+                loading.visibility = View.GONE
+            }
+            if (it.success != null) {
+                startActivity(Intent(activity, MainActivity::class.java))
+                activity?.finish()
+            }
+        })
 
         loginButton.setOnClickListener {
             loading.visibility = View.VISIBLE
@@ -142,6 +148,10 @@ class LoginFragment : Fragment(), View.OnClickListener {
             val emailForgot = forgotEmail.text.toString()
             if (emailForgot.isNotEmpty() && authViewModel.isValidEmail(emailForgot)) {
                 //
+                Firebase.auth.sendPasswordResetEmail(emailForgot)
+                Toast.makeText(context,"Email Reset Link Send to Email Check Your Mail!!.",Toast.LENGTH_SHORT).show()
+                popUpForgotPassWord.dismiss()
+
             } else {
                 Toast.makeText(context, "Email Not Valid", Toast.LENGTH_SHORT).show()
             }

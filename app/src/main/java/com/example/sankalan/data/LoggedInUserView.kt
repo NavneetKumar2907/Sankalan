@@ -7,6 +7,6 @@ data class LoggedInUserView(
     val email:String = "",
     val course:String = "",
     val institute:String = "",
-    val year:Long = 0,
+    val year:Int = 0,
     val isVerified:Boolean =false
 )
