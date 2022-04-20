@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/royal_purple"
+    app:cardCornerRadius="8dp"
+    app:cardMaxElevation="10dp"
+    app:cardPreventCornerOverlap="true"
+    android:layout_margin="8dp"
+    app:cardUseCompatPadding="false">
+
+    <RelativeLayout
+        android:id="@+id/my_event_container"
+        android:layout_width="match_parent"
+        android:layout_height="147dp">
+
+
+        <TextView
+            android:id="@+id/my_event_title_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:background="#63438C"
+            android:fontFamily="serif-monospace"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="Event Name"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/my_event_member1_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/my_event_title_card"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Member1"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/my_event_member2_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/my_event_member1_card"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+
+            android:fontFamily="sans-serif-condensed"
+            android:text="Member2"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/my_event_member3_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/my_event_member2_card"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+
+            android:fontFamily="sans-serif-condensed"
+            android:text="Member3"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/my_event_member4_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/my_event_member3_card"
+            android:layout_marginStart="25dp"
+
+            android:layout_marginEnd="25dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Member4"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
+
