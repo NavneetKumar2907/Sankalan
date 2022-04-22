@@ -122,7 +122,7 @@ class HomeFragment : Fragment(), SelectedEventClickListener {
                 event_register_selected.text = getString(R.string.register)
             }else{
 
-                event_register_selected.text = getString(R.string.not_verfied_button_string)
+                event_register_selected.text = context?.getString(R.string.not_verfied_string)
             }
         }
 

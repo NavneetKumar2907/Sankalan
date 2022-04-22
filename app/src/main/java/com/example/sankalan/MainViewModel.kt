@@ -1,6 +1,7 @@
 package com.example.sankalan
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -33,6 +34,7 @@ class MainViewModel():ViewModel() {
     private val userListener = object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
             val post = snapshot.getValue<LoggedInUser>()
+            Log.w("Post Value","${post}")
          try {
              val u = LoggedInUserView(
                  name = post?.name.toString(),
@@ -40,7 +42,7 @@ class MainViewModel():ViewModel() {
                  course = post?.course.toString(),
                  year =  post?.year.toString().toInt(),
                  mobile = post?.mobile.toString(),
-                 isVerified = post!!.isVerified,
+                 isVerified = user?.isEmailVerified == true,
                  email = user?.email.toString()
              )
              _userData.postValue(u)
@@ -117,98 +119,84 @@ class MainViewModel():ViewModel() {
     }
 
     val databaseRegisterEvent = database.getReference("RegisteredEvents").child(user?.uid.toString())
-    private val _registeredEvents:MutableLiveData<ArrayList<String>> by lazy {
-        MutableLiveData<ArrayList<String>>().also {
+
+    private val registeredEventValueListener = object : ValueEventListener{
+        override fun onDataChange(snapshot: DataSnapshot) {
+            val eventMember = arrayListOf<RegisteredEvents>()
+            for(eventName in snapshot.children){
+                Log.w("W","${eventName.key},${eventName.value}")
+                val res = eventName.getValue<TeamMembers>()
+                eventMember.add(RegisteredEvents(eventName = eventName.key.toString(), members = res!!))
+            }
+            _eventWiseMember.value = eventMember
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+            Log.w("ERROR",error.message)
+        }
+
+    }
+
+    private val _eventWiseMember:MutableLiveData<ArrayList<RegisteredEvents>> by lazy {
+        MutableLiveData<ArrayList<RegisteredEvents>>().also {
             loadRegisteredEvents()
         }
     }
 
-    val registeredEvents:LiveData<ArrayList<String>> = _registeredEvents
 
-    private val _eventWiseMember:MutableLiveData<ArrayList<RegisteredEvents>> by lazy {
-        MutableLiveData<ArrayList<RegisteredEvents>>()
-    }
+        val eventWiseMember:LiveData<ArrayList<RegisteredEvents>> = _eventWiseMember
 
-    val eventWiseMember:LiveData<ArrayList<RegisteredEvents>> = _eventWiseMember
 
-    val registeredEventValueListener = object : ValueEventListener{
-        override fun onDataChange(snapshot: DataSnapshot) {
-            if(snapshot.exists()){
-                val event = arrayListOf<String>()
-                val eventMember = arrayListOf<RegisteredEvents>()
-                for (events in snapshot.children){
-                   val members = events.getValue<TeamMembers>()
-                   event.add(events.key.toString())
-                    eventMember.add(RegisteredEvents(eventName = events.key.toString(), members = members!!))
-                }
-                _registeredEvents.postValue(event)
-                _eventWiseMember.postValue(eventMember)
-            }
-        }
-
-        override fun onCancelled(error: DatabaseError) {
-            TODO("Not yet implemented")
-        }
-
-    }
-
-    fun loadRegisteredEvents(){
-        try{
+        private fun loadRegisteredEvents(){
             databaseRegisterEvent.addValueEventListener(registeredEventValueListener)
-        }catch (e:Exception){
-            Log.w("Error","Not registered in any event.")
+        }
+
+
+        suspend fun registerForEvent(eventName:String, team:Boolean=false, members:TeamMembers = TeamMembers()):RegistrationSuccess{
+            val def = CompletableDeferred<RegistrationSuccess>()
+
+            databaseRegisterEvent.get()
+                .addOnSuccessListener {
+                    if (it.exists()) {
+                        //Already Registered for some events
+                        if(it.hasChild(eventName)){
+                            def.complete(RegistrationSuccess(failed = "Already Registered"))
+                            Log.w("Success","Registration Already exist.")
+                        }else{
+                            // Not registered for this event
+                            //Register
+                            if (team) {
+                                databaseRegisterEvent.child(eventName).setValue(members)
+                                def.complete(RegistrationSuccess(succes =R.string.sucess_register))
+
+                            } else {
+                                databaseRegisterEvent.child(eventName).setValue(TeamMembers())
+                                def.complete(RegistrationSuccess(succes =R.string.sucess_register))
+                                Log.w("Failed else","Registration Error individual.")
+
+                            }
+                        }
+
+                    } else {
+                        //Register
+                        if (team) {
+                            databaseRegisterEvent.child(eventName).setValue(members)
+                            def.complete(RegistrationSuccess(succes =R.string.sucess_register))
+
+                        } else {
+                            databaseRegisterEvent.child(eventName).setValue(TeamMembers())
+                            def.complete(RegistrationSuccess(succes =R.string.sucess_register))
+                            Log.w("Failed else","Registration Error individual.")
+
+                        }
+
+                    }
+                }
+                .addOnFailureListener {
+                    def.complete(RegistrationSuccess(failed = it.message.toString()))
+
+                    Log.w("Error Register", it.message.toString())
+                }
+            return def.await()
         }
     }
-
-    val registraionresult = MutableLiveData<RegistrationSuccess>()
-
-      suspend fun registerForEvent(eventName:String, team:Boolean=false, members:TeamMembers = TeamMembers()):RegistrationSuccess{
-          val def = CompletableDeferred<RegistrationSuccess>()
-
-          databaseRegisterEvent.get()
-                 .addOnSuccessListener {
-                     if (it.exists()) {
-                         //Already Registered for some events
-                             if(it.hasChild(eventName)){
-                                 def.complete(RegistrationSuccess(failed = "Already Registered"))
-                                 Log.w("Success","Registration Already exist.")
-                             }else{
-                                 // Not registered for this event
-                                 //Register
-                                 if (team) {
-                                     databaseRegisterEvent.child(eventName).setValue(members)
-                                     def.complete(RegistrationSuccess(succes =R.string.sucess_register))
-
-                                 } else {
-                                     databaseRegisterEvent.child(eventName).setValue("sucess")
-                                     def.complete(RegistrationSuccess(succes =R.string.sucess_register))
-                                     Log.w("Failed else","Registration Error individual.")
-
-                                 }
-                             }
-
-                     } else {
-                         //Register
-                         if (team) {
-                             databaseRegisterEvent.child(eventName).setValue(members)
-                             def.complete(RegistrationSuccess(succes =R.string.sucess_register))
-
-                         } else {
-                             databaseRegisterEvent.child(eventName).setValue("sucess")
-                             def.complete(RegistrationSuccess(succes =R.string.sucess_register))
-                             Log.w("Failed else","Registration Error individual.")
-
-                         }
-
-                     }
-                 }
-                 .addOnFailureListener {
-                     def.complete(RegistrationSuccess(failed = it.message.toString()))
-
-                     Log.w("Error Register", it.message.toString())
-                 }
-          return def.await()
-     }
-
-
-}

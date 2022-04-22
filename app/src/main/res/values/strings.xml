@@ -4,8 +4,8 @@
     <string name="not_registered_yet_message">Not registered yet ?</string>
     <string name="string_not_registered_yet_message" />
     <string name="register_here"><u>Register here</u></string>
-    <string name="Enter_Email">Enter Your Email-Id</string>
-    <string name="enter_password">Enter your password</string>
+    <string name="Enter_Email">Email-Id</string>
+    <string name="enter_password">Password</string>
     <string name="email_id">Email-ID</string>
     <string name="password">Password</string>
     <string name="view_Password">View Password</string>
@@ -18,7 +18,7 @@
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
-    <string name="not_verfied_button_string">Verify Account First.</string>
+    <string name="not_verfied_string">Verify Account First.</string>
     <string name="register">Register</string>
 <string name="already_registered">Already Registered.</string>
     <string name="Success">SuccessFull Login.</string>

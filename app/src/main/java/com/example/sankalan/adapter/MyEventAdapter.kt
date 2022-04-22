@@ -20,10 +20,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sankalan.R
 import com.example.sankalan.data.Events
 import com.example.sankalan.data.MyEvents
+import com.example.sankalan.data.RegisteredEvents
 import org.w3c.dom.Text
 import java.util.concurrent.Executors
 
-class MyEventAdapter(private val dataset: List<MyEvents>):
+class MyEventAdapter(private val dataset: List<RegisteredEvents>):
     RecyclerView.Adapter<MyEventAdapter.EventViewHolder>() {
 
     class EventViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
@@ -43,11 +44,11 @@ class MyEventAdapter(private val dataset: List<MyEvents>):
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
         val item = dataset[position]
 
-        holder.my_event_title.text = item.myEventName
-        holder.teamMember1.text = item.teamMember1
-        holder.teamMember2.text = item.teamMember2
-        holder.teamMember3.text = item.teamMember3
-        holder.teamMember4.text = item.teamMember4
+        holder.my_event_title.text = item.eventName
+        holder.teamMember1.text = item.members.member1
+        holder.teamMember2.text = item.members.member2
+        holder.teamMember3.text = item.members.member3
+        holder.teamMember4.text = item.members.member4
 
 
 

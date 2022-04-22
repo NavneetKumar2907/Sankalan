@@ -58,7 +58,8 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="10dp"
         android:hint="Enter your username"
-        app:startIconDrawable="@drawable/ic_person">
+        app:startIconDrawable="@drawable/ic_person"
+        >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_username"
