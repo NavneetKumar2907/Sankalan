@@ -11,7 +11,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:id="@+id/image"
+            android:id="@+id/image_gallery_card"
             android:scaleType="fitXY"
             android:src="@drawable/sankalan1"
             android:contentDescription="@string/desc" />

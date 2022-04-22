@@ -66,11 +66,6 @@ class EventListAdapter(private val dataset: List<Events>, val listener:SelectedE
                 e.printStackTrace()
             }
         }
-        //Selecting Event
-        val dim = LinearLayout.LayoutParams.MATCH_PARENT
-
-
-       // val selectedContact = popUpView.findViewById<TextView>(R.id.contact_person)
 
         holder.container.setOnClickListener {
             //Start Popup

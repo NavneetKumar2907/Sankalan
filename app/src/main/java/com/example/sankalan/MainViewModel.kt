@@ -20,6 +20,7 @@ import com.google.firebase.database.core.operation.ListenComplete
 import com.google.firebase.database.core.operation.OperationSource
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -71,8 +72,32 @@ class MainViewModel():ViewModel() {
     fun logout(){
         Firebase.auth.signOut()
     }
+//Gallery Data
 
-//EVENT LIST LIVE VARIABLE
+private val image_ref = Firebase.storage.reference.child("gallery")
+    private val _images_gallery:MutableLiveData<ArrayList<String>> by lazy {
+        MutableLiveData<ArrayList<String>>().also {
+            loadImages()
+        }
+    }
+    val images_gallery:LiveData<ArrayList<String>> = _images_gallery
+
+fun loadImages(){
+    val temp = arrayListOf<String>()
+    image_ref.listAll()
+        .addOnSuccessListener {
+            it.items.forEach {sto->
+                sto.downloadUrl.addOnSuccessListener {u->
+                    temp.add(u.toString())
+                }
+            }
+            _images_gallery.postValue(temp)
+        }
+        .addOnFailureListener {
+            Log.w("Faield List",it.message.toString())
+        }
+}
+    //EVENT LIST LIVE VARIABLE
     private val eventList: MutableLiveData<ArrayList<Events>> by lazy {
         MutableLiveData<ArrayList<Events>>().also {
             loadEvent()

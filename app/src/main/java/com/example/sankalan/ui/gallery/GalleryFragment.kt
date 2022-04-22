@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sankalan.MainViewModel
+import com.example.sankalan.adapter.GalleryListAdapter
 import com.example.sankalan.databinding.FragmentGalleryBinding
 
 class GalleryFragment : Fragment() {
@@ -19,6 +22,7 @@ class GalleryFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     private val galleryViewModel:MainViewModel by activityViewModels()
+    private lateinit var adapter:GalleryListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,9 +33,20 @@ class GalleryFragment : Fragment() {
 
         _binding = FragmentGalleryBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        val recycle_gallery = binding.recyclerViewGallery
+        recycle_gallery.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+        recycle_gallery.setHasFixedSize(true)
 
+        galleryViewModel.images_gallery.observe(viewLifecycleOwner, Observer {
+            adapter = GalleryListAdapter(it)
+            recycle_gallery.adapter = adapter
+        })
 
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onDestroyView() {
