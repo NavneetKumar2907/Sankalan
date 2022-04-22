@@ -41,13 +41,13 @@ class SplashScreen : AppCompatActivity() {
                 ignored.printStackTrace()
             }
 
-        }, 5000)
+        }, 3000)
 
     }
 
     private fun check() {
         val currentUser = firebaseAuth.currentUser
-        Log.w("firebase", "${currentUser}")
+        Log.w("firebase", "$currentUser")
         if (currentUser != null) {
             //Already Login Go to Home Screen
             val i = Intent(this, MainActivity::class.java)
