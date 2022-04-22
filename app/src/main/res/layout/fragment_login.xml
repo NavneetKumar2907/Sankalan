@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/sign_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,143 +18,133 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/message_for_register"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="25dp"
-        android:textSize="20sp"
-        android:text="@string/not_registered_yet_message"
-        android:textColor="@color/black"
-        android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in" />
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in">
 
-    <TextView
-        android:id="@+id/register_here"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="24dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="Sign_Up"
-        android:text="@string/register_here"
-        android:textColor="@color/royal_purple"
-        android:textSize="20sp"
-        android:textStyle="italic|bold"
-        app:layout_constraintStart_toEndOf="@+id/message_for_register"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in"
-        tools:ignore="UsingOnClickInXml,TouchTargetSizeCheck" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/message_for_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/not_registered_yet_message"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="italic" />
 
-    <TextView
-        android:id="@+id/emailTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/email_id"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/message_for_register" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/register_here"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="24dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/register_here"
+            android:textColor="@color/royal_purple"
+            android:textSize="20sp"
+            android:textStyle="italic|bold"
+            tools:ignore="UsingOnClickInXml,TouchTargetSizeCheck" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/passwordTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="6dp"
-        android:text="@string/password"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EmailAddress" />
-
-    <EditText
-        android:id="@+id/EmailAddress"
-        android:layout_width="360dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="6dp"
-        android:autofillHints="false"
-        android:drawableStart="@drawable/email"
-        android:ems="10"
-        android:hint="@string/Enter_Email"
-        android:inputType="textEmailAddress"
-        android:textColorHint="#757575"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailTextView"
-        tools:ignore="LabelFor,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-    <EditText
-        android:id="@+id/editTextPassword"
-        android:layout_width="360dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="6dp"
-        android:autofillHints="false"
-        android:drawableStart="@drawable/password_logo"
-        android:ems="10"
-        android:hint="@string/enter_password"
-        android:inputType="textPassword"
-        android:textColorHint="#757575"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
-        tools:ignore="LabelFor,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/viewPassword"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:onClick="viewPassword"
-        android:contentDescription="@string/view_Password"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextPassword"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
-        app:layout_constraintHorizontal_bias="0.976"
-        app:layout_constraintStart_toStartOf="@+id/editTextPassword"
-        app:layout_constraintTop_toTopOf="@+id/editTextPassword"
-        app:layout_constraintVertical_bias="0.652"
-        app:srcCompat="@drawable/view_password"
-        tools:ignore="UsingOnClickInXml" />
-
-    <TextView
-        android:id="@+id/forgot_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
-        android:layout_marginTop="12dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="forgotPassword"
-        android:text="@string/forgotPassword"
-        android:textColor="@color/royal_purple"
-        android:textSize="18sp"
-        android:textStyle="bold"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
-        tools:ignore="UsingOnClickInXml,TouchTargetSizeCheck" />
-
-    <Button
-        android:id="@+id/login"
-        android:layout_width="315dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:enabled="false"
-        android:onClick="loginAccount"
-        android:text="@string/login"
-        android:textAllCaps="false"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:flow_horizontalAlign="center"
-        app:flow_verticalAlign="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/EmailAddressil"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/Enter_Email"
+            app:startIconDrawable="@drawable/email">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/EmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="20dp"
+                android:autofillHints="false"
+                android:ems="10"
+                android:foregroundGravity="top"
+                android:inputType="textEmailAddress"
+                android:textColorHint="#757575"
+                tools:ignore="LabelFor,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/editTextPasswordil"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:hint="@string/enter_password"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
+            app:startIconDrawable="@drawable/password_logo">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/editTextPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:autofillHints="false"
+
+                android:ems="10"
+                android:inputType="textPassword"
+                android:textColorHint="#757575"
+                tools:ignore="LabelFor,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/forgot_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="30dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="@string/forgotPassword"
+            android:textColor="@color/royal_purple"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPasswordil"
+            tools:ignore="UsingOnClickInXml,TouchTargetSizeCheck" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/background_round_btn"
+            android:enabled="false"
+            android:text="@string/login"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:flow_horizontalAlign="center"
+            app:flow_verticalAlign="center" />
+
+    </LinearLayout>
+
 
     <ProgressBar
         android:id="@+id/loading"

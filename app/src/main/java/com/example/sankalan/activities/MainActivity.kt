@@ -1,8 +1,10 @@
 package com.example.sankalan.activities
 
+import android.content.Intent
 import android.os.Bundle
 
 import android.view.Menu
+import android.view.MenuItem
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -51,6 +53,21 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if(item.itemId == R.id.action_logout){
+            Thread(Runnable {
+                mainViewModel.logout()
+
+            })
+            startActivity(Intent(this,LoginActivity::class.java))
+            this.finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)

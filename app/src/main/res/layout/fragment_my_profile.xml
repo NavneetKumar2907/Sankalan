@@ -260,4 +260,13 @@
         android:background="#000"
         />
 
+    <Button
+        android:id="@+id/edit_profile_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/background_round_btn"
+        android:text="Edit Profile" />
+
 </LinearLayout>
