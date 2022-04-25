@@ -1,150 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/beth_ellen"
+        android:gravity="center"
+        android:text="@string/sankalan_2022"
+        android:textColor="@color/white"
+        android:textSize="36sp"
+        android:textStyle="italic" />
+
+    <TextView
         android:id="@+id/sign_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        android:layout_marginStart="35dp"
+        android:layout_below="@id/logo"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="34dp"
         android:text="@string/sign_in"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="bold" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/sign_in"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="18dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/message_for_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/not_registered_yet_message"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/register_here"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/register_here"
+                android:textColor="@color/purple_200"
+                android:textSize="20sp"
+                android:textStyle="italic|bold" />
+        </LinearLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/EmailAddressil"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="24dp"
+                android:layout_below="@id/linearLayout"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/Enter_Email"
+                app:boxBackgroundColor="@color/white"
+                app:startIconDrawable="@drawable/ic_baseline_email_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/EmailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editTextPasswordil"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="20dp"
+                android:layout_below="@id/EmailAddressil"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/password"
+                app:boxBackgroundColor="#fff"
+                app:startIconDrawable="@drawable/ic_baseline_lock_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/forgot_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="30dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_below="@id/editTextPasswordil"
+                android:layout_alignParentEnd="true"
+                android:text="@string/forgotPassword"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/message_for_register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/not_registered_yet_message"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="italic" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/register_here"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:layout_marginTop="24dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="@string/register_here"
-            android:textColor="@color/royal_purple"
-            android:textSize="20sp"
-            android:textStyle="italic|bold"
-            tools:ignore="UsingOnClickInXml,TouchTargetSizeCheck" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="32dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/EmailAddressil"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/Enter_Email"
-            app:startIconDrawable="@drawable/email">
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/EmailAddress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="20dp"
-                android:autofillHints="false"
-                android:ems="10"
-                android:foregroundGravity="top"
-                android:inputType="textEmailAddress"
-                android:textColorHint="#757575"
-                tools:ignore="LabelFor,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/editTextPasswordil"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:hint="@string/enter_password"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
-            app:startIconDrawable="@drawable/password_logo">
-
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/editTextPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
-                android:autofillHints="false"
-
-                android:ems="10"
-                android:inputType="textPassword"
-                android:textColorHint="#757575"
-                tools:ignore="LabelFor,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/forgot_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="30dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="@string/forgotPassword"
-            android:textColor="@color/royal_purple"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextPasswordil"
-            tools:ignore="UsingOnClickInXml,TouchTargetSizeCheck" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/background_round_btn"
-            android:enabled="false"
-            android:text="@string/login"
-            android:textAllCaps="false"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            app:flow_horizontalAlign="center"
-            app:flow_verticalAlign="center" />
-
-    </LinearLayout>
-
+        android:layout_below="@id/forgot_password"
+        android:layout_gravity="center"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/background_round_btn"
+        android:paddingLeft="25sp"
+        android:paddingRight="25sp"
+        android:text="@string/login"
+        android:textColor="@color/white" />
 
     <ProgressBar
         android:id="@+id/loading"
@@ -157,4 +147,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
