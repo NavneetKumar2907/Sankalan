@@ -1,60 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/loginHere"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="24dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:text="@string/login_here"
-        android:textColor="@color/royal_purple"
-        android:textSize="20sp"
-        android:textStyle="italic|bold"
-        app:layout_constraintStart_toEndOf="@+id/message_for_sign_in"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up"
-        tools:ignore="UsingOnClickInXml,TouchTargetSizeCheck" />
-
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        android:layout_marginStart="35dp"
+        android:layout_marginStart="24sp"
+        android:layout_marginTop="24sp"
+        android:layout_marginEnd="24sp"
+        android:layout_marginBottom="24sp"
         android:text="@string/sign_up"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/message_for_sign_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="24dp"
+        android:layout_below="@+id/sign_up"
+        android:layout_marginStart="25sp"
+        android:layout_marginTop="18sp"
         android:text="@string/already_registered_login"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="20sp"
-        android:textStyle="italic"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_up" />
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/loginHere"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/sign_up"
+        android:layout_marginStart="6sp"
+        android:layout_marginTop="18sp"
+        android:layout_toEndOf="@+id/message_for_sign_in"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="@string/login_here"
+        android:textColor="@color/royal_purple"
+        android:textSize="20sp"
+        android:textStyle="italic|bold" />
+
 
     <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/message_for_sign_in">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/message_for_sign_in"
+        android:layout_marginTop="18sp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,177 +58,171 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/FullNameil"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                app:startIconDrawable="@drawable/name"
-                android:hint="@string/full_name"
-                >
-                <androidx.appcompat.widget.AppCompatEditText
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24sp"
+                android:layout_marginEnd="20sp"
+                android:layout_marginBottom="10sp"
+                android:hint="@string/Enter_Name"
+                app:boxBackgroundColor="#fff"
+                app:startIconDrawable="@drawable/ic_person">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/FullName"
-                    android:layout_width="360dp"
-                    android:layout_height="59dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="6dp"
-                    android:autofillHints="false"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:textColorHint="#757575"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
-
-
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/CollegeNameil"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                app:startIconDrawable="@drawable/college"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24sp"
+                android:layout_marginEnd="20sp"
+                android:layout_marginBottom="10sp"
                 android:hint="@string/College_Name"
-                >
-                <androidx.appcompat.widget.AppCompatEditText
+                app:boxBackgroundColor="#fff"
+                app:startIconDrawable="@drawable/ic_college">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/CollegeName"
-                    android:layout_width="360dp"
-                    android:layout_height="59dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="6dp"
-                    android:autofillHints="false"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:textColorHint="#757575" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
-
-
-
-
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/CourseNameil"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                app:startIconDrawable="@drawable/course"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24sp"
+                android:layout_marginEnd="20sp"
+                android:layout_marginBottom="10sp"
                 android:hint="@string/Enter_course"
-                >
-                <androidx.appcompat.widget.AppCompatEditText
+                app:boxBackgroundColor="#fff"
+                app:startIconDrawable="@drawable/ic_course">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/CourseName"
-                    android:layout_width="360dp"
-                    android:layout_height="59dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="6dp"
-                    android:autofillHints="false"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:textColorHint="#757575"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/courseYearil"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                app:startIconDrawable="@drawable/course_year"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24sp"
+                android:layout_marginEnd="20sp"
+                android:layout_marginBottom="10sp"
                 android:hint="@string/Enter_Course_year"
-                >
-                <androidx.appcompat.widget.AppCompatEditText
+                app:boxBackgroundColor="#fff"
+                app:startIconDrawable="@drawable/ic_calendar">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/courseYear"
-                    android:layout_width="360dp"
-                    android:layout_height="59dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="6dp"
-                    android:autofillHints="false"
-                    android:ems="10"
-                    android:inputType="number"
-                    android:textColorHint="#757575"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/mobileNumil"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                app:startIconDrawable="@drawable/phone"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24sp"
+                android:layout_marginEnd="20sp"
+                android:layout_marginBottom="10sp"
                 android:hint="@string/Enter_Mobile_Num"
-                >
-                <androidx.appcompat.widget.AppCompatEditText
+                app:boxBackgroundColor="#fff"
+                app:startIconDrawable="@drawable/ic_call">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/mobileNum"
-                    android:layout_width="360dp"
-                    android:layout_height="59dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="6dp"
-                    android:autofillHints="false"
-                    android:ems="10"
-                    android:inputType="phone"
-                    android:textColorHint="#757575"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/enterEmailil"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                app:startIconDrawable="@drawable/email"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24sp"
+                android:layout_marginEnd="20sp"
+                android:layout_marginBottom="10sp"
                 android:hint="@string/Enter_Email"
-                >
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/enterEmail"
-                    android:layout_width="360dp"
-                    android:layout_height="59dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="6dp"
-                    android:autofillHints="false"
-                    android:ems="10"
-                    android:inputType="textEmailAddress"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                app:boxBackgroundColor="#fff"
+                app:startIconDrawable="@drawable/ic_email">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/enterEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/createPasswordil"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
-                app:startIconDrawable="@drawable/password_logo"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24sp"
+                android:layout_marginEnd="20sp"
+                android:layout_marginBottom="10sp"
                 android:hint="@string/enter_password"
-                >
-                <androidx.appcompat.widget.AppCompatEditText
+                app:boxBackgroundColor="#fff"
+                app:startIconDrawable="@drawable/ic_baseline_lock_24">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/createPassword"
-                    android:layout_width="360dp"
-                    android:layout_height="59dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="6dp"
-                    android:autofillHints="false"
-                    android:ems="10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:inputType="textPassword" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
-            <androidx.appcompat.widget.AppCompatButton
+
+            <Button
                 android:id="@+id/signUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginBottom="14dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="30sp"
+                android:layout_marginTop="18sp"
+                android:layout_marginEnd="30sp"
                 android:background="@drawable/background_round_btn"
+                android:paddingLeft="25sp"
+                android:paddingRight="25sp"
                 android:text="@string/sign_up"
-                android:textAllCaps="false"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                app:flow_horizontalAlign="center"
-                app:flow_verticalAlign="center" />
+                android:textColor="@color/white" />
+
         </LinearLayout>
     </ScrollView>
 
     <ProgressBar
         android:id="@+id/loading"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="0sp"
         android:layout_gravity="center"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
