@@ -20,9 +20,11 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@drawable/ic_layer_one"
+        android:fadingEdge="horizontal"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer"
-        app:itemTextColor="@color/royal_purple"
-        />
+        app:itemIconTint="@color/navigation_selector"
+        app:itemTextAppearance="@style/TextAppearance.MaterialComponents.Caption"
+        app:itemTextColor="@color/white"
+        app:menu="@menu/activity_main_drawer" />
 </androidx.drawerlayout.widget.DrawerLayout>
