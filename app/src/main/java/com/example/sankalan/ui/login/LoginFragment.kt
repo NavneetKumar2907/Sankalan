@@ -24,29 +24,17 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+
 
 
 class LoginFragment : Fragment(), View.OnClickListener {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
-    //Variables
-    lateinit var LoginFragmentBinding: FragmentLoginBinding
-    lateinit var authViewModel: AuthenticationViewModel
+
+    lateinit var LoginFragmentBinding: FragmentLoginBinding // For UI
+    lateinit var authViewModel: AuthenticationViewModel // ViewModel For Authentication
     lateinit var popUpForgotPassWord: PopupWindow
-    private var navController: NavController? = null
+    private var navController: NavController? = null //For Navigation
     lateinit var popupView: View
 
 
@@ -54,32 +42,31 @@ class LoginFragment : Fragment(), View.OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        popupView = inflater.inflate(R.layout.forgot_password, null)
-        val width = LinearLayout.LayoutParams.MATCH_PARENT
-        val height = LinearLayout.LayoutParams.MATCH_PARENT
+
         // Inflate the layout for this fragment
         LoginFragmentBinding = FragmentLoginBinding.inflate(inflater)
-        popUpForgotPassWord = PopupWindow(popupView, width, height, true)
         return LoginFragmentBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //Views
-        val emailEdit = LoginFragmentBinding.EmailAddress
-        val passEdit = LoginFragmentBinding.editTextPassword
-        val loginButton = LoginFragmentBinding.login
-        val registerText = LoginFragmentBinding.registerHere
-        val loading = LoginFragmentBinding.loading
-        val forgotPassword = LoginFragmentBinding.forgotPassword
-        navController = Navigation.findNavController(view)
+        //Views Variables
 
-        //ViewModel
+        val emailEdit = LoginFragmentBinding.EmailAddress //Entered Email Address
+        val passEdit = LoginFragmentBinding.editTextPassword //Entered PassWord
+        val loginButton = LoginFragmentBinding.login // Login Button
+        val registerText = LoginFragmentBinding.registerHere // Register Text
+        val loading = LoginFragmentBinding.loading //Loading Progress Bar
+        val forgotPassword = LoginFragmentBinding.forgotPassword //Forgot Password Text
+        navController = Navigation.findNavController(view) //Navigation Controller
+
+        //Initializing ViewModel
         authViewModel = ViewModelProvider(
             this,
             AuthenticationViewModelFactory()
         ).get(AuthenticationViewModel::class.java)
 
+        // View Model  Status of login
         authViewModel.loginForm.observe(viewLifecycleOwner, Observer {
             loginButton.isEnabled = it.isValid
 
@@ -104,7 +91,8 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 password = it.toString()
             )
         }
-        //result observer
+
+        //View Model Login observer
         authViewModel.result_login.observe(viewLifecycleOwner, Observer {
             if(it.failed!=null){
                 Toast.makeText(context,it.failed,Toast.LENGTH_SHORT).show()
@@ -116,6 +104,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
             }
         })
 
+        // Login Button Listener
         loginButton.setOnClickListener {
             loading.visibility = View.VISIBLE
             try {
@@ -128,11 +117,13 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 loading.visibility = View.GONE
             }
         }
+        // Register Listener
         registerText.setOnClickListener {
             // signup
             // change fragment
             onClick(it)
         }
+        //Forgot Password Listener
         forgotPassword.setOnClickListener {
             popUpForgotPassWord.showAtLocation(getView(), Gravity.CENTER, 0, 0)
         }
@@ -160,30 +151,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
 
     }
 
-    private fun ForgotPassWordPopUp() {
-
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LoginFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LoginFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
-
+    // Interface Override for click listener inside login and signup fragment
     override fun onClick(p0: View?) {
         navController?.navigate(R.id.action_loginFragment_to_signUpFragment)
     }
