@@ -5,7 +5,6 @@
         android:type="linear"
         android:startColor="@color/purple_500"
         android:endColor="@color/purple_200"
-        android:centerColor="@color/royal_purple"
         android:useLevel="false"
         />
 

@@ -198,7 +198,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/signUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -210,7 +210,8 @@
                 android:paddingLeft="25sp"
                 android:paddingRight="25sp"
                 android:text="@string/sign_up"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                />
 
         </LinearLayout>
     </ScrollView>
@@ -218,8 +219,8 @@
     <ProgressBar
         android:id="@+id/loading"
         android:layout_width="wrap_content"
-        android:layout_height="0sp"
-        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

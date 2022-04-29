@@ -15,7 +15,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.461"
-        app:srcCompat="@drawable/sanklan_blackwhite_name" />
+        android:src="@drawable/sankalan_name_reduced"
+   />
 
     <ScrollView
         android:id="@+id/about_scroll"
@@ -36,7 +37,8 @@
             android:lineSpacingMultiplier="1.2"
             android:text="@string/about_us"
             android:textAlignment="viewStart"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            style="@style/TextAppearance.App.Subtitle1"/>
     </ScrollView>
 
 

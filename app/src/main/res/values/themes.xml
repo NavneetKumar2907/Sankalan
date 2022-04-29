@@ -41,14 +41,34 @@
     </style>
 
     <style name="TextAppearance.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
-        <item name="fontFamily">@font/rubik</item>
-        <item name="android:fontFamily">@font/rubik</item>
+        <item name="fontFamily">@font/rubik_semibold</item>
+        <item name="android:fontFamily">@font/rubik_semibold</item>
+        <item name="android:textAppearance">@android:style/TextAppearance.Medium</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="TextAppearance.App.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
         <item name="fontFamily">@font/rubik</item>
         <item name="android:fontFamily">@font/rubik</item>
+        <item name="android:textColor">@color/white</item>
     </style>
+    <style name="forgot_background">
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/gradient2</item>
+    </style>
+    <style name="button_background">
+        <item name="android:background">@drawable/background_round_btn</item>
+        <item name="android:fontFamily">@font/rubik</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:shadowColor">@color/white</item>
+        <item name="android:paddingStart">20dp</item>
+        <item name="android:paddingEnd">25dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
 
 
 </resources>

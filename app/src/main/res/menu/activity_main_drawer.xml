@@ -17,10 +17,7 @@
             android:title="@string/MyEvents"
 
             />
-        <item
-            android:id="@+id/myTeamFragment"
-            android:icon="@drawable/ic_baseline_group_24"
-            android:title="@string/MyTeam" />
+
         <item
             android:id="@+id/scoreboardFragment"
             android:icon="@drawable/ic_baseline_score_24"

@@ -83,7 +83,7 @@
     <string name="action_user">User</string>
     <string name="empty_edtit_text">Required</string>
 
-    <string name="menu_home">Home</string>
+    <string name="menu_home">Events</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="title_activity_splash_screen">SplashScreen</string>
@@ -108,4 +108,10 @@
     <string name="scroll_description">Selected Event  Details</string>
     <string name="sucess_register">Registered Successfully.</string>
     <string name="sankalan_2022"><u>Sankalan \'22</u></string>
+
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_member">Add Member</string>
+    <string name="remove_member">Remove Member</string>
+    <string name="you_can_have_2_or_4_members">You can have 2 or 4 members.</string>
 </resources>

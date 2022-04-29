@@ -12,7 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/dept_title"
-        app:srcCompat="@drawable/dept_border" />
+        android:cropToPadding="false"
+        android:scaleType="centerInside"
+        android:src="@drawable/department_reduced"
+        />
 
 
         <ImageView
@@ -20,7 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="rotating"
-            app:srcCompat="@drawable/ic_group_four" />
+            app:srcCompat="@drawable/ic_group_four"
+            />
 
         <ImageView
             android:id="@+id/rotator_two_iv"
@@ -48,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="rotating"
-        app:srcCompat="@drawable/sankaln_name" />
+        android:src="@drawable/sankalan_name_reduced" />
 
 
 </RelativeLayout>

@@ -21,30 +21,36 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
 
     //ViewModel
-    lateinit var mainViewModel:MainViewModel
+    lateinit var mainViewModel: MainViewModel
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var appBarConfiguration: AppBarConfiguration //App Bar
     private lateinit var binding: ActivityMainBinding
-    lateinit var bottom:BottomNavigationView
-//    lateinit var viewModelData
+    lateinit var bottom: BottomNavigationView //Bottom Navigation
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //setting Up UI
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(binding.appBarMain.toolbar)
+
         // Bottom Navigation
-        val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
+        val navHost =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
         val navControl = navHost.navController
+
         bottom = findViewById(R.id.bottom_navigation)
         bottom.setupWithNavController(navControl)
+
         //drawer layout
-         appBarConfiguration = AppBarConfiguration(navControl.graph,binding.drawerLayout)
-        setupActionBarWithNavController(navControl,binding.drawerLayout)
+        appBarConfiguration = AppBarConfiguration(navControl.graph, binding.drawerLayout)
+        setupActionBarWithNavController(navControl, binding.drawerLayout)
         binding.navView.setupWithNavController(navControl)
-    //View model
-    mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+        //Initialising view Model
+        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
     }
 
@@ -56,12 +62,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        if(item.itemId == R.id.action_logout){
+        if (item.itemId == R.id.action_logout) {
             Thread(Runnable {
                 mainViewModel.logout()
 
             })
-            startActivity(Intent(this,LoginActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             this.finish()
             return true
         }
@@ -74,8 +80,5 @@ class MainActivity : AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 
-    private fun  getUserData(){
-
-    }
 
 }

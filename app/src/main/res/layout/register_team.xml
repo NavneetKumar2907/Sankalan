@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
     android:gravity="fill_vertical"
     android:orientation="vertical">
 
@@ -13,10 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="You can have 2 or 4 members."
-        android:textAllCaps="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textStyle="bold|italic" />
+        android:text="@string/you_can_have_2_or_4_members"
+        android:textAppearance="@style/TextAppearance.Headline6" />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -82,33 +79,39 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/add_member"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="5dp"
         android:background="@drawable/background_round_btn"
-        android:text="Add Member"
-        app:icon="@drawable/ic_baseline_add_circle_24" />
+        android:text="@string/add_member"
+        android:drawableStart="@drawable/ic_baseline_add_circle_24"
+        style="@style/button_background"
+        />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/sub_member"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="5dp"
         android:background="@drawable/background_round_btn"
-        android:text="Remove Member"
+        android:text="@string/remove_member"
         android:visibility="gone"
-        app:icon="@drawable/ic_baseline_indeterminate_check_box_24" />
+        android:drawableStart="@drawable/ic_baseline_indeterminate_check_box_24"
+        style="@style/button_background"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/submit_team"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
         android:background="@drawable/background_round_btn"
-        android:text="Submit" />
+        android:text="@string/submit"
+        style="@style/button_background"
+
+        />
 </androidx.appcompat.widget.LinearLayoutCompat>

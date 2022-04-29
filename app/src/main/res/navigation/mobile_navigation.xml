@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/myProfileFragment"
         android:name="com.example.sankalan.ui.profile.MyProfileFragment"
-        android:label="fragment_my_profile"
+        android:label="@string/MyProfile"
         tools:layout="@layout/fragment_my_profile" />
     <fragment
         android:id="@+id/helpFragment"

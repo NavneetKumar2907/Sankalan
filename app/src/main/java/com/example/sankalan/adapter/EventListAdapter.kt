@@ -66,6 +66,11 @@ class EventListAdapter(private val dataset: List<Events>, val listener:SelectedE
                 e.printStackTrace()
             }
         }
+        if(item.Team){
+            holder.container.setBackgroundResource(R.drawable.gradient1)
+        }else{
+            holder.container.setBackgroundResource(R.drawable.gradient2)
+        }
 
         holder.container.setOnClickListener {
             //Start Popup

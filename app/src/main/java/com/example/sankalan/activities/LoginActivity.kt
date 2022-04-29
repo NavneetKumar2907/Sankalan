@@ -4,20 +4,28 @@ import android.graphics.drawable.AnimationDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.lifecycle.ViewModelProvider
 import com.example.sankalan.R
 import com.example.sankalan.databinding.LoginActivityBinding
+import com.example.sankalan.ui.login.model.AuthenticationViewModel
+import com.example.sankalan.ui.login.model.AuthenticationViewModelFactory
 
 
 class LoginActivity : AppCompatActivity(){
 
 
     lateinit var binding: LoginActivityBinding
+    lateinit var viewModel:AuthenticationViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = LoginActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        viewModel = ViewModelProvider(
+            this,
+            AuthenticationViewModelFactory()
+        ).get(AuthenticationViewModel::class.java)
 
         val animDrawable = findViewById<ConstraintLayout>(R.id.rootLayout).background as AnimationDrawable?
         animDrawable?.setEnterFadeDuration(10)
