@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff">
+    >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -36,6 +36,7 @@
 
                 <TextView
                     android:id="@+id/event_name_selected_event"
+                    style="@style/TextAppearance.Headline6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Event Name"
@@ -52,7 +53,9 @@
                     android:layout_below="@id/event_venue_card"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="18dp"
-                    android:src="@drawable/event_timing_card" />
+                    android:src="@drawable/event_timing_card"
+                    style="@style/TextAppearance.App.Subtitle1"
+                    />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -66,7 +69,9 @@
                         android:layout_height="wrap_content"
                         android:text="02:00PM"
                         android:textColor="@android:color/holo_red_dark"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        style="@style/TextAppearance.App.Subtitle1"
+                        />
 
                     <TextView
                         android:id="@+id/venue_selected_events"
@@ -74,7 +79,9 @@
                         android:layout_height="wrap_content"
                         android:text="Online"
                         android:textColor="@color/glow_green"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        style="@style/TextAppearance.App.Subtitle1"
+                        />
                 </LinearLayout>
 
             </LinearLayout>
@@ -86,9 +93,11 @@
                 android:layout_margin="10dp"
                 android:text="Rakesh Kumar"
                 android:textAllCaps="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                style="@style/TextAppearance.App.Subtitle1"
+
+                />
 
             <TextView
                 android:id="@+id/about_event"
@@ -97,8 +106,9 @@
                 android:layout_margin="10dp"
                 android:text="About This Event------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="@color/royal_purple"
-                android:textSize="19sp" />
+                android:textSize="19sp"
+                style="@style/TextAppearance.App.Subtitle1"
+                />
 
             <TextView
                 android:id="@+id/rules_selected_event"
@@ -107,7 +117,7 @@
                 android:layout_margin="10dp"
                 android:text="Rules------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="@color/royal_purple"
+                style="@style/TextAppearance.App.Subtitle1"
                 android:textSize="19sp" />
 
             <Button
