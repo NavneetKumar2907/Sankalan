@@ -1,44 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradient1"
     tools:context=".ui.about.AboutUsFragment">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="397dp"
-        android:layout_height="163dp"
-        app:layout_constraintBottom_toTopOf="@+id/about_scroll"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.461"
-        android:src="@drawable/sankalan_name_reduced"
-   />
 
     <ScrollView
         android:id="@+id/about_scroll"
-        android:layout_width="316dp"
-        android:layout_height="295dp"
-        android:layout_marginBottom="76dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="70dp"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
-        <TextView
-            android:id="@+id/textView8"
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lineSpacingMultiplier="1.2"
-            android:text="@string/about_us"
-            android:textAlignment="viewStart"
-            android:textSize="16sp"
-            style="@style/TextAppearance.App.Subtitle1"/>
+            android:orientation="vertical"
+            android:textAlignment="center">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="397dp"
+                android:layout_height="163dp"
+                android:src="@drawable/sankalan_name_reduced"
+                app:layout_constraintBottom_toTopOf="@+id/about_scroll"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.461" />
+
+            <TextView
+                android:id="@+id/textView8"
+                style="@style/TextAppearance.Headline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="7dp"
+                android:lineSpacingMultiplier="1.2"
+                android:text="About Sankalan"
+                android:textAlignment="viewStart"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:textColor="#fc60ffc5" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="clip_horizontal"
+                android:layout_marginTop="7dp"
+                android:justificationMode="inter_word"
+                android:text="@string/aboutSanklan"
+                android:textColor="#99a1b3" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextAppearance.Headline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:text="What is it ?"
+                android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+                android:textColor="#fc60ffc5" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:justificationMode="inter_word"
+                android:text="@string/what_is_sanlan"
+                android:textColor="#99a1b3" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </ScrollView>
 
 

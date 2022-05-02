@@ -46,5 +46,15 @@
         android:name="com.example.sankalan.ui.scoreboard.ScoreboardFragment"
         android:label="@string/ScoreBoard"
         tools:layout="@layout/fragment_scoreboard" />
+    <fragment
+        android:id="@+id/developerFragment"
+        android:name="com.example.sankalan.ui.developers.DeveloperFragment"
+        android:label="Meet Teams"
+        tools:layout="@layout/fragment_developer" />
+    <fragment
+        android:id="@+id/sponsersFragment"
+        android:name="com.example.sankalan.ui.sponsers.SponsersFragment"
+        android:label="Sponsers"
+        tools:layout="@layout/fragment_sponsers" />
 
 </navigation>

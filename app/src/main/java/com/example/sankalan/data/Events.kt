@@ -1,5 +1,8 @@
 package com.example.sankalan.data
 
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
+
 
 data class Events (
     val EventName: String = "",
@@ -10,4 +13,6 @@ data class Events (
     var Venue: String = "NONE",
     var Time: String = "00:00",
     var Coordinator:String = "XXXX"
-)
+){
+    var image_drawable:Bitmap?=null
+}

@@ -42,7 +42,7 @@
                     android:text="Event Name"
                     android:textAllCaps="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="@color/royal_purple"
+                    android:textColor="@color/white"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -88,16 +88,15 @@
 
             <TextView
                 android:id="@+id/contact_person"
+                style="@style/TextAppearance.App.Subtitle1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Rakesh Kumar"
                 android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                style="@style/TextAppearance.App.Subtitle1"
+                android:textColor="@color/white"
 
-                />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/about_event"
@@ -120,13 +119,15 @@
                 style="@style/TextAppearance.App.Subtitle1"
                 android:textSize="19sp" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/register_selected_event"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/background_round_btn"
-                android:text="@string/register" />
+                android:text="@string/register"
+                style="@style/button_background"
+                />
 
         </LinearLayout>
     </ScrollView>

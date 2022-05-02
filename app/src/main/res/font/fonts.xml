@@ -3,4 +3,5 @@
     <font
         android:font="@font/rubik"/>
     <font android:font="@font/rubik_semibold"/>
+    <font android:font="@font/space_mono"/>
 </font-family>

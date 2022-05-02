@@ -48,24 +48,10 @@ class EventListAdapter(private val dataset: List<Events>, val listener:SelectedE
         holder.nos.text =if (item.Team) "Team" else "Individual"
         holder.timing.text = item.Time
         holder.venue.text = item.Venue
-
-        //Setting Image with url
-        val executer = Executors.newSingleThreadExecutor()
-
-        val handler = Handler(Looper.getMainLooper())
-        var img: Bitmap?= null
-        executer.execute {
-            try {
-                val `in` = java.net.URL(dataset.get(position).Image).openStream()
-                img = BitmapFactory.decodeStream(`in`)
-                handler.post {
-                    holder.poster.setImageBitmap(img)
-                }
-            }
-            catch (e:Exception){
-                e.printStackTrace()
-            }
+        if(item.image_drawable!=null){
+            holder.poster.setImageBitmap(item.image_drawable)
         }
+
         if(item.Team){
             holder.container.setBackgroundResource(R.drawable.gradient1)
         }else{
@@ -74,7 +60,7 @@ class EventListAdapter(private val dataset: List<Events>, val listener:SelectedE
 
         holder.container.setOnClickListener {
             //Start Popup
-            listener.selectedEvent(holder.adapterPosition,holder.poster.drawable)
+            listener.selectedEvent(holder.adapterPosition)
 
         }
     }

@@ -1,4 +1,4 @@
-package com.example.sankalan.ui.helpandfeedback
+package com.example.sankalan.fragmentsadmin
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.example.sankalan.R
 
 
-class HelpFragment : Fragment() {
+class UsersFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -16,7 +16,8 @@ class HelpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_help, container, false)
+        return inflater.inflate(R.layout.fragment_users_admin, container, false)
     }
+
 
 }

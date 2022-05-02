@@ -9,6 +9,7 @@
 
     <!--    name layout-->
     <LinearLayout
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -267,16 +268,15 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/edit_profile_button"
+        style="@style/button_background"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="bottom|center_horizontal"
         android:layout_marginStart="30dp"
         android:layout_marginTop="18dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/background_round_btn"
         android:drawableTop="@drawable/ic_baseline_edit_24"
-        android:text="Edit Profile"
-        style="@style/button_background"
-         />
+        android:text="Edit Profile" />
 
 </LinearLayout>

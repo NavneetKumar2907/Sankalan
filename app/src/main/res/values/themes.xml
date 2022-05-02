@@ -56,6 +56,7 @@
     <style name="forgot_background">
         <item name="android:layout_gravity">center</item>
         <item name="android:background">@drawable/gradient2</item>
+        <item name="itemTextColor">@color/white</item>
     </style>
     <style name="button_background">
         <item name="android:background">@drawable/background_round_btn</item>

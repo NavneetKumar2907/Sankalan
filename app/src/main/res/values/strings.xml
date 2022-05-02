@@ -20,7 +20,7 @@
     <string name="welcome">"Welcome !"</string>
     <string name="not_verfied_string">Verify Account First.</string>
     <string name="register">Register</string>
-<string name="already_registered">Already Registered.</string>
+    <string name="already_registered">Already Registered.</string>
     <string name="Success">SuccessFull Login.</string>
     <string name="Failed">Failed Login.</string>
 
@@ -114,4 +114,21 @@
     <string name="add_member">Add Member</string>
     <string name="remove_member">Remove Member</string>
     <string name="you_can_have_2_or_4_members">You can have 2 or 4 members.</string>
+
+    <string name="aboutSanklan">Sankalan is the annual tech fest of Department Computer Science, University of Delhi (DUCS).</string>
+    <string name="what_is_sanlan">This is the annual tech fest of DUCS which has been our pride for more than a decade now.
+
+Since its inception in 2005, it has been a part and parcel of lives at DUCS. Students from universities across India come and participate enthusiastically in this two day event. This is the time when everyone works together as a team and is dedicated towards a common goal to bring pride and honour to the Department.
+
+The sole reason for this event is to nurture qualities of participants.
+
+We at DUCS put our efforts to make this event fruitful and memorable. \'Division of labour\' is followed here at every step. This keeps the students mentally prepared to perform well in the companies and prepares them to take responsibilities and live up to the expectations.
+
+Renowned people from the IT industry and our alumni placed in various tech giant companies judge and review all the technical events held during the fest. After the two days of long grilling experience, students are awarded and appreciated for winning and participating in the fest.
+
+A large number of sponsors who financially aid this event form the backbone of the fest. Thankful to the sponsors who always believes in us.</string>
+    <string name="sponsers">Sponsers</string>
+    <string name="meet_developers">Meet Developers</string>
+    <string name="edit">Edit</string>
+
 </resources>

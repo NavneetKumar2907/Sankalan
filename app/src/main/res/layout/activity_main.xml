@@ -28,6 +28,13 @@
         app:itemTextColor="@color/white"
         app:menu="@menu/activity_main_drawer"
         app:headerLayout="@layout/nav_header"
+        >
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="bottom">
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        />
+    </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

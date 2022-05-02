@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="fill_vertical"
+    android:background="@drawable/gradient3"
     android:orientation="vertical">
 
 
@@ -20,17 +21,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/member_1"
+        android:textColorHint="@color/white"
         app:hintTextColor="@color/white"
         >
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/member1"
+            style="@style/TextAppearance.App.Subtitle1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
             android:inputType="textEmailAddress"
-            style="@style/TextAppearance.App.Subtitle1"
-            />
+            android:minHeight="48dp"
+            android:text="abc@gmail.com" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -38,6 +41,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/member_2"
+        android:textColorHint="@color/white"
+
         app:hintTextColor="@color/white"
         >
 
@@ -56,6 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/member_3"
+        android:textColorHint="@color/white"
         app:hintTextColor="@color/white"
         android:id="@+id/member3il">
 
@@ -64,7 +70,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
-            android:visibility="gone"
             android:inputType="textEmailAddress"
             style="@style/TextAppearance.App.Subtitle1"
             />
@@ -76,6 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:hintTextColor="@color/white"
+        android:textColorHint="@color/white"
         android:hint="@string/member_4">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -84,44 +90,42 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="12dp"
-            android:visibility="gone"
             android:inputType="textEmailAddress"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/add_member"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="5dp"
-        android:background="@drawable/background_round_btn"
-        android:text="@string/add_member"
-        android:drawableStart="@drawable/ic_baseline_add_circle_24"
-        style="@style/button_background"
-        />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/sub_member"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="5dp"
-        android:background="@drawable/background_round_btn"
-        android:text="@string/remove_member"
-        android:visibility="gone"
-        android:drawableStart="@drawable/ic_baseline_indeterminate_check_box_24"
-        style="@style/button_background"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/submit_team"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/background_round_btn"
-        android:text="@string/submit"
-        style="@style/button_background"
+        >
 
-        />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/submit_team"
+            style="@style/button_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/background_round_btn"
+            android:text="@string/submit"
+            android:paddingBottom="0dp"
+            android:layout_marginEnd="15dp"
+            />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cancel_team"
+            style="@style/button_background"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/background_round_btn"
+            android:text="@string/cancel"
+            android:paddingBottom="0dp"
+            android:layout_marginStart="15dp"
+            />
+    </LinearLayout>
 </androidx.appcompat.widget.LinearLayoutCompat>

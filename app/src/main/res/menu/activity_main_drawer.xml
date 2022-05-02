@@ -26,6 +26,16 @@
             android:id="@+id/helpFragment"
             android:icon="@drawable/ic_baseline_help_outline_24"
             android:title="@string/HelpandFeedBack" />
+        <item
+            android:id="@+id/sponsersFragment"
+            android:title="@string/sponsers"
+            android:icon="@drawable/ic_sponser"
+            />
+        <item
+            android:id="@+id/developerFragment"
+            android:title="@string/meet_developers"
+            android:icon="@drawable/ic_coding"
+            />
     </group>
 
 </menu>

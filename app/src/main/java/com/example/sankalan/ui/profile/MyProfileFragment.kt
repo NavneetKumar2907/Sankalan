@@ -3,35 +3,26 @@ package com.example.sankalan.ui.profile
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.sankalan.MainViewModel
 import com.example.sankalan.R
-import com.example.sankalan.databinding.FragmentMyEventsBinding
 import com.example.sankalan.databinding.FragmentMyProfileBinding
 import com.example.sankalan.ui.login.data.LoggedInUser
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.getValue
-import com.google.firebase.ktx.Firebase
-
 
 
 class MyProfileFragment : Fragment() {
-    lateinit var popEditView:View
-    lateinit var myprofileBinding:FragmentMyProfileBinding
+    lateinit var popEditView: View
+    lateinit var myprofileBinding: FragmentMyProfileBinding
 
     //ViewModel
 
-    private val mainV :MainViewModel by activityViewModels()
+    private val mainV: MainViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +34,8 @@ class MyProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        popEditView = inflater.inflate(R.layout.edit_my_profile,null)
-        myprofileBinding =  FragmentMyProfileBinding.inflate(inflater)
+        popEditView = inflater.inflate(R.layout.edit_my_profile, null)
+        myprofileBinding = FragmentMyProfileBinding.inflate(inflater)
         return myprofileBinding.root
     }
 
@@ -70,7 +61,7 @@ class MyProfileFragment : Fragment() {
         val editPopUp = PopupWindow(popEditView, dim, dim, true)
         editButton.setOnClickListener {
             //Edit Profile Popup
-            editPopUp.showAtLocation(view, Gravity.CENTER,0 , 0)
+            editPopUp.showAtLocation(view, Gravity.CENTER, 0, 0)
         }
         val name_edit = popEditView.findViewById<EditText>(R.id.edit_username)
         val college_edit = popEditView.findViewById<EditText>(R.id.edit_college_name)
@@ -80,9 +71,9 @@ class MyProfileFragment : Fragment() {
         val update = popEditView.findViewById<Button>(R.id.saveBtnTask)
 
         update.setOnClickListener {
-            try{
+            try {
                 val userEditNew = LoggedInUser(
-                    name= name_edit.text.toString(),
+                    name = name_edit.text.toString(),
                     mobile = mobile_edit.text.toString(),
                     course = course_edit.text.toString(),
                     institute = college_edit.text.toString(),
@@ -90,10 +81,10 @@ class MyProfileFragment : Fragment() {
                 )
                 mainV.editUserDetail(userEditNew)
 
-            }catch (e:Exception){
-                Log.w("Error",e.message.toString())
-                Toast.makeText(context,"Error in saving data!!",Toast.LENGTH_SHORT).show()
-            }finally {
+            } catch (e: Exception) {
+                Log.w("Error", e.message.toString())
+                Toast.makeText(context, "Error in saving data!!", Toast.LENGTH_SHORT).show()
+            } finally {
                 editPopUp.dismiss()
             }
         }
