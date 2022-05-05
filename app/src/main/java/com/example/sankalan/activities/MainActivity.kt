@@ -12,11 +12,10 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.sankalan.MainViewModel
+import com.example.sankalan.model.MainViewModel
 import com.example.sankalan.R
 import com.example.sankalan.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.coroutines.CompletableDeferred
 
 class MainActivity : AppCompatActivity() {
 
@@ -61,7 +60,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val def = CompletableDeferred<Boolean>()
 
         if (item.itemId == R.id.action_logout) {
             Thread(Runnable {

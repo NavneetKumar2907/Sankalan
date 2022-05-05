@@ -73,17 +73,10 @@
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
             android:orientation="vertical">
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/eventPicture"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_vertical"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-                tools:ignore="ImageContrastCheck"
-                tools:srcCompat="@tools:sample/avatars" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/edit_admin_user"
@@ -92,6 +85,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="3dp"
                 android:contentDescription="@string/edit"
+                android:enabled="false"
                 android:text="@string/edit"
                 app:icon="@drawable/ic_baseline_edit_24" />
 
@@ -100,8 +94,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="3dp"
+                android:layout_marginStart="3dp"
                 android:contentDescription="Delete"
+                android:enabled="false"
                 android:text="Delete"
                 app:icon="@drawable/ic_baseline_delete_24" />
         </LinearLayout>

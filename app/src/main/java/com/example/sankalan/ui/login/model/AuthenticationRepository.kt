@@ -1,12 +1,10 @@
 package com.example.sankalan.ui.login.model
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import com.example.sankalan.R
-import com.example.sankalan.ui.login.data.LoggedInUser
+import com.example.sankalan.data.LoggedInUserView
 import com.example.sankalan.ui.login.data.LoginResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.CompletableDeferred
 
@@ -14,9 +12,6 @@ class AuthenticationRepository {
 
 
     private val auth = FirebaseAuth.getInstance()
-    val isLogin: Boolean
-        get() = auth.currentUser != null
-
 
     suspend fun login(email: String, password: String):LoginResult {
         val def = CompletableDeferred<LoginResult>()
@@ -40,7 +35,7 @@ class AuthenticationRepository {
 
     }
 
-    suspend fun signUp(email: String, password: String, data: LoggedInUser):LoginResult {
+    suspend fun signUp(email: String, password: String, data: LoggedInUserView):LoginResult {
         val def = CompletableDeferred<LoginResult>()
 
         auth.createUserWithEmailAndPassword(email, password)
@@ -67,8 +62,9 @@ class AuthenticationRepository {
         return def.await()
     }
 
-    private fun uploadUserData(uid: String?, data: LoggedInUser) {
+    private fun uploadUserData(uid: String?, data: LoggedInUserView) {
         val database = FirebaseDatabase.getInstance().getReference("Users")
+        data.uid = FirebaseAuth.getInstance().uid.toString()
         if (uid != null) {
             database.child(uid).setValue(data)
                 .addOnSuccessListener {
@@ -83,10 +79,5 @@ class AuthenticationRepository {
         }
     }
 
-    fun logout() {
-        if (isLogin){
-            auth.signOut()
-        }
-    }
 
 }

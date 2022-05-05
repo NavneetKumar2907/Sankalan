@@ -33,12 +33,23 @@
             android:textAllCaps="true"
             android:textColor="#FFFFFF"
             android:textSize="22sp" />
-
+        <TextView
+            android:id="@+id/team_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/my_event_title_card"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Team Name"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
         <TextView
             android:id="@+id/my_event_member1_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/my_event_title_card"
+            android:layout_below="@id/team_name"
             android:layout_marginStart="25dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="25dp"

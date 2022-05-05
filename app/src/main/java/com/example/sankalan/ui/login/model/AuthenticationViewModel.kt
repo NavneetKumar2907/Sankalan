@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sankalan.R
+import com.example.sankalan.data.LoggedInUserView
 import com.example.sankalan.ui.login.data.LoggedInUser
 import com.example.sankalan.ui.login.data.LoginFormState
 import com.example.sankalan.ui.login.data.LoginResult
@@ -37,7 +38,7 @@ class AuthenticationViewModel(private val repository: AuthenticationRepository):
         }
 
     }
-    fun signUp(email: String, password: String, data:LoggedInUser){
+    fun signUp(email: String, password: String, data:LoggedInUserView){
        viewModelScope.launch {
            val res:LoginResult = repository.signUp(email, password, data)
            result_login.value = res
@@ -53,15 +54,6 @@ class AuthenticationViewModel(private val repository: AuthenticationRepository):
             _loginForm.value = LoginFormState(passError = R.string.invalid_password)
         }else{
             _loginForm.value = LoginFormState(isValid = true)
-        }
-    }
-    fun onSignupDataChange(email:String , password:String ){
-        if (!isValidEmail(email)){
-            _signUpForm.value = LoginFormState(emailError = R.string.invalid_email)
-        }else if(!isValidPassword(password)){
-            _signUpForm.value = LoginFormState(passError = R.string.invalid_password)
-        }else{
-            _signUpForm.value = LoginFormState(isValid = true)
         }
     }
 

@@ -61,8 +61,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/event_type_card"
             android:layout_marginStart="20dp"
-            android:fontFamily="sans-serif-medium"
+            android:drawableLeft="@drawable/ic_baseline_group_24"
 
+            android:fontFamily="sans-serif-medium"
             android:text="@string/team"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
@@ -73,8 +74,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/event_nos_card"
             android:layout_marginStart="20dp"
-            android:fontFamily="sans-serif-medium"
+            android:drawableLeft="@drawable/ic_baseline_location_on_24"
 
+            android:fontFamily="sans-serif-medium"
             android:text="@string/venue"
             android:textColor="#FFFFFF"
             android:textSize="14sp" />
@@ -87,7 +89,7 @@
             android:layout_below="@id/event_venue_card"
             android:layout_marginStart="20dp"
             android:layout_marginTop="18dp"
-            android:src="@drawable/event_timing_card" />
+            android:src="@drawable/ic_baseline_time_24" />
 
         <TextView
             android:id="@+id/event_timing_card"

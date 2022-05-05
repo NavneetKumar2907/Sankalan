@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.sankalan.MainViewModel
+import com.example.sankalan.model.MainViewModel
 import com.example.sankalan.databinding.FragmentDeveloperBinding
 
 class DeveloperFragment : Fragment() {

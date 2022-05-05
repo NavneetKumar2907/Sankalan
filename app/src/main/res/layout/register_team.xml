@@ -15,7 +15,23 @@
         android:layout_margin="10dp"
         android:text="@string/you_can_have_2_or_4_members"
         android:textAppearance="@style/TextAppearance.Headline6" />
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Team Name"
+        android:textColorHint="@color/white"
+        app:hintTextColor="@color/white"
+        >
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/teamName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:inputType="textPersonName"
+            style="@style/TextAppearance.App.Subtitle1" />
+    </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
         android:layout_width="match_parent"

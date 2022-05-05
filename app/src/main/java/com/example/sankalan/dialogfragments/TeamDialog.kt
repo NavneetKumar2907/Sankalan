@@ -1,6 +1,8 @@
 package com.example.sankalan.dialogfragments
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,10 +14,13 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import com.example.sankalan.MainViewModel
+import com.example.sankalan.model.MainViewModel
 import com.example.sankalan.R
+import com.example.sankalan.data.RegistrationSuccess
 import com.example.sankalan.data.TeamMembers
 import com.example.sankalan.interfaces.SelectedEventClickListener
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
@@ -25,6 +30,7 @@ class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
     private lateinit var member2: EditText
     private lateinit var member3: EditText
     private lateinit var member4: EditText
+    private lateinit var teamName:EditText
 
 
     override fun onCreateView(
@@ -41,6 +47,7 @@ class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
         member2 = teamView.findViewById(R.id.member2)
         member3 = teamView.findViewById(R.id.member3)
         member4 = teamView.findViewById(R.id.member4)
+        teamName = teamView.findViewById(R.id.teamName)
         member1.text = activityViewModels<MainViewModel>().value.userData.value?.email
 
         teamView.findViewById<Button>(R.id.submit_team)
@@ -50,6 +57,7 @@ class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
                 val mem2Email = member2.text.toString()
                 val mem3Email = member3.text.toString()
                 val mem4Email = member4.text.toString()
+                val teamNameText = teamName.text.toString()
                 if (mem2Email.isNotEmpty() && member2.error == null) {
                     count += 1
                 }
@@ -59,15 +67,33 @@ class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
                 if (mem4Email.isNotEmpty() && member4.error == null) {
                     count += 1
                 }
+
                 if (count == 1 || count == 3) {
-                    teamReg.Registration(
-                        TeamMembers(
-                            mem1Email,
-                            mem2Email,
-                            mem3Email,
-                            mem4Email
+                    GlobalScope.launch {
+                        val res:RegistrationSuccess = teamReg.Registration(
+                            TeamMembers(
+                                mem1Email,
+                                mem2Email,
+                                mem3Email,
+                                mem4Email
+                            ),
+                            teamNameText
                         )
-                    )
+                        Log.w("res","$res")
+                        Handler(Looper.getMainLooper()).post {
+                            Log.w("res inside loop","$res")
+
+                            if (res.succes != null) {
+                                Toast.makeText(context, getString(res.succes), Toast.LENGTH_SHORT)
+                                    .show()
+                                dialog?.dismiss()
+                            }
+                            if (res.failed != null) {
+                                Toast.makeText(context, res.failed, Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+
                 } else {
                     Toast.makeText(
                         context,

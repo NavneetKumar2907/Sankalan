@@ -7,17 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.sankalan.MainViewModel
-import com.example.sankalan.R
+import com.example.sankalan.model.MainViewModel
 import com.example.sankalan.databinding.FragmentSponsersBinding
 
 
 class SponsersFragment : Fragment() {
 
     lateinit var bindingSponser:FragmentSponsersBinding
-    val sponserViewModel:MainViewModel by activityViewModels()
+    val sponserViewModel: MainViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

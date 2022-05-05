@@ -16,15 +16,13 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.sankalan.R
+import com.example.sankalan.activities.AdminActivity
 import com.example.sankalan.activities.MainActivity
 import com.example.sankalan.databinding.FragmentLoginBinding
-
 import com.example.sankalan.ui.login.model.AuthenticationViewModel
-import com.example.sankalan.ui.login.model.AuthenticationViewModelFactory
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -99,7 +97,11 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 loading.visibility = View.GONE
             }
             if (it.success != null) {
-                startActivity(Intent(activity, MainActivity::class.java))
+                if(Firebase.auth.currentUser?.email =="admin@sankalan.com"){
+                    startActivity(Intent(activity, AdminActivity::class.java))
+                }else{
+                    startActivity(Intent(activity, MainActivity::class.java))
+                }
                 activity?.finish()
             }
         })

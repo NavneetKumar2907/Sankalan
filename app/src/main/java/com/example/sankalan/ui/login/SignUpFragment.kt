@@ -16,8 +16,8 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.sankalan.R
 import com.example.sankalan.activities.MainActivity
+import com.example.sankalan.data.LoggedInUserView
 import com.example.sankalan.databinding.FragmentSignUpBinding
-import com.example.sankalan.ui.login.data.LoggedInUser
 import com.example.sankalan.ui.login.model.AuthenticationViewModel
 
 /**
@@ -30,7 +30,7 @@ class SignUpFragment : Fragment() {
 
     lateinit var signupBinding:FragmentSignUpBinding //For UI
     private val signupViewmodel:AuthenticationViewModel by activityViewModels() //Authentication ViewModel
-    lateinit var data:LoggedInUser // User Data
+    lateinit var data:LoggedInUserView // User Data
     private var navController: NavController? = null //For Navigation
 
 
@@ -127,12 +127,13 @@ class SignUpFragment : Fragment() {
                 password.text.isNullOrBlank()){
                 Toast.makeText(context,"Require ALl Fields",Toast.LENGTH_SHORT).show()
             }else{
-                data = LoggedInUser(name = name.text.toString(),
+                data = LoggedInUserView(name = name.text.toString(),
                     course = course.text.toString(),
                     institute = institute.text.toString(),
                     year = year.text.toString().toInt(),
                     mobile = mobile.text.toString(),
-                    isVerified = false
+                    isVerified = false,
+                    email = email.text.toString()
                 )
                 try{
                     loading.visibility = View.VISIBLE

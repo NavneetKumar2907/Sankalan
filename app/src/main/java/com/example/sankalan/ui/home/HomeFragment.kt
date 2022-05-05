@@ -1,25 +1,15 @@
 package com.example.sankalan.ui.home
 
-import android.app.Dialog
-import android.content.DialogInterface
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import androidx.appcompat.app.AlertDialog
-import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sankalan.MainViewModel
-import com.example.sankalan.R
+import com.example.sankalan.model.MainViewModel
 import com.example.sankalan.adapter.EventListAdapter
 import com.example.sankalan.data.Events
 import com.example.sankalan.data.RegistrationSuccess
@@ -27,10 +17,6 @@ import com.example.sankalan.data.TeamMembers
 import com.example.sankalan.databinding.FragmentHomeBinding
 import com.example.sankalan.dialogfragments.RegistrationSelection
 import com.example.sankalan.interfaces.SelectedEventClickListener
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
 
 
 /**
@@ -96,24 +82,14 @@ class HomeFragment : Fragment(), SelectedEventClickListener {
         ).show(requireActivity().supportFragmentManager, "Registration")
     }
 
-    override fun Registration(team: TeamMembers) {
-        homeViewModel.viewModelScope.launch {
-            val res = homeViewModel.registerForEvent(
-                selectedEvent!!.EventName,
-                team = selectedEvent!!.Team,
-                team
-            )
-            if (res.succes != null) {
-                Toast.makeText(context, getString(res.succes), Toast.LENGTH_SHORT)
-                    .show()
-                this.cancel("Completed")
-            }
-            if (res.failed != null) {
-                Toast.makeText(context, res.failed, Toast.LENGTH_SHORT).show()
-                this.cancel("Failed${res.failed}")
+    override suspend fun Registration(team: TeamMembers, teamName:String):RegistrationSuccess {
 
-            }
-        }
+            return  homeViewModel.registerForEvent(
+                selectedEvent!!.eventName,
+                team = selectedEvent!!.Team=="Team",
+                team,
+                teamName
+            )
     }
 
 }

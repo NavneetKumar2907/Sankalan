@@ -1,60 +1,87 @@
 package com.example.sankalan.fragmentsadmin
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.sankalan.R
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sankalan.activities.adminViewModel
+import com.example.sankalan.adapter.AdminEventAdapter
+import com.example.sankalan.data.DeleteResult
+import com.example.sankalan.data.Events
+import com.example.sankalan.data.Upload
+import com.example.sankalan.databinding.FragmentEventsAdminBinding
+import com.example.sankalan.dialogfragments.AddEvent
+import com.example.sankalan.interfaces.EventInterfaceListeners
+import com.example.sankalan.model.AdminViewModel
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [EventsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class EventsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class EventsFragment : Fragment(), EventInterfaceListeners {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    val model: AdminViewModel by activityViewModels()
+    lateinit var AdminEventBinding: FragmentEventsAdminBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_events_admin, container, false)
+        AdminEventBinding = FragmentEventsAdminBinding.inflate(layoutInflater)
+        return AdminEventBinding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment EventsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            EventsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        AdminEventBinding.addEvent.setOnClickListener {
+            AddEvent().show(requireActivity().supportFragmentManager,"Add Event")
+        }
+        AdminEventBinding.deleteAll.setOnClickListener {
+
+            adminViewModel.viewModelScope.launch {
+                val res = deleteAll()
+                Handler(Looper.getMainLooper()).post {
+                    if(res.failed!=null){
+                        toas(res.failed)
+                    }else{
+                        toas(getString(res.success!!))
+                    }
                 }
+
             }
+        }
+        AdminEventBinding.adminEvents.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            setHasFixedSize(true)
+        }
+        model.getEvent().observe(viewLifecycleOwner, Observer {
+            Log.w("List","${it}")
+            AdminEventBinding.adminEvents.adapter = AdminEventAdapter(it,this)
+        })
     }
+
+    override suspend fun delete(eventName: String): DeleteResult {
+        return model.deleteEvent(eventName = eventName)
+    }
+
+    override suspend fun edit(events: Events, eventName: String): Upload {
+        return model.editEvent(events, eventName = eventName)
+    }
+
+    override suspend fun deleteAll(): DeleteResult {
+        return model.deleteAllEvent()
+    }
+    fun toas(msg:String){
+        Toast.makeText(context,msg, Toast.LENGTH_SHORT).show()
+
+    }
+
+
 }

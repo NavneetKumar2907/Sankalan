@@ -1,26 +1,13 @@
 package com.example.sankalan.adapter
 
-import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.os.Handler
-import android.os.Looper
-import android.view.Gravity
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.cardview.widget.CardView
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sankalan.MainViewModel
 import com.example.sankalan.R
 import com.example.sankalan.data.Events
 import com.example.sankalan.interfaces.SelectedEventClickListener
-import java.util.concurrent.Executors
 
 class EventListAdapter(private val dataset: List<Events>, val listener:SelectedEventClickListener):
     RecyclerView.Adapter<EventListAdapter.EventViewHolder>() {
@@ -43,16 +30,17 @@ class EventListAdapter(private val dataset: List<Events>, val listener:SelectedE
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
         val item = dataset[position]
 
-        holder.title.text = item.EventName
+        holder.title.text = item.eventName
         holder.type.text = item.Type
-        holder.nos.text =if (item.Team) "Team" else "Individual"
-        holder.timing.text = item.Time
+        holder.nos.text =item.Team
+        val time = "${item.timeHour.toString()} : ${item.timeMinute}"
+        holder.timing.text = time
         holder.venue.text = item.Venue
         if(item.image_drawable!=null){
             holder.poster.setImageBitmap(item.image_drawable)
         }
 
-        if(item.Team){
+        if(item.Team == "Team"){
             holder.container.setBackgroundResource(R.drawable.gradient1)
         }else{
             holder.container.setBackgroundResource(R.drawable.gradient2)

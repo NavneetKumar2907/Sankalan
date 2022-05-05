@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/admin_navigation">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admin_navigation"
+    app:startDestination="@id/eventsFragment">
 
+    <fragment
+        android:id="@+id/eventsFragment"
+        android:name="com.example.sankalan.fragmentsadmin.EventsFragment"
+        android:label="fragment_events_admin"
+        tools:layout="@layout/fragment_events_admin" />
+    <fragment
+        android:id="@+id/galleryFragmentAdmin"
+        android:name="com.example.sankalan.fragmentsadmin.GalleryFragmentAdmin"
+        android:label="fragment_gallery_admin"
+        tools:layout="@layout/fragment_gallery_admin" />
+    <fragment
+        android:id="@+id/usersFragment"
+        android:name="com.example.sankalan.fragmentsadmin.UsersFragment"
+        android:label="fragment_users_admin"
+        tools:layout="@layout/fragment_users_admin" />
+    <fragment
+        android:id="@+id/registeredEventAdminFragment"
+        android:name="com.example.sankalan.fragmentsadmin.RegisteredEventAdminFragment"
+        android:label="fragment_registered_event_admin"
+        tools:layout="@layout/fragment_registered_event_admin" />
 </navigation>

@@ -10,7 +10,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import com.example.sankalan.MainViewModel
+import com.example.sankalan.model.MainViewModel
 import com.example.sankalan.R
 import com.example.sankalan.databinding.FragmentMyProfileBinding
 import com.example.sankalan.ui.login.data.LoggedInUser

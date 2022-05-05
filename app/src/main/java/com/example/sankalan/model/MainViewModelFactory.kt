@@ -1,4 +1,4 @@
-package com.example.sankalan
+package com.example.sankalan.model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

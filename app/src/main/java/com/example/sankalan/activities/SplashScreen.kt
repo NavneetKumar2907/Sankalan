@@ -49,8 +49,12 @@ class SplashScreen : AppCompatActivity() {
         val currentUser = firebaseAuth.currentUser
         Log.w("firebase", "$currentUser")
         if (currentUser != null) {
+            val i:Intent = if(currentUser.email == "admin@sankalan.com"){
+                Intent(this, AdminActivity::class.java)
+            }else{
+                Intent(this, MainActivity::class.java)
+            }
             //Already Login Go to Home Screen
-            val i = Intent(this, MainActivity::class.java)
             i.putExtra("user", currentUser)
             startActivity(i)
             this.finish()

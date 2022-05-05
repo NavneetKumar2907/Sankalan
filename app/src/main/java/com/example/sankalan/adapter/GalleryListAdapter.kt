@@ -29,7 +29,7 @@ class GalleryListAdapter(private val imageList:ArrayList<String>):RecyclerView.A
         val executer = Executors.newSingleThreadExecutor()
 
         val handler = Handler(Looper.getMainLooper())
-        var img: Bitmap?= null
+        var img: Bitmap?
         Log.w("Url",imageList.get(position))
         executer.execute {
             try {
