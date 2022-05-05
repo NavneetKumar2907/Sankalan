@@ -43,6 +43,7 @@ class AdminViewModel: ViewModel() {
     private val storage = Firebase.storage.reference
     val eventImageReference = storage.child("events")
     private val gallery_image_refrence = storage.child("gallery")
+    private val sponserStoreag = storage.child("sponsers")
 
 
     //event list value listener
@@ -185,7 +186,15 @@ class AdminViewModel: ViewModel() {
     }
     val imagesLive:LiveData<ArrayList<Bitmap>> = images
 
+    val sponserImages:MutableLiveData<ArrayList<Bitmap>> by lazy {
+        MutableLiveData<ArrayList<Bitmap>>().also {
+            loadSponsers()
+        }
+    }
 
+    fun loadSponsers(){
+     //   sponserReference.list
+    }
     private fun loadEvent() {
         /**
          * Load Events.
@@ -340,11 +349,8 @@ class AdminViewModel: ViewModel() {
             Log.w("ImageData","$bitmapList")
             for(data in bitmapList){
                 var filepath:StorageReference
-                if(imagesLive.value==null){
-                     filepath = gallery_image_refrence.child("1")
-                }else{
-                     filepath = gallery_image_refrence.child((imagesLive.value?.size?.plus(1)).toString())
-                }
+
+                filepath = gallery_image_refrence.child(data.toString())
 
                 var bitmapByteArray:ByteArray? = null
                 val baos = ByteArrayOutputStream()
@@ -363,6 +369,27 @@ class AdminViewModel: ViewModel() {
                     }
                 }//end upload
             }//end all bitmap
+
+
+        }
+    }
+
+    fun deleteAll(){
+        viewModelScope.launch {
+            gallery_image_refrence.listAll()
+                .addOnSuccessListener {
+                    it.items.forEach {
+                        it.delete()
+                            .addOnSuccessListener {
+                                Log.w("Deleted","Success")
+                                loadGallery()
+
+                            }
+                            .addOnFailureListener{
+                                Log.w("Deleted","Failed ${it.message}")
+                            }
+                    }
+                }
 
 
         }

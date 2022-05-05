@@ -13,6 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sankalan.R
 import com.example.sankalan.activities.adminViewModel
 import com.example.sankalan.adapter.AdminEventAdapter
 import com.example.sankalan.data.DeleteResult
@@ -22,6 +23,8 @@ import com.example.sankalan.databinding.FragmentEventsAdminBinding
 import com.example.sankalan.dialogfragments.AddEvent
 import com.example.sankalan.interfaces.EventInterfaceListeners
 import com.example.sankalan.model.AdminViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.launch
 
 
@@ -44,18 +47,30 @@ class EventsFragment : Fragment(), EventInterfaceListeners {
             AddEvent().show(requireActivity().supportFragmentManager,"Add Event")
         }
         AdminEventBinding.deleteAll.setOnClickListener {
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Sure Delete All Event from databse?")
+                .setMessage("It will delete All the Events from Database and its will not recover.")
+                .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
+                    // Respond to negative button press
+                    dialog.cancel()
+                }
+                .setPositiveButton("Ok") { dialog, which ->
+                    // Respond to positive button press
+                    adminViewModel.viewModelScope.launch {
+                        val res = deleteAll()
+                        Handler(Looper.getMainLooper()).post {
+                            if(res.failed!=null){
+                                toas(res.failed)
+                            }else{
+                                toas(getString(res.success!!))
+                            }
+                        }
 
-            adminViewModel.viewModelScope.launch {
-                val res = deleteAll()
-                Handler(Looper.getMainLooper()).post {
-                    if(res.failed!=null){
-                        toas(res.failed)
-                    }else{
-                        toas(getString(res.success!!))
                     }
                 }
+                .show()
 
-            }
+
         }
         AdminEventBinding.adminEvents.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -68,7 +83,24 @@ class EventsFragment : Fragment(), EventInterfaceListeners {
     }
 
     override suspend fun delete(eventName: String): DeleteResult {
-        return model.deleteEvent(eventName = eventName)
+        val def = CompletableDeferred<DeleteResult>()
+
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Sure Delete $eventName from Database?")
+                .setMessage("It will delete $eventName  from database and its will not recover.")
+                .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
+                    // Respond to negative button press
+                    dialog.cancel()
+                }
+                .setPositiveButton("Ok") { dialog, which ->
+                    // Respond to positive button press
+                    model.viewModelScope.launch {
+                        def.complete(model.deleteEvent(eventName = eventName))
+                    }
+                }
+                .show()
+        return def.await()
+
     }
 
     override suspend fun edit(events: Events, eventName: String): Upload {

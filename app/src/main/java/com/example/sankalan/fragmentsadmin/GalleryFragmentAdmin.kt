@@ -3,6 +3,7 @@ package com.example.sankalan.fragmentsadmin
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
+import android.system.Os.accept
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +12,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sankalan.R
 import com.example.sankalan.adapter.AdminGalleryAdapter
 import com.example.sankalan.databinding.FragmentGalleryAdminBinding
 import com.example.sankalan.model.AdminViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 class GalleryFragmentAdmin : Fragment() {
@@ -46,10 +49,20 @@ class GalleryFragmentAdmin : Fragment() {
         }
         galleryBinding.deleteAllImage.setOnClickListener {
             //ALert Dialog
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Sure Delete All Images from gallery?")
+                .setMessage("It will delete All the images from gallery and its will not recover.")
+                .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
+                    // Respond to negative button press
+                    dialog.cancel()
+                }
+                .setPositiveButton("Ok") { dialog, which ->
+                    // Respond to positive button press
+                    galleryModel.deleteAll()
+                }
+                .show()
         }
-        galleryBinding.uploadedeImages.apply {
 
-        }
         galleryBinding.uploadedeImages.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)

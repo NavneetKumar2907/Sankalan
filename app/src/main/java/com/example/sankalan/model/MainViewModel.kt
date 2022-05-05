@@ -187,6 +187,7 @@ class MainViewModel : ViewModel() {
             if (snapshot.exists()) {
                 val listDeveloper = arrayListOf<Teams>()
                 for (names in snapshot.children) {
+                    Log.w("v","$names")
                     val res = names.getValue<Teams>()
                     val executer = Executors.newSingleThreadExecutor()
                     val handler = Handler(Looper.getMainLooper())

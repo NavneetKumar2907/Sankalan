@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.GridLayoutManager
-import com.example.sankalan.model.MainViewModel
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sankalan.adapter.GalleryListAdapter
 import com.example.sankalan.databinding.FragmentGalleryBinding
+import com.example.sankalan.model.MainViewModel
 
 class GalleryFragment : Fragment() {
 
@@ -32,7 +32,8 @@ class GalleryFragment : Fragment() {
         _binding = FragmentGalleryBinding.inflate(inflater, container, false)
         val root: View = binding.root
         val recycle_gallery = binding.recyclerViewGallery
-        recycle_gallery.layoutManager = GridLayoutManager(requireContext(),4)
+
+        recycle_gallery.layoutManager =    LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         recycle_gallery.setHasFixedSize(true)
 
         galleryViewModel.images_gallery.observe(viewLifecycleOwner, Observer {
