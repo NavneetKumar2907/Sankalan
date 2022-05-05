@@ -19,6 +19,7 @@ import com.example.sankalan.R
 import com.example.sankalan.data.RegistrationSuccess
 import com.example.sankalan.data.TeamMembers
 import com.example.sankalan.interfaces.SelectedEventClickListener
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -69,30 +70,42 @@ class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
                 }
 
                 if (count == 1 || count == 3) {
-                    GlobalScope.launch {
-                        val res:RegistrationSuccess = teamReg.Registration(
-                            TeamMembers(
-                                mem1Email,
-                                mem2Email,
-                                mem3Email,
-                                mem4Email
-                            ),
-                            teamNameText
-                        )
-                        Log.w("res","$res")
-                        Handler(Looper.getMainLooper()).post {
-                            Log.w("res inside loop","$res")
+                    MaterialAlertDialogBuilder(requireContext())
+                        .setTitle("Sure Register?")
+                        .setMessage("Once Register you can not go back from the coming adventure.")
+                        .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
+                            // Respond to negative button press
+                            dialog.cancel()
+                        }
+                        .setPositiveButton("Ok") { dialog, which ->
+                            // Respond to positive button press
+                            GlobalScope.launch {
+                                val res:RegistrationSuccess = teamReg.Registration(
+                                    TeamMembers(
+                                        mem1Email,
+                                        mem2Email,
+                                        mem3Email,
+                                        mem4Email
+                                    ),
+                                    teamNameText
+                                )
+                                Log.w("res","$res")
+                                Handler(Looper.getMainLooper()).post {
+                                    Log.w("res inside loop","$res")
 
-                            if (res.succes != null) {
-                                Toast.makeText(context, getString(res.succes), Toast.LENGTH_SHORT)
-                                    .show()
-                                dialog?.dismiss()
-                            }
-                            if (res.failed != null) {
-                                Toast.makeText(context, res.failed, Toast.LENGTH_SHORT).show()
+                                    if (res.succes != null) {
+                                        Toast.makeText(context, getString(res.succes), Toast.LENGTH_SHORT)
+                                            .show()
+                                        dialog?.dismiss()
+                                    }
+                                    if (res.failed != null) {
+                                        Toast.makeText(context, res.failed, Toast.LENGTH_SHORT).show()
+                                    }
+                                }
                             }
                         }
-                    }
+                        .show()
+
 
                 } else {
                     Toast.makeText(

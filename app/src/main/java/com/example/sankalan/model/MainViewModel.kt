@@ -311,12 +311,12 @@ class MainViewModel : ViewModel() {
     }
 
     // Gallery Live Data
-    private val _images_gallery: MutableLiveData<ArrayList<String>> by lazy {
-        MutableLiveData<ArrayList<String>>().also {
+    private val _images_gallery: MutableLiveData<ArrayList<Bitmap>> by lazy {
+        MutableLiveData<ArrayList<Bitmap>>().also {
             loadImages()
         }
     }
-    val images_gallery: LiveData<ArrayList<String>> =
+    val images_gallery: LiveData<ArrayList<Bitmap>> =
         _images_gallery // Getter of gallery image lists
 
     //Registered Event Live Data
@@ -381,12 +381,27 @@ class MainViewModel : ViewModel() {
         /**
          *Load Gallery Images.
          */
-        val temp = arrayListOf<String>()
+        val temp = arrayListOf<Bitmap>()
         image_ref.listAll()
             .addOnSuccessListener {
                 it.items.forEach { sto ->
                     sto.downloadUrl.addOnSuccessListener { u ->
-                        temp.add(u.toString())
+                        val executer = Executors.newSingleThreadExecutor()
+                        val handler = Handler(Looper.getMainLooper())
+                        var imageL:Bitmap? = null
+                        executer.execute {
+                            try {
+                                val `in` = URL(u.toString()).openStream()
+                                imageL = BitmapFactory.decodeStream(`in`)
+                            } catch (e: Exception) {
+                                Log.w("Image Error", e.message.toString() )
+                            } finally {
+                                handler.post {
+                                    temp.add(imageL!!)
+                                }
+                            }// end finally
+                        }// edn executor
+
                     }
                 }
                 _images_gallery.postValue(temp)

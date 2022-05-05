@@ -121,13 +121,13 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/register_selected_event"
+                style="@style/button_background"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/background_round_btn"
-                android:text="@string/register"
-                style="@style/button_background"
-                />
+                android:enabled="false"
+                android:text="@string/not_verfied_string" />
 
         </LinearLayout>
     </ScrollView>

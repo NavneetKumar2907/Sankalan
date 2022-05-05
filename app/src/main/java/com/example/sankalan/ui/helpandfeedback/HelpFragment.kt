@@ -67,7 +67,7 @@ class HelpFragment : Fragment() {
         }
         bindingHelp.phoneSankalan.setOnClickListener {
             try {
-                startActivity(Intent(Intent.ACTION_CALL,phone))
+                startActivity(Intent(Intent.ACTION_DIAL,phone))
             } catch (e: Exception) {
                 Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
             }

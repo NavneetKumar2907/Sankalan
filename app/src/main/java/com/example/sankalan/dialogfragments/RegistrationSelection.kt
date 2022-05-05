@@ -15,6 +15,7 @@ import androidx.fragment.app.DialogFragment
 import com.example.sankalan.R
 import com.example.sankalan.data.Events
 import com.example.sankalan.interfaces.SelectedEventClickListener
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.GlobalScope
@@ -57,7 +58,11 @@ class RegistrationSelection(
                            register.text = resources.getString(R.string.register)
                        } else {
 
-                           register.setBackgroundColor(resources.getColor(R.color.gray)) //Ignore error
+                           try{
+                               register.setBackgroundColor(resources.getColor(R.color.gray))//Ignore error
+                           }catch (e:Exception){
+                               Log.w("Errror",e.message.toString())
+                           }
 
                            register.text = context?.getString(R.string.not_verfied_string)
                        }
@@ -77,19 +82,30 @@ class RegistrationSelection(
                     dialog?.dismiss()
                 } else {
                     // Individual Registration
-                        GlobalScope.launch {
-                            val res = regListener.Registration()
-                            Handler(Looper.getMainLooper()).post {
-                                if (res.succes != null) {
-                                    Toast.makeText(context, getString(res.succes), Toast.LENGTH_SHORT)
-                                        .show()
 
+                            MaterialAlertDialogBuilder(requireContext())
+                                .setTitle("Sure Register?")
+                                .setMessage("Once Register you can not go back from the coming adventure.")
+                                .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
+                                    // Respond to negative button press
+                                    dialog.cancel()
                                 }
-                                if (res.failed != null) {
-                                    Toast.makeText(context, res.failed, Toast.LENGTH_SHORT).show()
+                                .setPositiveButton("Ok") { dialog, which ->
+                                    // Respond to positive button press
+                                    GlobalScope.launch {
+                                    val res = regListener.Registration()
+                                    Handler(Looper.getMainLooper()).post {
+                                        if (res.succes != null) {
+                                            Toast.makeText(context, getString(res.succes), Toast.LENGTH_SHORT)
+                                                .show()
+
+                                        }
+                                        if (res.failed != null) {
+                                            Toast.makeText(context, res.failed, Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
                                 }
-                            }
-                        }
+                        }.show()
                 }
             }
 
