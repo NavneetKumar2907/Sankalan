@@ -12,10 +12,10 @@
         <ImageView
             android:id="@+id/image_gallery_card"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="match_parent"
             android:contentDescription="@string/desc"
-            android:scaleType="fitCenter"
             android:padding="9dp"
+            android:scaleType="center"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
 </androidx.cardview.widget.CardView>

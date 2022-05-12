@@ -23,6 +23,7 @@ class AdminRegEventAdapter(val dataset: List<RegisteredEvents>, val userDataSet:
         val individualVisibility = v.findViewById<LinearLayout>(R.id.individual)
         val teamVisibility = v.findViewById<LinearLayout>(R.id.team)
         val individualPhone = v.findViewById<TextView>(R.id.individual_phone)
+        val individualEmail = v.findViewById<TextView>(R.id.individual_email)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdminRegViewHolder {
@@ -42,6 +43,7 @@ class AdminRegEventAdapter(val dataset: List<RegisteredEvents>, val userDataSet:
 
                 nameIndividual.text = res?.name
                 individualPhone.text = res?.mobile
+                individualEmail.text = res?.email
             }else{
                 individualVisibility.visibility = View.GONE
                 teamVisibility.visibility = View.VISIBLE

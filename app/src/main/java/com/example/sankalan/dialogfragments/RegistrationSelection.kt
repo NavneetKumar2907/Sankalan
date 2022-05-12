@@ -55,7 +55,11 @@ class RegistrationSelection(
 
                        if (it.currentUser!!.isEmailVerified) {
                            //Verified
-                           register.text = resources.getString(R.string.register)
+                           try{
+                               register.text = resources.getString(R.string.register)
+                           }catch (e:Exception){
+                               Log.w("Error",e.message.toString())
+                           }
                        } else {
 
                            try{

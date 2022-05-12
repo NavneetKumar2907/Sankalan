@@ -117,6 +117,7 @@ class AdminViewModel: ViewModel() {
                 for (eventName in snapshot.children){
                     for(id in eventName.children){
                         for (keys in id.children){
+                            Log.w("Keys",keys.toString())
                             if(keys.hasChildren()){
                                 for(teamName in keys.children){
                                     val res = teamName.getValue<TeamMembers>()

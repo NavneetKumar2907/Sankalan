@@ -25,7 +25,6 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.CompletableDeferred
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import java.net.URL
 import java.util.concurrent.Executors
@@ -48,7 +47,7 @@ class MainViewModel : ViewModel() {
     private val panelTeamReference = teams.child("Panel")
     private val sponserReference = database.getReference("Sponsers")
 
-    private val teamMembersReference = database.getReference("teamName")
+    private val teamNameRefrence = database.getReference("teamName")
 
 //=========================================Listeners========================================================================================================================================================================================
 
@@ -80,8 +79,8 @@ class MainViewModel : ViewModel() {
         override fun onDataChange(snapshot: DataSnapshot) {
             if (snapshot.exists()) {
                 val memList = ArrayList<String>()
-                for (teamName in snapshot.children) {
-                    memList.add(teamName.toString())
+                for(teamName in snapshot.children){
+                    memList.add(teamName.value.toString())
                 }
                 teamNameLive.value = memList
             }
@@ -360,7 +359,7 @@ class MainViewModel : ViewModel() {
 //=====================================Loaders============================================================================================================================================================================================
 
     private fun loadList() {
-        teamMembersReference.addValueEventListener(teamMemberListener)
+        teamNameRefrence.addValueEventListener(teamMemberListener)
     }
 
     private fun loadUserDetails() {
@@ -475,6 +474,7 @@ class MainViewModel : ViewModel() {
          * Validation of Members email and registration.
          */
         val def = CompletableDeferred<RegistrationSuccess>()
+
         if (team) {
             // Check if user is registered.
             members.apply {
@@ -497,6 +497,7 @@ class MainViewModel : ViewModel() {
             }
             // check if members are already registered
             members.apply {
+
                 if (member2.isNotEmpty()) {
                     databaseRegisterEvent.child(eventName).child(member2.replace("@", "at").replace(".", "dot"))
                         .get()
@@ -535,6 +536,7 @@ class MainViewModel : ViewModel() {
                             }
                         }
                 }
+                //Check if team Already Exist
                 if (teamName.isNotEmpty()) {
                     if (teamNameLive.value != null && teamNameLive.value!!.contains(teamName)) {
                         def.complete(RegistrationSuccess(failed = "Team Name Already Exist."))
@@ -549,11 +551,7 @@ class MainViewModel : ViewModel() {
                 stuckLog("Inside Not active.")
                 // add team name
                 databaseRegisterEvent.child(eventName).child(user?.email.toString().replace("@", "at").replace(".", "dot")).push().child(teamName).setValue(members)
-                if(teamNameLive.value==null){
-                    teamMembersReference.setValue(arrayListOf(teamName))
-                }else{
-                    teamMembersReference.setValue(teamNameLive.value?.add(teamName))
-                }
+                teamNameRefrence.push().setValue(teamName)
                 members.apply {
                     if (member2.isNotEmpty()) {
                         uploadMemberValue(
@@ -587,14 +585,13 @@ class MainViewModel : ViewModel() {
 
         } else {
             databaseRegisterEvent.child(eventName).child(user?.email.toString().replace("@", "at").replace(".", "dot")).push().setValue(user?.uid)
-
             def.complete(RegistrationSuccess(succes = R.string.sucess_register))
         }
         return def.await()
     }
 
 
-    suspend fun registerForEvent(
+     suspend fun registerForEvent(
         eventName: String,
         team: Boolean = false,
         members: TeamMembers = TeamMembers(),
@@ -609,31 +606,23 @@ class MainViewModel : ViewModel() {
             .addOnSuccessListener {
                 if (it.exists()) {
                     //Already Registered for some events
-                    if (it.hasChild(eventName)) {
                         def.complete(RegistrationSuccess(failed = "Already Registered"))
                         Log.w("Success", "Registration Already exist.")
-                    } else {
-                        // Not registered for this event
-                        //Register
-                        viewModelScope.launch {
-                            val res = register(team, members, eventName, teamName)
-                            Handler(Looper.getMainLooper()).post {
-                                def.complete(res)
-                            }
-                            if (!def.isActive) {
-                                this.cancel("Completed")
-                            }
-                        }
-                    }
-
                 } else {
                     //Register
-                    viewModelScope.launch {
-                        def.complete(register(team, members, eventName, teamName))
-                        if (!def.isActive) {
-                            this.cancel("Completed")
+
+                        if (teamNameLive.value?.find {
+                            it==teamName
+                            }!=null){
+                            // Team Name Already Exist
+                            def.complete(RegistrationSuccess(failed = "Team Name ALready Exist."))
+                        }else{
+                            viewModelScope.launch {
+                                def.complete(register(team, members, eventName, teamName))
+                            }
                         }
-                    }
+
+
                 }
             }
             .addOnFailureListener {

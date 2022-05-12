@@ -9,12 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24sp"
-        android:fontFamily="@font/beth_ellen"
+        android:fontFamily="@font/rubik_semibold"
         android:gravity="center"
         android:text="@string/sankalan_2022"
         android:textColor="@color/white"
         android:textSize="36sp"
-        android:textStyle="italic" />
+        android:textStyle="normal"
+        />
 
     <TextView
         android:id="@+id/sign_in"
