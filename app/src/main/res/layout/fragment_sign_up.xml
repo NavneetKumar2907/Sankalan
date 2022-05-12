@@ -185,7 +185,7 @@
                 android:layout_marginStart="24sp"
                 android:layout_marginEnd="20sp"
                 android:layout_marginBottom="10sp"
-                android:textColorHint="@color/gray"
+
 
                 android:hint="@string/Enter_Email"
                 app:boxBackgroundColor="@color/white"

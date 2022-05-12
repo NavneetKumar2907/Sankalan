@@ -3,7 +3,7 @@ package com.example.sankalan.data
 data class LoggedInUserView(
     val name:String = "",
     val mobile:String = "",
-    val email:String = "",
+    var email:String = "",
     val course:String = "",
     val institute:String = "",
     val year:Int = 0,

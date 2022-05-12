@@ -85,8 +85,7 @@ class MyProfileFragment : Fragment() {
                         mobile = mobile_edit.text.toString(),
                         course = course_edit.text.toString(),
                         institute = college_edit.text.toString(),
-                        year = year_edit.text.toString().toInt(),
-                        email = email.text.toString()
+                        year = year_edit.text.toString().toInt()
                     )
                     mainV.editUserDetail(userEditNew)
                 }else{

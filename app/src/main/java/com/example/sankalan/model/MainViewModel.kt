@@ -434,6 +434,9 @@ class MainViewModel : ViewModel() {
          * Edit user Details
          */
         try {
+            newDetail.email = user?.email.toString()
+            newDetail.uid = user?.uid.toString()
+            newDetail.isVerified = user?.isEmailVerified == true
             databaseUser.setValue(newDetail)
         } catch (e: Exception) {
             Log.w("Error!", "Error in uploading Details.")
