@@ -66,13 +66,17 @@
                 android:layout_marginEnd="20sp"
                 android:layout_marginBottom="10sp"
                 android:hint="@string/Enter_Name"
-                app:boxBackgroundColor="#fff"
+                app:boxBackgroundColor="@color/white"
+                app:hintTextColor="@color/royal_purple"
+                android:textColorHint="@color/light_gray"
+                app:startIconTint="@color/light_gray"
                 app:startIconDrawable="@drawable/ic_person">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/FullName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/light_gray"
                     android:inputType="textPersonName" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -86,13 +90,17 @@
                 android:layout_marginEnd="20sp"
                 android:layout_marginBottom="10sp"
                 android:hint="@string/College_Name"
-                app:boxBackgroundColor="#fff"
+                app:boxBackgroundColor="@color/white"
+                app:hintTextColor="@color/royal_purple"
+                android:textColorHint="@color/light_gray"
+                app:startIconTint="@color/light_gray"
                 app:startIconDrawable="@drawable/ic_college">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/CollegeName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/light_gray"
                     android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -106,13 +114,17 @@
                 android:layout_marginEnd="20sp"
                 android:layout_marginBottom="10sp"
                 android:hint="@string/Enter_course"
-                app:boxBackgroundColor="#fff"
+                app:boxBackgroundColor="@color/white"
+                app:hintTextColor="@color/royal_purple"
+                android:textColorHint="@color/light_gray"
+                app:startIconTint="@color/light_gray"
                 app:startIconDrawable="@drawable/ic_course">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/CourseName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/light_gray"
                     android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -126,13 +138,17 @@
                 android:layout_marginEnd="20sp"
                 android:layout_marginBottom="10sp"
                 android:hint="@string/Enter_Course_year"
-                app:boxBackgroundColor="#fff"
+                app:boxBackgroundColor="@color/white"
+                app:hintTextColor="@color/royal_purple"
+                android:textColorHint="@color/light_gray"
+                app:startIconTint="@color/light_gray"
                 app:startIconDrawable="@drawable/ic_calendar">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/courseYear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/light_gray"
                     android:inputType="number" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -146,13 +162,17 @@
                 android:layout_marginEnd="20sp"
                 android:layout_marginBottom="10sp"
                 android:hint="@string/Enter_Mobile_Num"
-                app:boxBackgroundColor="#fff"
+                app:boxBackgroundColor="@color/white"
+                app:hintTextColor="@color/royal_purple"
+                android:textColorHint="@color/light_gray"
+                app:startIconTint="@color/light_gray"
                 app:startIconDrawable="@drawable/ic_call">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/mobileNum"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/light_gray"
                     android:inputType="phone" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -166,13 +186,17 @@
                 android:layout_marginEnd="20sp"
                 android:layout_marginBottom="10sp"
                 android:hint="@string/Enter_Email"
-                app:boxBackgroundColor="#fff"
+                app:boxBackgroundColor="@color/white"
+                app:hintTextColor="@color/royal_purple"
+                android:textColorHint="@color/light_gray"
+                app:startIconTint="@color/light_gray"
                 app:startIconDrawable="@drawable/ic_email">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/enterEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/light_gray"
                     android:inputType="textEmailAddress" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -186,13 +210,17 @@
                 android:layout_marginEnd="20sp"
                 android:layout_marginBottom="10sp"
                 android:hint="@string/enter_password"
-                app:boxBackgroundColor="#fff"
+                app:boxBackgroundColor="@color/white"
+                app:hintTextColor="@color/royal_purple"
+                android:textColorHint="@color/light_gray"
+                app:startIconTint="@color/light_gray"
                 app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/createPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/light_gray"
                     android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
