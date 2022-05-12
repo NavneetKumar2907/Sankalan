@@ -40,7 +40,7 @@ class RegistrationSelection(
                 findViewById<ImageView>(R.id.poster_selected_events).setImageBitmap(selectedEvent.image_drawable)
                 findViewById<TextView>(R.id.event_name_selected_event).text =
                     selectedEvent.eventName
-                val time = "${selectedEvent.timeHour.toString()} : ${selectedEvent.timeMinute.toString()}"
+                val time = "${selectedEvent.timeHour} : ${selectedEvent.timeMinute}"
                 findViewById<TextView>(R.id.timing_selected_event).text = time
                 findViewById<TextView>(R.id.venue_selected_events).text = selectedEvent.Venue
                 findViewById<TextView>(R.id.contact_person).text = selectedEvent.Coordinator

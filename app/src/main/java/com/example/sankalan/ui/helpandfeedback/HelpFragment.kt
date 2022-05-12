@@ -13,17 +13,17 @@ import com.example.sankalan.databinding.FragmentHelpBinding
 
 class HelpFragment : Fragment() {
 
-    lateinit var bindingHelp: FragmentHelpBinding
-    val instagramSankalan = "https://www.instagram.com/sankalan.ducs/"
-    val facebookSankalan = "https://www.facebook.com/DUCS.Sankalan"
-    val gmailSankalan = "sankalan.ducs.fest@gmail.com"
+    private lateinit var bindingHelp: FragmentHelpBinding
+    private val instagramSankalan = "https://www.instagram.com/sankalan.ducs/"
+    private val facebookSankalan = "https://www.facebook.com/DUCS.Sankalan"
+    private val gmailSankalan = "sankalan.ducs.fest@gmail.com"
 
-    val locationCollege = Uri.parse("google.navigation:q=28.68806562366156,77.20702297430574&mode=b")
-    val phone = Uri.parse("tel:9631102878")
+    private val locationCollege: Uri = Uri.parse("google.navigation:q=28.68806562366156,77.20702297430574&mode=b")
+    val phone: Uri = Uri.parse("tel:8881176882")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         bindingHelp = FragmentHelpBinding.inflate(layoutInflater)
         return bindingHelp.root

@@ -124,8 +124,8 @@ class SignUpFragment : Fragment() {
                 year.text.isNullOrBlank()||
                 mobile.text.isNullOrBlank()||
                 email.text.isNullOrBlank()||
-                password.text.isNullOrBlank()){
-                Toast.makeText(context,"Require ALl Fields",Toast.LENGTH_SHORT).show()
+                password.text.isNullOrBlank()||year.error!=null){
+                Toast.makeText(context,"Require ALl Fields Correct.",Toast.LENGTH_SHORT).show()
             }else{
                 data = LoggedInUserView(name = name.text.toString(),
                     course = course.text.toString(),

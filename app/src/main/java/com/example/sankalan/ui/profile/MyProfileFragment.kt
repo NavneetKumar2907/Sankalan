@@ -7,11 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.example.sankalan.model.MainViewModel
 import com.example.sankalan.R
+import com.example.sankalan.data.LoggedInUserView
 import com.example.sankalan.databinding.FragmentMyProfileBinding
 import com.example.sankalan.ui.login.data.LoggedInUser
 
@@ -23,11 +25,6 @@ class MyProfileFragment : Fragment() {
     //ViewModel
 
     private val mainV: MainViewModel by activityViewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,16 +67,30 @@ class MyProfileFragment : Fragment() {
         val mobile_edit = popEditView.findViewById<EditText>(R.id.edit_mobile_no)
         val update = popEditView.findViewById<Button>(R.id.saveBtnTask)
 
+        year_edit.addTextChangedListener {
+            try{
+                if(it.toString().toLong()!in 1..4){
+                    year_edit.error = getString(R.string.invalid_course_year)
+                }
+            }catch (e:Exception){
+                year_edit.error = getString(R.string.invalid_course_year)
+            }
+        }
+
         update.setOnClickListener {
             try {
-                val userEditNew = LoggedInUser(
-                    name = name_edit.text.toString(),
-                    mobile = mobile_edit.text.toString(),
-                    course = course_edit.text.toString(),
-                    institute = college_edit.text.toString(),
-                    year = year_edit.text.toString().toInt()
-                )
-                mainV.editUserDetail(userEditNew)
+                if(year_edit.error==null){
+                    val userEditNew = LoggedInUserView(
+                        name = name_edit.text.toString(),
+                        mobile = mobile_edit.text.toString(),
+                        course = course_edit.text.toString(),
+                        institute = college_edit.text.toString(),
+                        year = year_edit.text.toString().toInt()
+                    )
+                    mainV.editUserDetail(userEditNew)
+                }else{
+                    Toast.makeText(requireContext(), "Year have to be in range 1 to 4.",Toast.LENGTH_SHORT).show()
+                }
 
             } catch (e: Exception) {
                 Log.w("Error", e.message.toString())

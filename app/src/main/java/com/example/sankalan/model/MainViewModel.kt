@@ -161,7 +161,7 @@ class MainViewModel : ViewModel() {
 
                             }else{
                                 // Individual
-                                val res = k.getValue()
+                                val res = k.value
                                 eventMember.add(
                                     RegisteredEvents(
                                         eventName = eventName.key.toString(),
@@ -429,7 +429,7 @@ class MainViewModel : ViewModel() {
 
 //====================================Functionality Functions=============================================================================================================================================================================================
 
-    fun editUserDetail(newDetail: LoggedInUser) {
+    fun editUserDetail(newDetail: LoggedInUserView) {
         /**
          * Edit user Details
          */

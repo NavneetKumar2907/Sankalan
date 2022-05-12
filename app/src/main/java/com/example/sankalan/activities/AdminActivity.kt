@@ -22,7 +22,7 @@ class AdminActivity : AppCompatActivity() {
         adminViewModel = ViewModelProvider(this).get(AdminViewModel::class.java)
         setContentView(binding.root)
         setSupportActionBar(binding.adminToolbar) //Ignore this Error
-        binding.adminToolbar.setTitle("Admin")
+        binding.adminToolbar.title = "Admin"
         binding.adminToolbar.setTitleTextColor(getColor(R.color.white))
         val navHost =
             supportFragmentManager.findFragmentById(R.id.admin_fragment_container) as NavHostFragment

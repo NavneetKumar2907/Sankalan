@@ -33,7 +33,7 @@ class EventListAdapter(private val dataset: List<Events>, val listener:SelectedE
         holder.title.text = item.eventName
         holder.type.text = item.Type
         holder.nos.text =item.Team
-        val time = "${item.timeHour.toString()} : ${item.timeMinute}"
+        val time = "${item.timeHour} : ${item.timeMinute}"
         holder.timing.text = time
         holder.venue.text = item.Venue
         if(item.image_drawable!=null){

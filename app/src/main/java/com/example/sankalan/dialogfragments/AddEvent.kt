@@ -58,11 +58,11 @@ class AddEvent(val editEvent: Events?=null):DialogFragment() {
                 try{
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         timePicker.hour = editEvent?.timeHour!!
-                        timePicker.minute = editEvent?.timeMinute!!
+                        timePicker.minute = editEvent.timeMinute
 
                     }else{
                         timePicker.currentHour = editEvent?.timeHour!!
-                        timePicker.currentMinute = editEvent?.timeMinute!!
+                        timePicker.currentMinute = editEvent.timeMinute
 
                     }
 
@@ -98,7 +98,7 @@ class AddEvent(val editEvent: Events?=null):DialogFragment() {
                 )
                 //get Image
                 if(imageUri!=null){
-                    val bm = MediaStore.Images.Media.getBitmap(requireActivity().getContentResolver(), imageUri)
+                    val bm = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, imageUri)
                     eventAdd.image_drawable = bm
                 }else{
                     val bitmapDrawable:BitmapDrawable = addEventBinding.eventImage.drawable as BitmapDrawable

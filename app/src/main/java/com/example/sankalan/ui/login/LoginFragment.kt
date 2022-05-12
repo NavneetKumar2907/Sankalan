@@ -5,6 +5,7 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -143,6 +144,8 @@ class LoginFragment : Fragment(), View.OnClickListener {
     class ForgotPassWordFragment : DialogFragment() {
         lateinit var emailForgot: EditText
 
+
+
         override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
             return activity?.let {
                 // Use the Builder class for convenient dialog construction
@@ -151,7 +154,8 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 val popupView: View = inflater.inflate(R.layout.forgot_password, null)
                 emailForgot = popupView.findViewById(R.id.emailAddressForgot)
                 builder.setView(popupView)
-                    .setPositiveButton(R.string.confirmEmail,
+
+                    .setPositiveButton(Html.fromHtml("<font color='#fff'>OK</font>"),
                         DialogInterface.OnClickListener { dialog, id ->
                             if (isValid(email = emailForgot.text.toString())) {
                                 Toast.makeText(
@@ -164,7 +168,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
                                 Toast.makeText(context, "Invalid Email.", Toast.LENGTH_SHORT).show()
                             }
                         })
-                    .setNegativeButton(R.string.cancel,
+                    .setNegativeButton(Html.fromHtml("<font color='#fff'>Cancel</font>"),
                         DialogInterface.OnClickListener { dialog, id ->
                             dialog.dismiss()
                         })
