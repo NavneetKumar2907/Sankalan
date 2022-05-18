@@ -38,7 +38,7 @@ class AdminUserAdapter(val userList:ArrayList<LoggedInUserView>):RecyclerView.Ad
             year.text = userList[position].year.toString()
             if(userList[position].isVerified){
                 isVerified.text = "Yes"
-                isVerified.setTextColor(ContextCompat.getColor(holder.v.context,R.color.white))
+                isVerified.setTextColor(ContextCompat.getColor(holder.v.context,R.color.glow_green))
             } else {
                 isVerified.text = "NO"
                 isVerified.setTextColor(ContextCompat.getColor(holder.v.context,android.R.color.holo_red_dark))

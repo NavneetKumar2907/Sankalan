@@ -18,8 +18,8 @@
         <com.google.android.material.imageview.ShapeableImageView
 
             android:id="@+id/developer_profile_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
             tools:ignore="ImageContrastCheck"
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="TextView"
+            android:text="Name"
             android:textColor="@color/white" />
 
         <TextView
@@ -86,6 +86,18 @@
                 app:icon="@drawable/ic_icons8_instagram"
                 tools:ignore="SpeakableTextPresentCheck" />
         </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/edit_team_admin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_marginRight="3dp"
+            android:contentDescription="@string/edit"
+            android:text="@string/edit"
+            android:visibility="gone"
+            app:cornerRadius="3dp"
+            app:icon="@drawable/ic_baseline_edit_24" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -155,7 +155,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 emailForgot = popupView.findViewById(R.id.emailAddressForgot)
                 builder.setView(popupView)
 
-                    .setPositiveButton(Html.fromHtml("<font color='#fff'>OK</font>"),
+                    .setPositiveButton(Html.fromHtml("<font color='#FFFFFF'>OK</font>"),
                         DialogInterface.OnClickListener { dialog, id ->
                             if (isValid(email = emailForgot.text.toString())) {
                                 Toast.makeText(
@@ -168,7 +168,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
                                 Toast.makeText(context, "Invalid Email.", Toast.LENGTH_SHORT).show()
                             }
                         })
-                    .setNegativeButton(Html.fromHtml("<font color='#fff'>Cancel</font>"),
+                    .setNegativeButton(Html.fromHtml("<font color='#FFFFFF'>Cancel</font>"),
                         DialogInterface.OnClickListener { dialog, id ->
                             dialog.dismiss()
                         })

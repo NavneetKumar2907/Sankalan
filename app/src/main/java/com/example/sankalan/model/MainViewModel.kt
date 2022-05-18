@@ -11,8 +11,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sankalan.R
 import com.example.sankalan.data.*
-import com.example.sankalan.ui.developers.Teams
-import com.example.sankalan.ui.login.data.LoggedInUser
+import com.example.sankalan.data.Teams
 import com.example.sankalan.ui.sponsers.Sponsers
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -155,9 +154,9 @@ class MainViewModel : ViewModel() {
                                                 eventName = eventName.key.toString(),
                                                 members = res!!,
                                                 teamName = teamName.key.toString()
-                                            )
-                                        )
-                                    }
+                                            )//Registered Event Object
+                                        )//added object to list
+                                    }//For Loop for teamName
 
                             }else{
                                 // Individual
@@ -166,15 +165,15 @@ class MainViewModel : ViewModel() {
                                     RegisteredEvents(
                                         eventName = eventName.key.toString(),
                                         individual = res.toString()
-                                    )
-                                )
+                                    )//Registered Event Object
+                                )//added object to list
                             }
-                        }
-                    }
-                }
-            }
+                        }//uid
+                    }//email formatted condition check
+                }//email formatted loop
+            }//end data fetch
             _eventWiseMember.value = eventMember
-        }
+        }//end function
 
         override fun onCancelled(error: DatabaseError) {
             Log.w("ERROR", error.message)

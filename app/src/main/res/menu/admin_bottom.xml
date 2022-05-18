@@ -14,13 +14,18 @@
         android:title="Users"
         app:showAsAction="always" />
     <item
+        android:id="@+id/registeredEventAdminFragment"
+        android:icon="@drawable/ic_baseline_event_note_24"
+        android:title="RegisteredEvents"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/galleryFragmentAdmin"
         android:icon="@drawable/ic_menu_gallery"
         android:title="Gallery"
         app:showAsAction="always" />
     <item
-        android:id="@+id/registeredEventAdminFragment"
-        android:icon="@drawable/ic_baseline_event_note_24"
-        android:title="RegisteredEvents"
+        android:id="@+id/adminTeamFragment"
+        android:icon="@drawable/ic_coding"
+        android:title="@string/meet_developers"
         app:showAsAction="always" />
 </menu>

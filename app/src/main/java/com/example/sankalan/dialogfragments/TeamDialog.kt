@@ -101,10 +101,19 @@ class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
                                     if (res.failed != null) {
                                         Toast.makeText(context, res.failed, Toast.LENGTH_SHORT).show()
                                     }
-                                }
-                            }
+                                }//End Handler
+                            }//End Coroutines
+                           try {
+                               parentFragment?.let { it1 ->
+                                   requireActivity().supportFragmentManager.beginTransaction().remove(
+                                       it1
+                                   ).commit()
+                               }
+                           }catch (e:Exception){
+                               Log.w("Error","Closing Parent Dialog Fragment.")
+                           }//End Try catch
                         }
-                        .show()
+                        .show()//End Alert Dialog
 
 
                 } else {

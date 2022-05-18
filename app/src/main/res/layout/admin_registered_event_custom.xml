@@ -7,7 +7,7 @@
 
     <LinearLayout
         android:id="@+id/team"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="8dp"
@@ -62,7 +62,7 @@
 
     <LinearLayout
         android:id="@+id/individual"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="8dp"
@@ -98,5 +98,15 @@
             android:text="TextView" />
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_margin="5dp"
+        android:background="@color/light_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,6 @@ package com.example.sankalan.model
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -12,7 +11,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sankalan.R
 import com.example.sankalan.data.*
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,16 +18,19 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
 import java.net.URL
+import java.util.*
 import java.util.concurrent.Executors
+import kotlin.collections.ArrayList
 
 class AdminViewModel: ViewModel() {
+//========================================Database References=========================================================================================================================================================================================
+
     private val database = FirebaseDatabase.getInstance() // Database Instance
     private val databaseUser = database.getReference("Users")
     private val databaseEvent = database.getReference("Events") // Event Listener Reference
@@ -38,13 +39,17 @@ class AdminViewModel: ViewModel() {
     private val developerTeamReference = teams.child("Developers")
     private val panelTeamReference = teams.child("Panel")
     private val sponserReference = database.getReference("Sponsers")
+
     private val databaseRegisterEvent = database.getReference("RegisteredEvents")
 
     private val storage = Firebase.storage.reference
-    val eventImageReference = storage.child("events")
+    private val eventImageReference = storage.child("events")
     private val gallery_image_refrence = storage.child("gallery")
-    private val sponserStoreag = storage.child("sponsers")
+    private val sponserStoreag = storage.child("teams").child("sponsers")
+    private val developerStorage = storage.child("teams").child("developers")
+    private val panelstorage = storage.child("teams").child("panels")
 
+//=========================================Listeners========================================================================================================================================================================================
 
     //event list value listener
     private val eventListener = object : ValueEventListener {
@@ -126,21 +131,21 @@ class AdminViewModel: ViewModel() {
                                             teamName = teamName.key.toString(),
                                             members = res!!,
                                             eventName = eventName.key.toString()
-                                        )
-                                    )
-                                }
+                                        )//Registered Event Object
+                                    )//Added to list
+                                }//End Teamname Loop
                             }else{
                                 //individual events
                                 eventLists.add(
                                     RegisteredEvents(
                                         eventName = eventName.key.toString(),
                                         individual = keys.value.toString()
-                                    )
-                                )
-                            }
-                        }
-                    }
-                }
+                                    )//RegisteredEvent Object
+                                )//add TO list
+                            }//end if else
+                        }//end key loop
+                    }//end id loop
+                }//end eventName loop
 
                 registeredEvent.value = eventLists
             }
@@ -151,6 +156,84 @@ class AdminViewModel: ViewModel() {
         }
 
     }
+
+    private val developerListener = object :ValueEventListener{
+        override fun onDataChange(snapshot: DataSnapshot) {
+            if(snapshot.exists()){
+                //Data Is Available
+                val listDeveloper = arrayListOf<Teams>()
+
+                for(developerName in snapshot.children){
+                    val res = developerName.getValue<Teams>()
+
+                    //Set Up Image
+                    val executer = Executors.newSingleThreadExecutor()
+                    val handler = Handler(Looper.getMainLooper())
+                    var img: Bitmap?
+                    executer.execute {
+                        try {
+                            val `in` = java.net.URL(res?.image).openStream()
+                            img = BitmapFactory.decodeStream(`in`)
+                            res?.imageBitmap = img
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        } finally {
+                            handler.post {
+                                listDeveloper.add(res!!)
+                                developerTeam.value = listDeveloper
+                            }//end handler
+                        }//end finally
+                    }//end executer
+
+                }//End Developer Name as Key
+            }else{
+                Log.w("Error", "NOT found data.")
+            }
+        }//End Function
+
+        override fun onCancelled(error: DatabaseError) {
+            Log.w("Error Team",error.message)
+        }
+
+    }
+
+    private val panelListener = object : ValueEventListener {
+        override fun onDataChange(snapshot: DataSnapshot) {
+            if (snapshot.exists()) {
+                val listPanel = arrayListOf<Teams>()
+                for (names in snapshot.children) {
+                    val res = names.getValue<Teams>()
+                    val executer = Executors.newSingleThreadExecutor()
+                    val handler = Handler(Looper.getMainLooper())
+                    var img: Bitmap?
+                    executer.execute {
+                        try {
+                            val `in` = java.net.URL(res?.image).openStream()
+                            img = BitmapFactory.decodeStream(`in`)
+                            res?.imageBitmap = img
+                        } catch (e: Exception) {
+                            e.printStackTrace()
+                        } finally {
+                            handler.post {
+                                listPanel.add(res!!)
+                                panelTeam.value = listPanel
+                            }
+                        }
+                    }
+                }
+            } else {
+                Log.w("Error", "NOT found data.")
+
+            }
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+            Log.w("Error", error.details)
+        }
+    }
+
+//=========================================Live Data========================================================================================================================================================================================
+
     //UserLiveData
     private val _userData:MutableLiveData<ArrayList<LoggedInUserView>> by lazy {
         MutableLiveData<ArrayList<LoggedInUserView>>().also {
@@ -187,11 +270,28 @@ class AdminViewModel: ViewModel() {
     }
     val imagesLive:LiveData<ArrayList<Bitmap>> = images
 
+    private val developerTeam:MutableLiveData<ArrayList<Teams>> by lazy {
+        MutableLiveData<ArrayList<Teams>>().also {
+            loadDeveloper()
+        }
+    }
+
+    val DeveloperTeam:LiveData<ArrayList<Teams>> = developerTeam
+
+    private val panelTeam: MutableLiveData<ArrayList<Teams>> by lazy {
+        MutableLiveData<ArrayList<Teams>>().also {
+            loadPanel()
+        }
+    }
+    val livePanelTeam: LiveData<ArrayList<Teams>> = panelTeam
+
+
     val sponserImages:MutableLiveData<ArrayList<Bitmap>> by lazy {
         MutableLiveData<ArrayList<Bitmap>>().also {
             loadSponsers()
         }
     }
+//=========================================Loaders========================================================================================================================================================================================
 
     fun loadSponsers(){
      //   sponserReference.list
@@ -239,6 +339,13 @@ class AdminViewModel: ViewModel() {
             }
     }
 
+    private fun loadDeveloper(){
+        developerTeamReference.addValueEventListener(developerListener)
+    }
+
+    private fun loadPanel(){
+        panelTeamReference.addValueEventListener(panelListener)
+    }
     suspend fun editUser(data:LoggedInUserView):Upload{
         val def = CompletableDeferred<Upload>()
         databaseUser.child(data.uid).removeValue()
@@ -251,6 +358,7 @@ class AdminViewModel: ViewModel() {
             }
         return def.await()
     }
+//=========================================Function========================================================================================================================================================================================
 
     // Edit Event
     suspend fun editEvent(event:Events, eventName:String?=null): Upload {
@@ -349,11 +457,10 @@ class AdminViewModel: ViewModel() {
         viewModelScope.launch {
             Log.w("ImageData","$bitmapList")
             for(data in bitmapList){
-                var filepath:StorageReference
 
-                filepath = gallery_image_refrence.child(data.toString())
+                val filepath:StorageReference = gallery_image_refrence.child(data.toString())
 
-                var bitmapByteArray:ByteArray? = null
+                var bitmapByteArray:ByteArray?
                 val baos = ByteArrayOutputStream()
                 data.compress(Bitmap.CompressFormat.JPEG, 100, baos)
                 bitmapByteArray = baos.toByteArray()
@@ -394,6 +501,68 @@ class AdminViewModel: ViewModel() {
 
 
         }
+    }
+
+    suspend fun editMember(values:Teams, imageChanged:Boolean=false): Upload {
+        val filepath:StorageReference?
+        val smalName:String = values.name.trim().split("\\s+".toRegex())[0].lowercase(
+            Locale.getDefault()
+        )
+        if(values.position.isNotEmpty()){
+            //Panel Team
+            filepath = panelstorage.child(smalName)
+        }else{
+            //Developer Team
+
+             filepath = developerStorage.child(smalName)
+        }
+        // Upload Image
+
+        val def = CompletableDeferred<Upload>()
+        if(imageChanged){
+
+            val baos = ByteArrayOutputStream()
+            values.imageBitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+            val data = baos.toByteArray()
+            val uploadTask = filepath.putBytes(data)
+            uploadTask.addOnCompleteListener{
+                if(it.isSuccessful){
+                    //Successful uploaded
+                    filepath.downloadUrl
+                        .addOnSuccessListener {
+                            Log.w("URL",it.toString())
+                            values.image = it.toString()
+                            //Set Up Real Time Data
+                            values.imageBitmap = null
+                            if(values.position.isNotEmpty()){
+                                panelTeamReference.child(smalName).setValue(values)
+
+                            }else{
+                                developerTeamReference.child(smalName).setValue(values)
+                            }
+                            def.complete(Upload(Sucess = R.string.uploadSucces))
+                        }
+                        .addOnFailureListener {
+                            def.complete(Upload(failed = "Failed Upload ${it.message}"))
+                        }
+                }else{
+                    //Failed Upload
+                    Log.w("Failed Upload",it.exception.toString())
+                    def.complete(Upload(failed = "Failed Upload ${it.exception?.message}"))
+                }
+            }
+        }else{
+            //No IMage Change
+            values.imageBitmap = null
+            if(values.position.isNotEmpty()){
+                panelTeamReference.child(smalName).setValue(values)
+
+            }else{
+                developerTeamReference.child(smalName).setValue(values)
+            }
+            def.complete(Upload(Sucess = R.string.uploadSucces))
+        }
+        return def.await()
     }
 
     fun logout(){

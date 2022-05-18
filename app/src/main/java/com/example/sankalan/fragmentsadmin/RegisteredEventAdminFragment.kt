@@ -1,5 +1,7 @@
 package com.example.sankalan.fragmentsadmin
 
+import android.graphics.*
+import android.graphics.pdf.PdfDocument
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,12 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.print.PrintHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sankalan.adapter.AdminRegEventAdapter
-import com.example.sankalan.data.Events
 import com.example.sankalan.data.RegisteredEvents
 import com.example.sankalan.databinding.FragmentRegisteredEventAdminBinding
 import com.example.sankalan.model.AdminViewModel
@@ -60,6 +63,16 @@ class RegisteredEventAdminFragment : Fragment(), AdapterView.OnItemSelectedListe
                 if(it.teamName.isEmpty()) it.individual else it.teamName
             }
         })
+
+        registeredEvents.printRegEvent.setOnClickListener {
+            var passValue = ""
+            try {
+                 passValue =registeredEvents.eventRegisteredEventSpinner.selectedItem.toString()
+                printPDF(passValue)
+            }catch (e:Exception){
+                Toast.makeText(requireContext(),"Empty Selection!!",Toast.LENGTH_SHORT).show()
+            }
+        }
     }
     fun loadAdapter(listRegEvent: List<RegisteredEvents>){
 
@@ -83,4 +96,42 @@ class RegisteredEventAdminFragment : Fragment(), AdapterView.OnItemSelectedListe
 
     }
 
+    fun printPDF(eventName:String){
+       try{
+           val reycleViewBitmap = registeredEvents.registeredEventsList
+           if(reycleViewBitmap.adapter==null){
+               Toast.makeText(requireContext(), "Empty!!",Toast.LENGTH_SHORT).show()
+               return
+           }
+           reycleViewBitmap.isDrawingCacheEnabled = true
+           val screen:Bitmap = Bitmap.createBitmap(reycleViewBitmap.getDrawingCache())
+           reycleViewBitmap.isDrawingCacheEnabled = false
+
+           val canvas = Canvas(screen)
+           val paint = Paint()
+           paint.setColor(Color.BLACK) // Text Color
+           paint.textSize = 36F
+           paint.isUnderlineText = true
+
+           val centreX = screen.width / 2
+
+           // some more settings...
+
+           // some more settings...
+           canvas.drawBitmap(screen, 0F, 0F, paint)
+
+           canvas.drawText(eventName, centreX.toFloat(), 25F, paint)
+
+           activity?.also { context ->
+               PrintHelper(context).apply {
+                   scaleMode = PrintHelper.SCALE_MODE_FIT
+               }.also { printHelper ->
+                   printHelper.printBitmap("droids.jpg - test print", screen)
+               }
+           }
+       }catch (e:Exception){
+           Log.w("Error",e.message.toString())
+       }
+
+    }
 }
