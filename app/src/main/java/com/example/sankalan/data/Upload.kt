@@ -1,3 +1,6 @@
 package com.example.sankalan.data
 
-data class Upload(val Sucess:Int?=null,val failed:String?=null)
+/**
+ * Upload Result.
+ */
+data class Upload(val Success: Int? = null, val failed: String? = null)

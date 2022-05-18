@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sankalan.R
 import com.example.sankalan.data.*
-import com.example.sankalan.data.Teams
 import com.example.sankalan.ui.sponsers.Sponsers
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -39,7 +38,8 @@ class MainViewModel : ViewModel() {
         database.getReference("Users").child(user?.uid.toString()) // User Reference
     private val image_ref = Firebase.storage.reference.child("gallery") // Gallery Reference
     private val databaseEvent = database.getReference("Events") // Event Listener Reference
-    private val databaseRegisterEvent = database.getReference("RegisteredEvents") // Registered Event Reference
+    private val databaseRegisterEvent =
+        database.getReference("RegisteredEvents") // Registered Event Reference
 
     private val teams = database.getReference("Teams")
     private val developerTeamReference = teams.child("Developers")
@@ -78,7 +78,7 @@ class MainViewModel : ViewModel() {
         override fun onDataChange(snapshot: DataSnapshot) {
             if (snapshot.exists()) {
                 val memList = ArrayList<String>()
-                for(teamName in snapshot.children){
+                for (teamName in snapshot.children) {
                     memList.add(teamName.value.toString())
                 }
                 teamNameLive.value = memList
@@ -142,23 +142,23 @@ class MainViewModel : ViewModel() {
             val eventMember = arrayListOf<RegisteredEvents>()
             val emailFormatted = user?.email.toString().replace("@", "at").replace(".", "dot")
             for (eventName in snapshot.children) {
-                for(id in eventName.children){
-                    if(id.key == emailFormatted){
-                        for(k in id.children){
-                            if(k.hasChildren()){
+                for (id in eventName.children) {
+                    if (id.key == emailFormatted) {
+                        for (k in id.children) {
+                            if (k.hasChildren()) {
                                 // Team
-                                    for(teamName in k.children){
-                                        val res = teamName.getValue<TeamMembers>()
-                                        eventMember.add(
-                                            RegisteredEvents(
-                                                eventName = eventName.key.toString(),
-                                                members = res!!,
-                                                teamName = teamName.key.toString()
-                                            )//Registered Event Object
-                                        )//added object to list
-                                    }//For Loop for teamName
+                                for (teamName in k.children) {
+                                    val res = teamName.getValue<TeamMembers>()
+                                    eventMember.add(
+                                        RegisteredEvents(
+                                            eventName = eventName.key.toString(),
+                                            members = res!!,
+                                            teamName = teamName.key.toString()
+                                        )//Registered Event Object
+                                    )//added object to list
+                                }//For Loop for teamName
 
-                            }else{
+                            } else {
                                 // Individual
                                 val res = k.value
                                 eventMember.add(
@@ -185,7 +185,7 @@ class MainViewModel : ViewModel() {
             if (snapshot.exists()) {
                 val listDeveloper = arrayListOf<Teams>()
                 for (names in snapshot.children) {
-                    Log.w("v","$names")
+                    Log.w("v", "$names")
                     val res = names.getValue<Teams>()
                     val executer = Executors.newSingleThreadExecutor()
                     val handler = Handler(Looper.getMainLooper())
@@ -386,13 +386,13 @@ class MainViewModel : ViewModel() {
                     sto.downloadUrl.addOnSuccessListener { u ->
                         val executer = Executors.newSingleThreadExecutor()
                         val handler = Handler(Looper.getMainLooper())
-                        var imageL:Bitmap? = null
+                        var imageL: Bitmap? = null
                         executer.execute {
                             try {
                                 val `in` = URL(u.toString()).openStream()
                                 imageL = BitmapFactory.decodeStream(`in`)
                             } catch (e: Exception) {
-                                Log.w("Image Error", e.message.toString() )
+                                Log.w("Image Error", e.message.toString())
                             } finally {
                                 handler.post {
                                     temp.add(imageL!!)
@@ -501,7 +501,8 @@ class MainViewModel : ViewModel() {
             members.apply {
 
                 if (member2.isNotEmpty()) {
-                    databaseRegisterEvent.child(eventName).child(member2.replace("@", "at").replace(".", "dot"))
+                    databaseRegisterEvent.child(eventName)
+                        .child(member2.replace("@", "at").replace(".", "dot"))
                         .get()
                         .addOnCompleteListener {
                             if (it.result.hasChildren()) {
@@ -513,7 +514,8 @@ class MainViewModel : ViewModel() {
 
                 }
                 if (member3.isNotEmpty()) {
-                    databaseRegisterEvent.child(eventName).child(member3.replace("@", "at").replace(".", "dot"))
+                    databaseRegisterEvent.child(eventName)
+                        .child(member3.replace("@", "at").replace(".", "dot"))
                         .get()
                         .addOnCompleteListener {
                             if (it.result.hasChildren()) {
@@ -524,7 +526,8 @@ class MainViewModel : ViewModel() {
                         }
                 }
                 if (member4.isNotEmpty()) {
-                    databaseRegisterEvent.child(eventName).child(member2.replace("@", "at").replace(".", "dot"))
+                    databaseRegisterEvent.child(eventName)
+                        .child(member2.replace("@", "at").replace(".", "dot"))
                         .get()
                         .addOnCompleteListener {
                             if (it.result.hasChildren()) {
@@ -552,7 +555,9 @@ class MainViewModel : ViewModel() {
             } else {
                 stuckLog("Inside Not active.")
                 // add team name
-                databaseRegisterEvent.child(eventName).child(user?.email.toString().replace("@", "at").replace(".", "dot")).push().child(teamName).setValue(members)
+                databaseRegisterEvent.child(eventName)
+                    .child(user?.email.toString().replace("@", "at").replace(".", "dot")).push()
+                    .child(teamName).setValue(members)
                 teamNameRefrence.push().setValue(teamName)
                 members.apply {
                     if (member2.isNotEmpty()) {
@@ -582,18 +587,20 @@ class MainViewModel : ViewModel() {
                     }
 
                 }
-                def.complete(RegistrationSuccess(succes = R.string.sucess_register))
+                def.complete(RegistrationSuccess(success = R.string.sucess_register))
             }
 
         } else {
-            databaseRegisterEvent.child(eventName).child(user?.email.toString().replace("@", "at").replace(".", "dot")).push().setValue(user?.uid)
-            def.complete(RegistrationSuccess(succes = R.string.sucess_register))
+            databaseRegisterEvent.child(eventName)
+                .child(user?.email.toString().replace("@", "at").replace(".", "dot")).push()
+                .setValue(user?.uid)
+            def.complete(RegistrationSuccess(success = R.string.sucess_register))
         }
         return def.await()
     }
 
 
-     suspend fun registerForEvent(
+    suspend fun registerForEvent(
         eventName: String,
         team: Boolean = false,
         members: TeamMembers = TeamMembers(),
@@ -604,25 +611,26 @@ class MainViewModel : ViewModel() {
          */
         val def = CompletableDeferred<RegistrationSuccess>()
 
-        databaseRegisterEvent.child(eventName).child(user?.email.toString().replace("@", "at").replace(".", "dot")).get()
+        databaseRegisterEvent.child(eventName)
+            .child(user?.email.toString().replace("@", "at").replace(".", "dot")).get()
             .addOnSuccessListener {
                 if (it.exists()) {
-                    //Already Registered for some events
-                        def.complete(RegistrationSuccess(failed = "Already Registered"))
-                        Log.w("Success", "Registration Already exist.")
+                    //Already Registered for same events
+                    def.complete(RegistrationSuccess(failed = "Already Registered"))
+                    Log.w("Success", "Registration Already exist.")
                 } else {
                     //Register
 
-                        if (teamNameLive.value?.find {
-                            it==teamName
-                            }!=null){
-                            // Team Name Already Exist
-                            def.complete(RegistrationSuccess(failed = "Team Name ALready Exist."))
-                        }else{
-                            viewModelScope.launch {
-                                def.complete(register(team, members, eventName, teamName))
-                            }
+                    if (teamNameLive.value?.find {
+                            it == teamName
+                        } != null) {
+                        // Team Name Already Exist
+                        def.complete(RegistrationSuccess(failed = "Team Name ALready Exist."))
+                    } else {
+                        viewModelScope.launch {
+                            def.complete(register(team, members, eventName, teamName))
                         }
+                    }
 
 
                 }

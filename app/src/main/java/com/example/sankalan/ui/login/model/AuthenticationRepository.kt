@@ -13,7 +13,7 @@ class AuthenticationRepository {
 
     private val auth = FirebaseAuth.getInstance()
 
-    suspend fun login(email: String, password: String):LoginResult {
+    suspend fun login(email: String, password: String): LoginResult {
         val def = CompletableDeferred<LoginResult>()
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener {
@@ -35,7 +35,7 @@ class AuthenticationRepository {
 
     }
 
-    suspend fun signUp(email: String, password: String, data: LoggedInUserView):LoginResult {
+    suspend fun signUp(email: String, password: String, data: LoggedInUserView): LoginResult {
         val def = CompletableDeferred<LoginResult>()
 
         auth.createUserWithEmailAndPassword(email, password)

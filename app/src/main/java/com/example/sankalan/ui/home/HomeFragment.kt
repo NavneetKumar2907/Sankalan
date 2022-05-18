@@ -9,7 +9,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.sankalan.model.MainViewModel
 import com.example.sankalan.adapter.EventListAdapter
 import com.example.sankalan.data.Events
 import com.example.sankalan.data.RegistrationSuccess
@@ -17,6 +16,7 @@ import com.example.sankalan.data.TeamMembers
 import com.example.sankalan.databinding.FragmentHomeBinding
 import com.example.sankalan.dialogfragments.RegistrationSelection
 import com.example.sankalan.interfaces.SelectedEventClickListener
+import com.example.sankalan.model.MainViewModel
 
 
 /**
@@ -29,7 +29,6 @@ class HomeFragment : Fragment(), SelectedEventClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private var selectedEvent: Events? = null
-
 
 
     private val binding get() = _binding!!
@@ -82,14 +81,14 @@ class HomeFragment : Fragment(), SelectedEventClickListener {
         ).show(requireActivity().supportFragmentManager, "Registration")
     }
 
-    override suspend fun Registration(team: TeamMembers, teamName:String):RegistrationSuccess {
+    override suspend fun Registration(team: TeamMembers, teamName: String): RegistrationSuccess {
 
-            return  homeViewModel.registerForEvent(
-                selectedEvent!!.eventName,
-                team = selectedEvent!!.Team=="Team",
-                team,
-                teamName
-            )
+        return homeViewModel.registerForEvent(
+            selectedEvent!!.eventName,
+            team = selectedEvent!!.Team == "Team",
+            team,
+            teamName
+        )
     }
 
 }

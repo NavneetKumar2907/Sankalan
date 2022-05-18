@@ -7,6 +7,7 @@
     android:padding="10dp">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -14,6 +15,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/edit_team_admin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:layout_marginEnd="3dp"
+            android:contentDescription="@string/edit"
+            android:text="@string/edit"
+            android:visibility="gone"
+            app:cornerRadius="3dp"
+            app:icon="@drawable/ic_baseline_edit_24" />
 
         <com.google.android.material.imageview.ShapeableImageView
 
@@ -42,8 +55,7 @@
             android:layout_gravity="center_horizontal"
             android:text="TextView"
             android:textColor="@color/white"
-            android:visibility="gone"
-            />
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -64,6 +76,13 @@
                 app:iconPadding="0dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
+            <View
+                android:id="@+id/divider_gone"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/developer_linked_in"
                 style="@style/Widget.Material3.Button.OutlinedButton"
@@ -73,6 +92,25 @@
                 android:minWidth="48dp"
                 android:minHeight="48dp"
                 app:icon="@drawable/linked_in"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/developer_phone_no"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                android:visibility="gone"
+                app:icon="@drawable/ic_call"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <com.google.android.material.button.MaterialButton
@@ -87,17 +125,25 @@
                 tools:ignore="SpeakableTextPresentCheck" />
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/edit_team_admin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:layout_marginRight="3dp"
-            android:contentDescription="@string/edit"
-            android:text="@string/edit"
-            android:visibility="gone"
-            app:cornerRadius="3dp"
-            app:icon="@drawable/ic_baseline_edit_24" />
+        <View
+            android:id="@+id/divider4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
     </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:background="?android:attr/listDivider"
+        android:outlineAmbientShadowColor="@color/gray"
+        android:outlineSpotShadowColor="@color/light_gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

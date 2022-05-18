@@ -8,17 +8,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.sankalan.model.MainViewModel
+import androidx.recyclerview.widget.LinearSnapHelper
 import com.example.sankalan.databinding.FragmentDeveloperBinding
+import com.example.sankalan.model.MainViewModel
 
 class DeveloperFragment : Fragment() {
 
-    lateinit var DeveloperBinding:FragmentDeveloperBinding
+    private lateinit var DeveloperBinding: FragmentDeveloperBinding
     val developerViewModel: MainViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         DeveloperBinding = FragmentDeveloperBinding.inflate(inflater)
         return DeveloperBinding.root
@@ -26,19 +27,31 @@ class DeveloperFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        //Developer List
         DeveloperBinding.developerList.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
+            val snap = LinearSnapHelper()
+            snap.attachToRecyclerView(this)
         }
+
+        //View Model Observer of Developer List
         developerViewModel.liveDeveloperTeam.observe(viewLifecycleOwner, Observer {
-            DeveloperBinding.developerList.adapter = TeamAdapter(it)
+            DeveloperBinding.developerList.adapter = TeamAdapter(it, con = requireContext())
         })
+        //Panel List
         DeveloperBinding.panelList.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
+            val snap = LinearSnapHelper()
+            snap.attachToRecyclerView(this)
         }
+        //Panel List Observer
         developerViewModel.livePanelTeam.observe(viewLifecycleOwner, Observer {
-            DeveloperBinding.panelList.adapter = TeamAdapter(it)
+            DeveloperBinding.panelList.adapter = TeamAdapter(it, con = requireContext())
         })
     }
 

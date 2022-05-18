@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.appBarMain.toolbar) //Ignore this Error
+        setSupportActionBar(binding.appBarMain.toolbar)
 
         // Bottom Navigation
         val navHost =

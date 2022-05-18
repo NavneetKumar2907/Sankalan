@@ -18,9 +18,9 @@ import com.example.sankalan.model.MainViewModel
 class MyEventsFragment : Fragment() {
     private var _binding: FragmentMyEventsBinding? = null
 
-    private val binding get() =_binding!!
-    private lateinit var recyclerMyEventList:RecyclerView
-    private lateinit var adapter:MyEventAdapter
+    private val binding get() = _binding!!
+    private lateinit var recyclerMyEventList: RecyclerView
+    private lateinit var adapter: MyEventAdapter
 
     private val MyEventViewmodel: MainViewModel by activityViewModels()
 
@@ -30,19 +30,19 @@ class MyEventsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-
         _binding = FragmentMyEventsBinding.inflate(inflater, container, false)
         val root: View = binding.root
         recyclerMyEventList = binding.recyclerViewMyEvents
         recyclerMyEventList.setHasFixedSize(true)
-        recyclerMyEventList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+        recyclerMyEventList.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         MyEventViewmodel.eventWiseMember.observe(viewLifecycleOwner, Observer {
-            Log.w("EVENT MEMEMBER","${it}")
-            if(it!=null){
+            Log.w("EVENT MEMEMBER", "${it}")
+            if (it != null) {
                 adapter = MyEventAdapter(it)
                 recyclerMyEventList.adapter = adapter
-            }else{
-                Toast.makeText(context,"Null List",Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Null List", Toast.LENGTH_SHORT).show()
             }
 
         })
@@ -52,6 +52,6 @@ class MyEventsFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        _binding=null
+        _binding = null
     }
 }

@@ -1,20 +1,21 @@
 package com.example.sankalan.data
 
 import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 
-
-data class Events (
+/**
+ * Data Class FOr Events Values.
+ */
+data class Events(
     val eventName: String = "",
-    var Description:String = "NONE",
+    var Description: String = "NONE",
     var Image: String = "NONE", //url
     var Type: String = "NONE",// Technical nontechnical
     var Team: String = "",
     var Venue: String = "NONE",
     var timeHour: Int = 0,
-    var timeMinute: Int=0,
-    var Coordinator:String = "XXXX",
-    var rules:String = "----------------------------------"
-){
-    var image_drawable:Bitmap?=null
+    var timeMinute: Int = 0,
+    var Coordinator: String = "XXXX",
+    var rules: String = "----------------------------------"
+) {
+    var image_drawable: Bitmap? = null
 }

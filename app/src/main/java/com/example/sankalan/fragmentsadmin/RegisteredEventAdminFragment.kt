@@ -1,7 +1,9 @@
 package com.example.sankalan.fragmentsadmin
 
-import android.graphics.*
-import android.graphics.pdf.PdfDocument
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,7 +25,7 @@ import com.example.sankalan.model.AdminViewModel
 
 class RegisteredEventAdminFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
-    private lateinit var registeredEvents:FragmentRegisteredEventAdminBinding
+    private lateinit var registeredEvents: FragmentRegisteredEventAdminBinding
     private val regViewModel by activityViewModels<AdminViewModel>()
 
     val eventNames = arrayListOf<String>()
@@ -40,16 +42,18 @@ class RegisteredEventAdminFragment : Fragment(), AdapterView.OnItemSelectedListe
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         registeredEvents.registeredEventsList.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
         }
 
         // Event list
         regViewModel.getEvent().observe(viewLifecycleOwner, Observer {
-            for(e in it){
+            for (e in it) {
                 eventNames.add(e.eventName)
             }
-            val spinnerArrayAdapter = ArrayAdapter(requireContext(),android.R.layout.simple_spinner_item, eventNames)
+            val spinnerArrayAdapter =
+                ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, eventNames)
             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             registeredEvents.eventRegisteredEventSpinner.adapter = spinnerArrayAdapter
         })
@@ -60,34 +64,36 @@ class RegisteredEventAdminFragment : Fragment(), AdapterView.OnItemSelectedListe
 
         regViewModel.regEvent.observe(viewLifecycleOwner, Observer {
             uniqueAllRegEvent = it.distinctBy {
-                if(it.teamName.isEmpty()) it.individual else it.teamName
+                if (it.teamName.isEmpty()) it.individual else it.teamName
             }
         })
 
         registeredEvents.printRegEvent.setOnClickListener {
             var passValue = ""
             try {
-                 passValue =registeredEvents.eventRegisteredEventSpinner.selectedItem.toString()
+                passValue = registeredEvents.eventRegisteredEventSpinner.selectedItem.toString()
                 printPDF(passValue)
-            }catch (e:Exception){
-                Toast.makeText(requireContext(),"Empty Selection!!",Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), "Empty Selection!!", Toast.LENGTH_SHORT).show()
             }
         }
     }
-    fun loadAdapter(listRegEvent: List<RegisteredEvents>){
+
+    fun loadAdapter(listRegEvent: List<RegisteredEvents>) {
 
         registeredEvents.registeredCount.text = listRegEvent.size.toString()
-        registeredEvents.registeredEventsList.adapter = AdminRegEventAdapter(listRegEvent, regViewModel.userData.value)
+        registeredEvents.registeredEventsList.adapter =
+            AdminRegEventAdapter(listRegEvent, regViewModel.userData.value)
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
         val filRes = uniqueAllRegEvent.filter {
-            it.eventName==eventNames[p2]
+            it.eventName == eventNames[p2]
         }
 
-        Log.w("filter",filRes.toString())
-        loadAdapter( filRes)
+        Log.w("filter", filRes.toString())
+        loadAdapter(filRes)
 
 
     }
@@ -96,42 +102,42 @@ class RegisteredEventAdminFragment : Fragment(), AdapterView.OnItemSelectedListe
 
     }
 
-    fun printPDF(eventName:String){
-       try{
-           val reycleViewBitmap = registeredEvents.registeredEventsList
-           if(reycleViewBitmap.adapter==null){
-               Toast.makeText(requireContext(), "Empty!!",Toast.LENGTH_SHORT).show()
-               return
-           }
-           reycleViewBitmap.isDrawingCacheEnabled = true
-           val screen:Bitmap = Bitmap.createBitmap(reycleViewBitmap.getDrawingCache())
-           reycleViewBitmap.isDrawingCacheEnabled = false
+    fun printPDF(eventName: String) {
+        try {
+            val reycleViewBitmap = registeredEvents.registeredEventsList
+            if (reycleViewBitmap.adapter == null) {
+                Toast.makeText(requireContext(), "Empty!!", Toast.LENGTH_SHORT).show()
+                return
+            }
+            reycleViewBitmap.isDrawingCacheEnabled = true
+            val screen: Bitmap = Bitmap.createBitmap(reycleViewBitmap.getDrawingCache())
+            reycleViewBitmap.isDrawingCacheEnabled = false
 
-           val canvas = Canvas(screen)
-           val paint = Paint()
-           paint.setColor(Color.BLACK) // Text Color
-           paint.textSize = 36F
-           paint.isUnderlineText = true
+            val canvas = Canvas(screen)
+            val paint = Paint()
+            paint.setColor(Color.BLACK) // Text Color
+            paint.textSize = 36F
+            paint.isUnderlineText = true
 
-           val centreX = screen.width / 2
+            val centreX = screen.width / 2
 
-           // some more settings...
+            // some more settings...
 
-           // some more settings...
-           canvas.drawBitmap(screen, 0F, 0F, paint)
+            // some more settings...
+            canvas.drawBitmap(screen, 0F, 0F, paint)
 
-           canvas.drawText(eventName, centreX.toFloat(), 25F, paint)
+            canvas.drawText(eventName, centreX.toFloat(), 25F, paint)
 
-           activity?.also { context ->
-               PrintHelper(context).apply {
-                   scaleMode = PrintHelper.SCALE_MODE_FIT
-               }.also { printHelper ->
-                   printHelper.printBitmap("droids.jpg - test print", screen)
-               }
-           }
-       }catch (e:Exception){
-           Log.w("Error",e.message.toString())
-       }
+            activity?.also { context ->
+                PrintHelper(context).apply {
+                    scaleMode = PrintHelper.SCALE_MODE_FIT
+                }.also { printHelper ->
+                    printHelper.printBitmap("droids.jpg - test print", screen)
+                }
+            }
+        } catch (e: Exception) {
+            Log.w("Error", e.message.toString())
+        }
 
     }
 }

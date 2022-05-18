@@ -5,6 +5,7 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.Html
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
@@ -21,16 +22,19 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-// Dialog Fragment for Event Registration
+/**
+ *  Dialog Fragment for Event Registration
+ */
 class RegistrationSelection(
-    val selectedEvent: Events,
-    val regListener: SelectedEventClickListener
+    private val selectedEvent: Events,
+    private val regListener: SelectedEventClickListener
 ) :
     DialogFragment() {
 
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return activity?.let {
+
+        return activity?.let { it ->
             // Use the Builder class for convenient dialog construction
             val builder = AlertDialog.Builder(it, R.style.forgot_background)
             val inflater = requireActivity().layoutInflater
@@ -45,7 +49,9 @@ class RegistrationSelection(
                 findViewById<TextView>(R.id.venue_selected_events).text = selectedEvent.Venue
                 findViewById<TextView>(R.id.contact_person).text = selectedEvent.Coordinator
                 findViewById<TextView>(R.id.about_event).text = selectedEvent.Description
-//                    findViewById<TextView>(R.id.rules_selected_event).text = selectedEvent.rules
+                findViewById<TextView>(R.id.rules_selected_event).text = selectedEvent.rules
+                findViewById<TextView>(R.id.selected_event_team).text = selectedEvent.Team
+                findViewById<TextView>(R.id.selected_event_type).text = selectedEvent.Type
             }
             val register: Button = registerView.findViewById(R.id.register_selected_event)
             try {
@@ -53,31 +59,32 @@ class RegistrationSelection(
                 Firebase.auth.addAuthStateListener {
                     register.isEnabled = it.currentUser!!.isEmailVerified
 
-                       if (it.currentUser!!.isEmailVerified) {
-                           //Verified
-                           try{
-                               register.text = resources.getString(R.string.register)
-                           }catch (e:Exception){
-                               Log.w("Error",e.message.toString())
-                           }
-                       } else {
+                    if (it.currentUser!!.isEmailVerified) {
+                        //Verified
+                        try {
+                            register.text = resources.getString(R.string.register)
+                        } catch (e: Exception) {
+                            Log.w("Error", e.message.toString())
+                        }
+                    } else {
+                        //Not Verified.
+                        try {
+                            register.setBackgroundColor(resources.getColor(R.color.gray))//Ignore error
+                        } catch (e: Exception) {
+                            Log.w("Errror", e.message.toString())
+                        }
 
-                           try{
-                               register.setBackgroundColor(resources.getColor(R.color.gray))//Ignore error
-                           }catch (e:Exception){
-                               Log.w("Errror",e.message.toString())
-                           }
-
-                           register.text = context?.getString(R.string.not_verfied_string)
-                       }
+                        register.text = context?.getString(R.string.not_verfied_string)
+                    }
 
                 }
 
             } catch (e: Exception) {
                 Log.w("Error", e.message.toString())
             }
+            //Register Button Listener.
             register.setOnClickListener {
-                if (selectedEvent.Team=="Team") {
+                if (selectedEvent.Team == "Team") {
                     // Team Registration
                     TeamDialog(regListener).show(
                         requireActivity().supportFragmentManager,
@@ -87,38 +94,44 @@ class RegistrationSelection(
                 } else {
                     // Individual Registration
 
-                            MaterialAlertDialogBuilder(requireContext())
-                                .setTitle("Sure Register?")
-                                .setMessage("Once Register you can not go back from the coming adventure.")
-                                .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
-                                    // Respond to negative button press
-                                    dialog.cancel()
-                                }
-                                .setPositiveButton("Ok") { dialog, which ->
-                                    // Respond to positive button press
-                                    GlobalScope.launch {
-                                    val res = regListener.Registration()
-                                    Handler(Looper.getMainLooper()).post {
-                                        if (res.succes != null) {
-                                            Toast.makeText(context, getString(res.succes), Toast.LENGTH_SHORT)
-                                                .show()
-
-                                        }
-                                        if (res.failed != null) {
-                                            Toast.makeText(context, res.failed, Toast.LENGTH_SHORT).show()
-                                        }
+                    MaterialAlertDialogBuilder(requireContext())
+                        .setTitle("Sure Register?")
+                        .setMessage("Once Register you can not go back from the coming adventure.")
+                        .setNegativeButton(resources.getString(R.string.cancel)) { dialog, _ ->
+                            // Respond to negative button press
+                            dialog.cancel()
+                        }//End Negative
+                        .setPositiveButton("Ok") { _, _ ->
+                            // Respond to positive button press
+                            GlobalScope.launch {
+                                //Coroutine
+                                val res = regListener.Registration()
+                                Handler(Looper.getMainLooper()).post {
+                                    if (res.success != null) {
+                                        Toast.makeText(
+                                            context,
+                                            getString(res.success),
+                                            Toast.LENGTH_SHORT
+                                        )
+                                            .show()
                                     }
-                                }
+                                    if (res.failed != null) {
+                                        Toast.makeText(context, res.failed, Toast.LENGTH_SHORT)
+                                            .show()
+                                    }
+                                }//End Handler
+                            }//End Coroutine
                         }.show()
                 }
-            }
+            }//End Listener
 
+            //Setting Up Builder View
             builder.setView(registerView)
                 .setNegativeButton(
-                    R.string.cancel,
+                    Html.fromHtml("<font color='#FFFFFF'>Cancel</font>"),
                     DialogInterface.OnClickListener { dialog, id ->
                         dialog.cancel()
-                    })
+                    })//End Negative
             // Create the AlertDialog object and return it
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")

@@ -21,16 +21,19 @@ class SplashScreen : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
 
 
+        //Animators
         val animRotatorOne = AnimationUtils.loadAnimation(this,R.anim.rotator_one)
         val animRotatorTwo = AnimationUtils.loadAnimation(this,R.anim.rotator_two)
         val animRotatorThree = AnimationUtils.loadAnimation(this,R.anim.rotator_three)
         val animRotatorFour = AnimationUtils.loadAnimation(this,R.anim.rotator_four)
 
+        //Setting Up Animation
         findViewById<ImageView>(R.id.rotator_one_iv).startAnimation(animRotatorOne)
         findViewById<ImageView>(R.id.rotator_two_iv).startAnimation(animRotatorTwo)
         findViewById<ImageView>(R.id.rotator_three_iv).startAnimation(animRotatorThree)
         findViewById<ImageView>(R.id.rotator_four_iv).startAnimation(animRotatorFour)
 
+        //Handler
         val handler = Handler()
         handler.postDelayed(Runnable {
             //The following code will execute after the 5 seconds.
@@ -45,6 +48,7 @@ class SplashScreen : AppCompatActivity() {
 
     }
 
+    //Login User Check
     private fun check() {
         val currentUser = firebaseAuth.currentUser
         Log.w("firebase", "$currentUser")

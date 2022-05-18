@@ -9,10 +9,17 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sankalan.R
 
-class AdminGalleryAdapter(val dataset:ArrayList<Bitmap>):RecyclerView.Adapter<AdminGalleryAdapter.AdminViewHolder>() {
-    class AdminViewHolder(v:View):RecyclerView.ViewHolder(v){
-        val image = v.findViewById<ImageView>(R.id.upload_image_view)
-        val add: Button = v.findViewById(R.id.change_image)
+/**
+ * Gallery Adapter.
+ */
+class AdminGalleryAdapter(private val dataset: ArrayList<Bitmap>) :
+    RecyclerView.Adapter<AdminGalleryAdapter.AdminViewHolder>() {
+    class AdminViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+        /**
+         * View Holder.
+         */
+        val image: ImageView = v.findViewById(R.id.upload_image_view)
+        val edit: Button = v.findViewById(R.id.change_image)
         val delete: Button = v.findViewById(R.id.delete_image)
 
     }
@@ -20,15 +27,16 @@ class AdminGalleryAdapter(val dataset:ArrayList<Bitmap>):RecyclerView.Adapter<Ad
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): AdminGalleryAdapter.AdminViewHolder {
+    ): AdminViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.custom_gallery_admin, null)
         return AdminViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: AdminGalleryAdapter.AdminViewHolder, position: Int) {
-       val item = dataset[position]
+    override fun onBindViewHolder(holder: AdminViewHolder, position: Int) {
+        val item = dataset[position]
         holder.image.setImageBitmap(item)
-        holder.add.setOnClickListener {
+        holder.edit.setOnClickListener {
+            //ADding Image
 
         }
 

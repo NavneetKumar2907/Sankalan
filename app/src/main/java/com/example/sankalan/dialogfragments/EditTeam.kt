@@ -18,10 +18,15 @@ import com.example.sankalan.model.AdminViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.launch
 
-class EditTeam(var value:Teams, var pos:Boolean =false): DialogFragment() {
-    lateinit var bindingteam:EditTeamPanelBinding
+/**
+ * Class For Editing Team Dialog Fragment.
+ */
+class EditTeam(var value: Teams, var pos: Boolean = false) : DialogFragment() {
+
+    lateinit var bindingteam: EditTeamPanelBinding
     val model by activityViewModels<AdminViewModel>()
-    var imageChanged:Boolean = false
+    var imageChanged: Boolean = false //Image Changer CHeck
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,51 +39,66 @@ class EditTeam(var value:Teams, var pos:Boolean =false): DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Setting up data
-        if(value.name.isNotEmpty()){
+        if (value.name.isNotEmpty()) {
             bindingteam.editTextTextPersonName.setText(value.name)
             bindingteam.uploadTeamImage.setImageBitmap(value.imageBitmap)
             bindingteam.editTextTextPersonPosition.setText(value.position)
             bindingteam.editTextTextPersonLinkedin.setText(value.linkedin)
             bindingteam.editTextTextPersoninstagram.setText(value.instagram)
             bindingteam.editTextTextPersongithub.setText(value.github)
+            bindingteam.editTextTextPersonPhone.setText(value.phone)
         }
 
         //Visibility if panel data is given.
-        if(pos == true){
+        if (pos == true) {
             bindingteam.editTextTextPersonPosition.visibility = View.VISIBLE
             bindingteam.editTextTextPersonPositionil.visibility = View.VISIBLE
-        }
+            bindingteam.editTextTextPersonPhone.visibility = View.VISIBLE
+            bindingteam.editTextTextPersonPhoneil.visibility = View.VISIBLE
 
-        val getContent = registerForActivityResult(ActivityResultContracts.GetContent()){
+            // Gone Views
+            bindingteam.editTextTextPersoninstagram.visibility = View.GONE
+            bindingteam.editTextTextPersongithub.visibility = View.GONE
+            bindingteam.editTextTextPersoninstagramil.visibility = View.GONE
+            bindingteam.editTextTextPersongithubil.visibility = View.GONE
+
+        }
+        //Fetching Image.
+        val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) {
             val res = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, it)
-            if(res!=null){
-                imageChanged =true
+            if (res != null) {
+                imageChanged = true
                 value.imageBitmap = res
                 bindingteam.uploadTeamImage.setImageBitmap(res)
             }
         }
+
+        //Upload Listener
         bindingteam.uploadTeamImageButton.setOnClickListener {
             //Choose Image
             getContent.launch("image/*")
         }
-
-
+        //Submit Listener
         bindingteam.submitTeam.setOnClickListener {
             //Submit CHanges
             val st = "Confirm Changes?"
             MaterialAlertDialogBuilder(requireContext())
                 .setTitle("Sure ?")
                 .setMessage(st)
-                .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
+                .setNegativeButton(resources.getString(R.string.cancel)) { dialog, _ ->
                     // Respond to negative button press
                     dialog.cancel()
-                }
-                .setPositiveButton("Ok") { d, which ->
+                }//End Negative
+                .setPositiveButton("Ok") { d, _ ->
                     // Respond to positive button press
                     try {
-                        if(bindingteam.editTextTextPersonName.text.isNullOrBlank()){
-                            Toast.makeText(requireContext(), "Name is Required.",Toast.LENGTH_SHORT).show()
-                        }else{
+                        if (bindingteam.editTextTextPersonName.text.isNullOrBlank()) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Name is Required.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
                             // get values
                             val editValues = Teams(
                                 name = bindingteam.editTextTextPersonName.text.toString(),
@@ -86,29 +106,47 @@ class EditTeam(var value:Teams, var pos:Boolean =false): DialogFragment() {
                                 github = bindingteam.editTextTextPersongithub.text.toString(),
                                 instagram = bindingteam.editTextTextPersoninstagram.text.toString(),
                                 linkedin = bindingteam.editTextTextPersonLinkedin.text.toString(),
-                                image = value.image
-                            )
-                            editValues.imageBitmap = value.imageBitmap
+                                image = value.image,
+                                phone = bindingteam.editTextTextPersonPhone.text.toString()
+                            )//Creating Team Object
+
+                            editValues.imageBitmap =
+                                value.imageBitmap //Setting Up Image Bitmap for upload
+
                             model.viewModelScope.launch {
-                                val res = editValues.let { it1 -> model.editMember(it1, imageChanged = imageChanged) }
-                                try {
-                                    if(res.failed !=null){
-                                        Toast.makeText(requireContext(), res.failed, Toast.LENGTH_SHORT).show()
-                                    }else{
-                                        Toast.makeText(requireContext(),"Upload Successfully.",Toast.LENGTH_SHORT).show()
-                                    }
-                                }catch (e:Exception){
-                                    Log.w("Error: ",e.message.toString())
+                                //Coroutine for uploading data
+
+                                val res = editValues.let { it1 ->
+                                    model.editMember(
+                                        it1,
+                                        imageChanged = imageChanged
+                                    )
                                 }
-                            }
-
+                                try {
+                                    if (res.failed != null) {
+                                        Toast.makeText(
+                                            requireContext(),
+                                            res.failed,
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    } else {
+                                        Toast.makeText(
+                                            requireContext(),
+                                            "Upload Successfully.",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                                } catch (e: Exception) {
+                                    Log.w("Error: ", e.message.toString())
+                                }// End Try catch
+                            }//End Coroutine
                             d.dismiss()
-                        }
+                        }//end if else
 
-                    }catch (e:Exception){
-                        Log.w("Error",e.message.toString())
-                    }
-                }.show()
+                    } catch (e: Exception) {
+                        Log.w("Error", e.message.toString())
+                    }//End Try
+                }.show()//End Dialog
         }
         bindingteam.cancelTeam.setOnClickListener {
             //Cancel Changes

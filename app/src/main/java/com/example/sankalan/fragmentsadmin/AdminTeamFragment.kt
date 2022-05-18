@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import com.example.sankalan.data.Teams
 import com.example.sankalan.databinding.FragmentAdminTeamBinding
 import com.example.sankalan.dialogfragments.EditTeam
@@ -44,10 +45,15 @@ class AdminTeamFragment : Fragment(), TeamEditListener {
         TeamBinding.adminDeveloperTeam.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
+            val snapHelper = LinearSnapHelper()
+            snapHelper.attachToRecyclerView(this)
         }
+
         TeamBinding.adminPanelTeam.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             setHasFixedSize(true)
+            val snapHelper = LinearSnapHelper()
+            snapHelper.attachToRecyclerView(this)
         }
         TeamModel.DeveloperTeam.observe(viewLifecycleOwner, Observer {
             TeamBinding.adminDeveloperTeam.adapter = TeamAdapter(it,admin = true, listner = listner)
@@ -55,6 +61,7 @@ class AdminTeamFragment : Fragment(), TeamEditListener {
         TeamModel.livePanelTeam.observe(viewLifecycleOwner, Observer {
             TeamBinding.adminPanelTeam.adapter = TeamAdapter(it,admin = true, listner = listner)
         })
+
     }
 
     override fun openEdit(data:Teams, pos:Boolean) {

@@ -11,11 +11,10 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import com.example.sankalan.model.MainViewModel
 import com.example.sankalan.R
 import com.example.sankalan.data.LoggedInUserView
 import com.example.sankalan.databinding.FragmentMyProfileBinding
-import com.example.sankalan.ui.login.data.LoggedInUser
+import com.example.sankalan.model.MainViewModel
 
 
 class MyProfileFragment : Fragment() {
@@ -68,18 +67,18 @@ class MyProfileFragment : Fragment() {
         val update = popEditView.findViewById<Button>(R.id.saveBtnTask)
 
         year_edit.addTextChangedListener {
-            try{
-                if(it.toString().toLong()!in 1..4){
+            try {
+                if (it.toString().toLong() !in 1..4) {
                     year_edit.error = getString(R.string.invalid_course_year)
                 }
-            }catch (e:Exception){
+            } catch (e: Exception) {
                 year_edit.error = getString(R.string.invalid_course_year)
             }
         }
 
         update.setOnClickListener {
             try {
-                if(year_edit.error==null){
+                if (year_edit.error == null) {
                     val userEditNew = LoggedInUserView(
                         name = name_edit.text.toString(),
                         mobile = mobile_edit.text.toString(),
@@ -88,8 +87,12 @@ class MyProfileFragment : Fragment() {
                         year = year_edit.text.toString().toInt()
                     )
                     mainV.editUserDetail(userEditNew)
-                }else{
-                    Toast.makeText(requireContext(), "Year have to be in range 1 to 4.",Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Year have to be in range 1 to 4.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
             } catch (e: Exception) {

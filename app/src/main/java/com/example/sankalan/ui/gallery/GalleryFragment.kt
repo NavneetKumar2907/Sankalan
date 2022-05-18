@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sankalan.adapter.GalleryListAdapter
 import com.example.sankalan.databinding.FragmentGalleryBinding
@@ -54,6 +55,8 @@ class GalleryFragment : Fragment() {
         binding.recyclerViewGallery.apply {
             layoutManager = llm
             setHasFixedSize(true)
+            val snapHelper = LinearSnapHelper()
+            snapHelper.attachToRecyclerView(this)
         }
 
 

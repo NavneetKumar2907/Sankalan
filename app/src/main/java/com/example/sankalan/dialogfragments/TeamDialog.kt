@@ -14,16 +14,18 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import com.example.sankalan.model.MainViewModel
 import com.example.sankalan.R
 import com.example.sankalan.data.RegistrationSuccess
 import com.example.sankalan.data.TeamMembers
 import com.example.sankalan.interfaces.SelectedEventClickListener
+import com.example.sankalan.model.MainViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-
+/**
+ * Team Dialog For Edit by admin.
+ */
 class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
 
     // Team Member Edit text
@@ -31,7 +33,7 @@ class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
     private lateinit var member2: EditText
     private lateinit var member3: EditText
     private lateinit var member4: EditText
-    private lateinit var teamName:EditText
+    private lateinit var teamName: EditText
 
 
     override fun onCreateView(
@@ -44,6 +46,7 @@ class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
 
     override fun onViewCreated(teamView: View, savedInstanceState: Bundle?) {
         super.onViewCreated(teamView, savedInstanceState)
+        //Setup view
         member1 = teamView.findViewById(R.id.member1)
         member2 = teamView.findViewById(R.id.member2)
         member3 = teamView.findViewById(R.id.member3)
@@ -51,7 +54,7 @@ class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
         teamName = teamView.findViewById(R.id.teamName)
         member1.text = activityViewModels<MainViewModel>().value.userData.value?.email
 
-        teamView.findViewById<Button>(R.id.submit_team)
+        teamView.findViewById<Button>(R.id.submit_team)//On Submit CLicked
             .setOnClickListener {
                 var count = 0
                 val mem1Email = member1.text.toString()
@@ -59,6 +62,7 @@ class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
                 val mem3Email = member3.text.toString()
                 val mem4Email = member4.text.toString()
                 val teamNameText = teamName.text.toString()
+                //To Check 2 and 4 member register only.
                 if (mem2Email.isNotEmpty() && member2.error == null) {
                     count += 1
                 }
@@ -80,38 +84,44 @@ class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
                         .setPositiveButton("Ok") { dialog, which ->
                             // Respond to positive button press
                             GlobalScope.launch {
-                                val res:RegistrationSuccess = teamReg.Registration(
+                                val res: RegistrationSuccess = teamReg.Registration(
                                     TeamMembers(
                                         mem1Email,
                                         mem2Email,
                                         mem3Email,
                                         mem4Email
-                                    ),
-                                    teamNameText
+                                    )//Team Members,
+                                    , teamNameText//Team Name.
                                 )
-                                Log.w("res","$res")
+                                Log.w("res", "$res")
                                 Handler(Looper.getMainLooper()).post {
-                                    Log.w("res inside loop","$res")
+                                    Log.w("res inside loop", "$res")
 
-                                    if (res.succes != null) {
-                                        Toast.makeText(context, getString(res.succes), Toast.LENGTH_SHORT)
+                                    if (res.success != null) {
+                                        Toast.makeText(
+                                            context,
+                                            getString(res.success),
+                                            Toast.LENGTH_SHORT
+                                        )
                                             .show()
                                         dialog?.dismiss()
                                     }
                                     if (res.failed != null) {
-                                        Toast.makeText(context, res.failed, Toast.LENGTH_SHORT).show()
+                                        Toast.makeText(context, res.failed, Toast.LENGTH_SHORT)
+                                            .show()
                                     }
                                 }//End Handler
                             }//End Coroutines
-                           try {
-                               parentFragment?.let { it1 ->
-                                   requireActivity().supportFragmentManager.beginTransaction().remove(
-                                       it1
-                                   ).commit()
-                               }
-                           }catch (e:Exception){
-                               Log.w("Error","Closing Parent Dialog Fragment.")
-                           }//End Try catch
+                            try {
+                                parentFragment?.let { it1 ->
+                                    requireActivity().supportFragmentManager.beginTransaction()
+                                        .remove(
+                                            it1
+                                        ).commit()
+                                }
+                            } catch (e: Exception) {
+                                Log.w("Error", "Closing Parent Dialog Fragment.")
+                            }//End Try catch
                         }
                         .show()//End Alert Dialog
 

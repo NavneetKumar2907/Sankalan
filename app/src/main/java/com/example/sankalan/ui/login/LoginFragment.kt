@@ -10,7 +10,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
@@ -44,7 +45,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         // Inflate the layout for this fragment
         LoginFragmentBinding = FragmentLoginBinding.inflate(inflater)
@@ -62,7 +63,6 @@ class LoginFragment : Fragment(), View.OnClickListener {
         val loading = LoginFragmentBinding.loading //Loading Progress Bar
         val forgotPassword = LoginFragmentBinding.forgotPassword //Forgot Password Text
         navController = Navigation.findNavController(view) //Navigation Controller
-
 
 
         // View Model  Status of login
@@ -98,9 +98,9 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 loading.visibility = View.GONE
             }
             if (it.success != null) {
-                if(Firebase.auth.currentUser?.email =="admin@sankalan.com"){
+                if (Firebase.auth.currentUser?.email == "admin@sankalan.com") {
                     startActivity(Intent(activity, AdminActivity::class.java))
-                }else{
+                } else {
                     startActivity(Intent(activity, MainActivity::class.java))
                 }
                 activity?.finish()
@@ -145,11 +145,10 @@ class LoginFragment : Fragment(), View.OnClickListener {
         lateinit var emailForgot: EditText
 
 
-
         override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
             return activity?.let {
                 // Use the Builder class for convenient dialog construction
-                val builder = AlertDialog.Builder(it,R.style.forgot_background)
+                val builder = AlertDialog.Builder(it, R.style.forgot_background)
                 val inflater = requireActivity().layoutInflater
                 val popupView: View = inflater.inflate(R.layout.forgot_password, null)
                 emailForgot = popupView.findViewById(R.id.emailAddressForgot)

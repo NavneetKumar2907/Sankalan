@@ -73,7 +73,7 @@
         <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/custom_gallery_admin.xml" value="0.19655797101449277" />
         <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/custom_sponsers.xml" value="0.2554347826086957" />
         <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/edit_my_profile.xml" value="0.264" />
-        <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/edit_team_panel.xml" value="0.18206521739130435" />
+        <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/edit_team_panel.xml" value="0.23048327137546468" />
         <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/event_card_layout.xml" value="0.2693726937269373" />
         <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/forgot_password.xml" value="0.20742753623188406" />
         <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/fragment_about_us.xml" value="0.25" />
@@ -91,6 +91,7 @@
         <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/fragment_my_profile.xml" value="0.2222222222222222" />
         <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/fragment_my_team.xml" value="0.18297101449275363" />
         <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/fragment_registered_event_admin.xml" value="0.176" />
+        <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/fragment_scoreboard.xml" value="0.264" />
         <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/fragment_sign_up.xml" value="0.264" />
         <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/fragment_sponsers.xml" value="0.1539855072463768" />
         <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/fragment_users.xml" value="0.2463768115942029" />
@@ -101,7 +102,7 @@
         <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/nav_header.xml" value="0.11018518518518519" />
         <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/nav_header_main.xml" value="0.2" />
         <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/register_team.xml" value="0.25" />
-        <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/selected_event.xml" value="0.15443840579710144" />
+        <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/selected_event.xml" value="0.264" />
         <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/signin.xml" value="0.20742753623188406" />
         <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/team_custom_layout.xml" value="0.2867132867132867" />
         <entry key="..\:/Users/navik/Documents/GitHub/Sankalan/app/src/main/res/layout/team_registration.xml" value="0.17192982456140352" />

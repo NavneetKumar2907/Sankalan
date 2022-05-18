@@ -18,7 +18,8 @@ class HelpFragment : Fragment() {
     private val facebookSankalan = "https://www.facebook.com/DUCS.Sankalan"
     private val gmailSankalan = "sankalan.ducs.fest@gmail.com"
 
-    private val locationCollege: Uri = Uri.parse("google.navigation:q=28.68806562366156,77.20702297430574&mode=b")
+    private val locationCollege: Uri =
+        Uri.parse("google.navigation:q=28.68806562366156,77.20702297430574&mode=b")
     val phone: Uri = Uri.parse("tel:8881176882")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,7 +68,7 @@ class HelpFragment : Fragment() {
         }
         bindingHelp.phoneSankalan.setOnClickListener {
             try {
-                startActivity(Intent(Intent.ACTION_DIAL,phone))
+                startActivity(Intent(Intent.ACTION_DIAL, phone))
             } catch (e: Exception) {
                 Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
             }

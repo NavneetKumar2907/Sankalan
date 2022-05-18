@@ -40,6 +40,7 @@
                 android:layout_marginBottom="10dp"
 
                 android:drawablePadding="5dp"
+                android:enabled="false"
                 android:text="Change Image"
                 app:icon="@drawable/ic_baseline_edit_24" />
 
@@ -49,6 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp"
+                android:enabled="false"
                 android:text="Delete"
                 app:icon="@drawable/ic_baseline_delete_24" />
         </LinearLayout>

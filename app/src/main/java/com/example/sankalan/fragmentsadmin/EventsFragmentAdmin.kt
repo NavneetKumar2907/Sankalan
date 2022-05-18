@@ -31,11 +31,11 @@ import kotlinx.coroutines.launch
 class EventsFragment : Fragment(), EventInterfaceListeners {
 
     val model: AdminViewModel by activityViewModels()
-    lateinit var AdminEventBinding: FragmentEventsAdminBinding
+    private lateinit var AdminEventBinding: FragmentEventsAdminBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         AdminEventBinding = FragmentEventsAdminBinding.inflate(layoutInflater)
         return AdminEventBinding.root
@@ -44,7 +44,7 @@ class EventsFragment : Fragment(), EventInterfaceListeners {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         AdminEventBinding.addEvent.setOnClickListener {
-            AddEvent().show(requireActivity().supportFragmentManager,"Add Event")
+            AddEvent().show(requireActivity().supportFragmentManager, "Add Event")
         }
         AdminEventBinding.deleteAll.setOnClickListener {
             MaterialAlertDialogBuilder(requireContext())
@@ -59,9 +59,9 @@ class EventsFragment : Fragment(), EventInterfaceListeners {
                     adminViewModel.viewModelScope.launch {
                         val res = deleteAll()
                         Handler(Looper.getMainLooper()).post {
-                            if(res.failed!=null){
+                            if (res.failed != null) {
                                 toas(res.failed)
-                            }else{
+                            } else {
                                 toas(getString(res.success!!))
                             }
                         }
@@ -73,32 +73,33 @@ class EventsFragment : Fragment(), EventInterfaceListeners {
 
         }
         AdminEventBinding.adminEvents.apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
         }
         model.getEvent().observe(viewLifecycleOwner, Observer {
-            Log.w("List","${it}")
-            AdminEventBinding.adminEvents.adapter = AdminEventAdapter(it,this)
+            Log.w("List", "${it}")
+            AdminEventBinding.adminEvents.adapter = AdminEventAdapter(it, this)
         })
     }
 
     override suspend fun delete(eventName: String): DeleteResult {
         val def = CompletableDeferred<DeleteResult>()
 
-            MaterialAlertDialogBuilder(requireContext())
-                .setTitle("Sure Delete $eventName from Database?")
-                .setMessage("It will delete $eventName  from database and its will not recover.")
-                .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
-                    // Respond to negative button press
-                    dialog.cancel()
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Sure Delete $eventName from Database?")
+            .setMessage("It will delete $eventName  from database and its will not recover.")
+            .setNegativeButton(resources.getString(R.string.cancel)) { dialog, which ->
+                // Respond to negative button press
+                dialog.cancel()
+            }
+            .setPositiveButton("Ok") { dialog, which ->
+                // Respond to positive button press
+                model.viewModelScope.launch {
+                    def.complete(model.deleteEvent(eventName = eventName))
                 }
-                .setPositiveButton("Ok") { dialog, which ->
-                    // Respond to positive button press
-                    model.viewModelScope.launch {
-                        def.complete(model.deleteEvent(eventName = eventName))
-                    }
-                }
-                .show()
+            }
+            .show()
         return def.await()
 
     }
@@ -110,8 +111,9 @@ class EventsFragment : Fragment(), EventInterfaceListeners {
     override suspend fun deleteAll(): DeleteResult {
         return model.deleteAllEvent()
     }
-    fun toas(msg:String){
-        Toast.makeText(context,msg, Toast.LENGTH_SHORT).show()
+
+    fun toas(msg: String) {
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
 
     }
 
