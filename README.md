@@ -19,3 +19,23 @@ Rules:
 3. Proper Comments
 4. Functions End Seperated by commented Hypen //------------------------------------------------------------------- 
 5. Variable Name Should be camelCase
+
+LOGIN: 
+
+![login](https://user-images.githubusercontent.com/76484161/169091908-4d5ae6f9-3e28-4cb2-bcc2-d37406134e3b.png)
+
+SIGNUP:
+
+![signup](https://user-images.githubusercontent.com/76484161/169091937-124f7ee4-75be-46b4-9e94-e50f80044154.png)
+
+HELP:
+
+![help](https://user-images.githubusercontent.com/76484161/169091821-c6685ce5-28b1-48ea-b8b1-39918bcad1ae.png)
+
+Navigation:
+
+![navigation](https://user-images.githubusercontent.com/76484161/169091785-439c2f26-87b4-4372-95ff-1b0446f6ba4f.png)
+
+ABOUTUS:
+
+![aboutus](https://user-images.githubusercontent.com/76484161/169091886-8fdd0f08-fa47-4918-bbf4-41906f3eb239.png)
