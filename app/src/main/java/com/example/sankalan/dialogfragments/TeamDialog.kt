@@ -7,13 +7,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.sankalan.R
 import com.example.sankalan.data.RegistrationSuccess
 import com.example.sankalan.data.TeamMembers
@@ -26,7 +24,7 @@ import kotlinx.coroutines.launch
 /**
  * Team Dialog For Edit by admin.
  */
-class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
+class TeamDialog(val teamReg: SelectedEventClickListener, val eventName:String) : DialogFragment() {
 
     // Team Member Edit text
     private lateinit var member1: TextView
@@ -34,6 +32,7 @@ class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
     private lateinit var member3: EditText
     private lateinit var member4: EditText
     private lateinit var teamName: EditText
+    private lateinit var progressBar:ProgressBar
 
 
     override fun onCreateView(
@@ -52,8 +51,13 @@ class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
         member3 = teamView.findViewById(R.id.member3)
         member4 = teamView.findViewById(R.id.member4)
         teamName = teamView.findViewById(R.id.teamName)
+        progressBar = teamView.findViewById(R.id.progressBarTeam)
         member1.text = activityViewModels<MainViewModel>().value.userData.value?.email
 
+        if(eventName != "Pictionary"){
+            member3.visibility = View.GONE
+            member4.visibility = View.GONE
+        }
         teamView.findViewById<Button>(R.id.submit_team)//On Submit CLicked
             .setOnClickListener {
                 var count = 0
@@ -83,7 +87,8 @@ class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
                         }
                         .setPositiveButton("Ok") { dialog, which ->
                             // Respond to positive button press
-                            GlobalScope.launch {
+                            progressBar.visibility=View.VISIBLE
+                            lifecycleScope.launch {
                                 val res: RegistrationSuccess = teamReg.Registration(
                                     TeamMembers(
                                         mem1Email,
@@ -97,6 +102,8 @@ class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
                                 Handler(Looper.getMainLooper()).post {
                                     Log.w("res inside loop", "$res")
 
+                                    progressBar.visibility=View.GONE
+
                                     if (res.success != null) {
                                         Toast.makeText(
                                             context,
@@ -104,7 +111,7 @@ class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
                                             Toast.LENGTH_SHORT
                                         )
                                             .show()
-                                        dialog?.dismiss()
+                                        getDialog()?.dismiss()
                                     }
                                     if (res.failed != null) {
                                         Toast.makeText(context, res.failed, Toast.LENGTH_SHORT)
@@ -112,16 +119,7 @@ class TeamDialog(val teamReg: SelectedEventClickListener) : DialogFragment() {
                                     }
                                 }//End Handler
                             }//End Coroutines
-                            try {
-                                parentFragment?.let { it1 ->
-                                    requireActivity().supportFragmentManager.beginTransaction()
-                                        .remove(
-                                            it1
-                                        ).commit()
-                                }
-                            } catch (e: Exception) {
-                                Log.w("Error", "Closing Parent Dialog Fragment.")
-                            }//End Try catch
+
                         }
                         .show()//End Alert Dialog
 

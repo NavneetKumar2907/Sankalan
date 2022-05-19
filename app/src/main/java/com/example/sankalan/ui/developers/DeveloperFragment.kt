@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
+import com.example.sankalan.adapter.TeamAdapter
 import com.example.sankalan.databinding.FragmentDeveloperBinding
 import com.example.sankalan.model.MainViewModel
 
@@ -36,11 +37,6 @@ class DeveloperFragment : Fragment() {
             val snap = LinearSnapHelper()
             snap.attachToRecyclerView(this)
         }
-
-        //View Model Observer of Developer List
-        developerViewModel.liveDeveloperTeam.observe(viewLifecycleOwner, Observer {
-            DeveloperBinding.developerList.adapter = TeamAdapter(it, con = requireContext())
-        })
         //Panel List
         DeveloperBinding.panelList.apply {
             layoutManager =
@@ -49,10 +45,16 @@ class DeveloperFragment : Fragment() {
             val snap = LinearSnapHelper()
             snap.attachToRecyclerView(this)
         }
+
+        //View Model Observer of Developer List
+        developerViewModel.liveDeveloperTeam.observe(viewLifecycleOwner) {
+            DeveloperBinding.developerList.adapter = TeamAdapter(it, con = requireContext())
+        }
+
         //Panel List Observer
-        developerViewModel.livePanelTeam.observe(viewLifecycleOwner, Observer {
+        developerViewModel.livePanelTeam.observe(viewLifecycleOwner) {
             DeveloperBinding.panelList.adapter = TeamAdapter(it, con = requireContext())
-        })
+        }
     }
 
 

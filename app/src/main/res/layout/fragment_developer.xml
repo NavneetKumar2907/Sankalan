@@ -9,21 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <TextView
-
-            style="@style/TextAppearance.Headline6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:text="Panel Team" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/panel_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal" />
 
         <TextView
             android:layout_marginTop="10dp"
@@ -36,6 +21,24 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/developer_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal" >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+
+            style="@style/TextAppearance.Headline6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:text="Panel Team" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/panel_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"

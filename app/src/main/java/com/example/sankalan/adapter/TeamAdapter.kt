@@ -1,4 +1,4 @@
-package com.example.sankalan.ui.developers
+package com.example.sankalan.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -30,14 +30,14 @@ class TeamAdapter(
         /**
          * View Holder
          */
-        val profilePicture: ImageView = v.findViewById<ImageView>(R.id.developer_profile_image)
-        val github: Button = v.findViewById<Button>(R.id.developer_github)
-        val linked: Button = v.findViewById<Button>(R.id.developer_linked_in)
-        val instagram: Button = v.findViewById<Button>(R.id.developer_instagram)
-        val name: TextView = v.findViewById<TextView>(R.id.name_team)
-        val positionTeam: TextView = v.findViewById<TextView>(R.id.position_team)
-        val edit: Button = v.findViewById<Button>(R.id.edit_team_admin)
-        val phone: Button = v.findViewById<Button>(R.id.developer_phone_no)
+        val profilePicture: ImageView = v.findViewById(R.id.developer_profile_image)
+        val github: Button = v.findViewById(R.id.developer_github)
+        val linked: Button = v.findViewById(R.id.developer_linked_in)
+        val instagram: Button = v.findViewById(R.id.developer_instagram)
+        val name: TextView = v.findViewById(R.id.name_team)
+        val positionTeam: TextView = v.findViewById(R.id.position_team)
+        val edit: Button = v.findViewById(R.id.edit_team_admin)
+        val phone: Button = v.findViewById(R.id.developer_phone_no)
 
         val divider: View = v.findViewById<View>(R.id.divider_gone)
     }

@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import android.text.Html
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -41,10 +42,13 @@ class RegistrationSelection(
             val registerView = inflater.inflate(R.layout.selected_event, null)
             // Setup View
             registerView.apply {
+                if(selectedEvent.Coordinator.isEmpty()){
+                    findViewById<TextView>(R.id.coordinator_fixed_text).visibility = View.GONE
+                }
                 findViewById<ImageView>(R.id.poster_selected_events).setImageBitmap(selectedEvent.image_drawable)
                 findViewById<TextView>(R.id.event_name_selected_event).text =
                     selectedEvent.eventName
-                val time = "${selectedEvent.timeHour} : ${selectedEvent.timeMinute}"
+                val time = "${selectedEvent.timeHour} : ${selectedEvent.timeMinute}0 AM"
                 findViewById<TextView>(R.id.timing_selected_event).text = time
                 findViewById<TextView>(R.id.venue_selected_events).text = selectedEvent.Venue
                 findViewById<TextView>(R.id.contact_person).text = selectedEvent.Coordinator
@@ -86,7 +90,7 @@ class RegistrationSelection(
             register.setOnClickListener {
                 if (selectedEvent.Team == "Team") {
                     // Team Registration
-                    TeamDialog(regListener).show(
+                    TeamDialog(regListener,selectedEvent.eventName).show(
                         requireActivity().supportFragmentManager,
                         "Team"
                     )

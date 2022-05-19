@@ -7,7 +7,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sankalan.R
-import com.example.sankalan.ui.developers.TeamAdapter
 
 class SponserAdapter(val data:ArrayList<Sponsers>):RecyclerView.Adapter<SponserAdapter.SponserViewHolder>() {
     class SponserViewHolder(v: View):RecyclerView.ViewHolder(v){

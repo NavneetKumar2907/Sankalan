@@ -31,6 +31,9 @@ class MainViewModel : ViewModel() {
 
     private val user: FirebaseUser? = Firebase.auth.currentUser // Current User
     private val database = FirebaseDatabase.getInstance() // Database Instance
+
+    //Constructor
+
 //========================================Database References=========================================================================================================================================================================================
 
     // Database References
@@ -239,8 +242,8 @@ class MainViewModel : ViewModel() {
                                 panelTeam.value = listPanel
                             }
                         }
-                    }
-                }
+                    }//End Executor
+                }//End Loop
             } else {
                 Log.w("Error", "NOT found data.")
 
@@ -555,6 +558,8 @@ class MainViewModel : ViewModel() {
             } else {
                 stuckLog("Inside Not active.")
                 // add team name
+                def.complete(RegistrationSuccess(success = R.string.sucess_register))
+
                 databaseRegisterEvent.child(eventName)
                     .child(user?.email.toString().replace("@", "at").replace(".", "dot")).push()
                     .child(teamName).setValue(members)
@@ -586,8 +591,7 @@ class MainViewModel : ViewModel() {
 
                     }
 
-                }
-                def.complete(RegistrationSuccess(success = R.string.sucess_register))
+                }//end apply
             }
 
         } else {
@@ -628,7 +632,7 @@ class MainViewModel : ViewModel() {
                         def.complete(RegistrationSuccess(failed = "Team Name ALready Exist."))
                     } else {
                         viewModelScope.launch {
-                            def.complete(register(team, members, eventName, teamName))
+                            def.complete(register(team, members, eventName, teamName.trim().lowercase()))
                         }
                     }
 

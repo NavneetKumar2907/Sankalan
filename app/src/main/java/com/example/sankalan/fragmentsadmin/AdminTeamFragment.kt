@@ -14,7 +14,7 @@ import com.example.sankalan.databinding.FragmentAdminTeamBinding
 import com.example.sankalan.dialogfragments.EditTeam
 import com.example.sankalan.interfaces.TeamEditListener
 import com.example.sankalan.model.AdminViewModel
-import com.example.sankalan.ui.developers.TeamAdapter
+import com.example.sankalan.adapter.TeamAdapter
 
 
 class AdminTeamFragment : Fragment(), TeamEditListener {

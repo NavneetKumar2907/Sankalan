@@ -12,101 +12,103 @@
     android:background="@color/white"
     >
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/gradient_animation"
-        >
+        android:orientation="horizontal"
+        android:padding="4dp">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/event_title_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/valo_wars"
+                android:textAlignment="viewStart"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/event_type_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/event_title_card"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/non_technical"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/event_nos_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/event_type_card"
+                android:layout_marginStart="20dp"
+
+                android:drawablePadding="3dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/team"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                app:drawableLeftCompat="@drawable/ic_baseline_group_24" />
+
+            <TextView
+                android:id="@+id/event_venue_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:drawablePadding="3dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/venue"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                app:drawableLeftCompat="@drawable/ic_baseline_location_on_24" />
+
+            <TextView
+                android:id="@+id/event_timing_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:drawablePadding="3dp"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="3sp"
+                android:lines="1"
+                android:text="@string/valo_wars_time"
+                android:textColor="#28917E"
+                android:textSize="18sp"
+                app:drawableLeftCompat="@drawable/ic_baseline_time_24" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
 
         <ImageView
             android:id="@+id/event_poster_card"
-            android:layout_width="185dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
+            android:layout_weight="1"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:src="@drawable/valo_wars" />
 
-        <TextView
-            android:id="@+id/event_title_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/valo_wars"
-            android:textAlignment="viewStart"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp" />
-
-        <TextView
-            android:id="@+id/event_type_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/event_title_card"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/non_technical"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/event_nos_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/event_type_card"
-            android:layout_marginStart="20dp"
-            android:drawableLeft="@drawable/ic_baseline_group_24"
-
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/team"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/event_venue_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/event_nos_card"
-            android:layout_marginStart="20dp"
-            android:drawableLeft="@drawable/ic_baseline_location_on_24"
-
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/venue"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp" />
-
-        <ImageView
-            android:id="@+id/event_timing_img_card"
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/event_venue_card"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="18dp"
-            android:src="@drawable/ic_baseline_time_24" />
-
-        <TextView
-            android:id="@+id/event_timing_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/event_venue_card"
-
-            android:layout_marginTop="18dp"
-            android:layout_toEndOf="@id/event_timing_img_card"
-            android:fontFamily="sans-serif-medium"
-            android:lineSpacingExtra="3sp"
-            android:lines="3"
-            android:text="@string/valo_wars_time"
-            android:textColor="#28917E"
-            android:textSize="18sp" />
-
-    </RelativeLayout>
+    </LinearLayout>
 
 
 </androidx.cardview.widget.CardView>

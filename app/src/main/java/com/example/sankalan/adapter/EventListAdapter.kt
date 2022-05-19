@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +25,7 @@ class EventListAdapter(
         /**
          * View Holder.
          */
-        val container: RelativeLayout = view.findViewById(R.id.container)
+        val container: LinearLayout = view.findViewById(R.id.container)
         val title: TextView = view.findViewById(R.id.event_title_card)
         val poster: ImageView = view.findViewById(R.id.event_poster_card)
         val type: TextView = view.findViewById(R.id.event_type_card)
@@ -45,7 +46,7 @@ class EventListAdapter(
         holder.title.text = item.eventName
         holder.type.text = item.Type
         holder.nos.text = item.Team
-        val time = "${item.timeHour} : ${item.timeMinute}"
+        val time = "${item.timeHour} : ${item.timeMinute}0 AM"
         holder.timing.text = time
         holder.venue.text = item.Venue
 
