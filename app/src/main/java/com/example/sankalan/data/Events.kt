@@ -15,7 +15,8 @@ data class Events(
     var timeHour: Int = 0,
     var timeMinute: Int = 0,
     var Coordinator: String = "XXXX",
-    var rules: String = "----------------------------------"
+    var rules: String = "----------------------------------",
+    var teamSize:Int = 0
 ) {
     var image_drawable: Bitmap? = null
 }

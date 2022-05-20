@@ -90,7 +90,7 @@ class RegistrationSelection(
             register.setOnClickListener {
                 if (selectedEvent.Team == "Team") {
                     // Team Registration
-                    TeamDialog(regListener,selectedEvent.eventName).show(
+                    TeamDialog(regListener,selectedEvent.teamSize).show(
                         requireActivity().supportFragmentManager,
                         "Team"
                     )

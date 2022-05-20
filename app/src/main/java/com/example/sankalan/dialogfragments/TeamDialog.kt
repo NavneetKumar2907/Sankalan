@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 /**
  * Team Dialog For Edit by admin.
  */
-class TeamDialog(val teamReg: SelectedEventClickListener, val eventName:String) : DialogFragment() {
+class TeamDialog(private val teamReg: SelectedEventClickListener, private val teamSize:Int=0) : DialogFragment() {
 
     // Team Member Edit text
     private lateinit var member1: TextView
@@ -54,7 +54,7 @@ class TeamDialog(val teamReg: SelectedEventClickListener, val eventName:String) 
         progressBar = teamView.findViewById(R.id.progressBarTeam)
         member1.text = activityViewModels<MainViewModel>().value.userData.value?.email
 
-        if(eventName != "Pictionary"){
+        if(teamSize == 2){
             member3.visibility = View.GONE
             member4.visibility = View.GONE
         }
