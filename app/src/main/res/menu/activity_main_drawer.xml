@@ -28,14 +28,16 @@
             android:title="@string/HelpandFeedBack" />
         <item
             android:id="@+id/sponsersFragment"
-            android:title="@string/sponsers"
             android:icon="@drawable/ic_sponser"
-            />
+            android:title="@string/sponsers" />
         <item
             android:id="@+id/developerFragment"
-            android:title="@string/meet_developers"
             android:icon="@drawable/ic_coding"
-            />
+            android:title="@string/meet_developers" />
+        <item
+            android:id="@+id/logout"
+            android:icon="@drawable/ic_baseline_login_24"
+            android:title="@string/logout" />
     </group>
 
 </menu>
