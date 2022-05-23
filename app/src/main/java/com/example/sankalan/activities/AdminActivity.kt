@@ -12,6 +12,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.sankalan.R
 import com.example.sankalan.databinding.ActivityAdminBinding
 import com.example.sankalan.model.AdminViewModel
+import kotlinx.coroutines.awaitAll
 
 /**
  * Activity For Admin Login and Features.
@@ -58,10 +59,8 @@ class AdminActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         if (item.itemId == R.id.action_logout) {
-            Thread(Runnable {
-                adminViewModel.logout()
 
-            })
+             adminViewModel.logout()
             startActivity(Intent(this, LoginActivity::class.java))
             this.finish()
             return true

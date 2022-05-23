@@ -43,6 +43,7 @@ class AdminRegEventAdapter(
 
     override fun onBindViewHolder(holder: AdminRegViewHolder, position: Int) {
         val item = dataset[position]
+
         holder.apply {
 
             if (item.individual.isNotEmpty()) {
@@ -62,11 +63,10 @@ class AdminRegEventAdapter(
                 individualVisibility.visibility = View.GONE
                 teamVisibility.visibility = View.VISIBLE
 
-
                 try {
                     //Setting member1 text
                     mem1.text = userDataSet?.filter {
-                        it.email == item.members.member1
+                        it.email.lowercase() == item.members.member1.lowercase()
                     }?.get(0)?.name
                 } catch (e: Exception) {
                     Log.w("Error", e.message.toString())
@@ -76,7 +76,7 @@ class AdminRegEventAdapter(
                 try {
                     //Setting member2 text
                     mem2.text = userDataSet?.filter {
-                        it.email == item.members.member2
+                        it.email.lowercase() == item.members.member2.lowercase()
                     }?.get(0)?.name
                 } catch (e: Exception) {
                     Log.w("Error", e.message.toString())
@@ -85,7 +85,7 @@ class AdminRegEventAdapter(
                 try {
                     //Setting member3 text
                     mem3.text = userDataSet?.filter {
-                        it.email == item.members.member3
+                        it.email.lowercase() == item.members.member3.lowercase()
                     }?.get(0)?.name
 
                 } catch (e: Exception) {
@@ -95,7 +95,7 @@ class AdminRegEventAdapter(
                 try {
                     //Setting member4 text
                     mem4.text = userDataSet?.filter {
-                        it.email == item.members.member4
+                        it.email.lowercase() == item.members.member4.lowercase()
                     }?.get(0)?.name
                 } catch (e: Exception) {
                     Log.w("Error", e.message.toString())

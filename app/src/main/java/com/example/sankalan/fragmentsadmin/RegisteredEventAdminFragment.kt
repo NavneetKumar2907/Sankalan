@@ -132,7 +132,7 @@ class RegisteredEventAdminFragment : Fragment(), AdapterView.OnItemSelectedListe
                 PrintHelper(context).apply {
                     scaleMode = PrintHelper.SCALE_MODE_FIT
                 }.also { printHelper ->
-                    printHelper.printBitmap("droids.jpg - test print", screen)
+                    printHelper.printBitmap(registeredEvents.eventRegisteredEventSpinner.selectedItem.toString(), screen)
                 }
             }
         } catch (e: Exception) {

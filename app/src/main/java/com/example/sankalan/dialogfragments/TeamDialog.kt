@@ -171,7 +171,7 @@ class TeamDialog(private val teamReg: SelectedEventClickListener, private val te
 
     }
 
-    fun isValidEmail(email: String): Boolean {
+    private fun isValidEmail(email: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 

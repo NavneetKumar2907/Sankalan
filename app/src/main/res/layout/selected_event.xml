@@ -17,6 +17,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/gradient1"
             android:orientation="vertical"
             android:padding="2dp">
 
@@ -25,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
-                android:src="@drawable/valo_wars"/>
+                app:srcCompat="@drawable/valo_wars" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -146,27 +147,36 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="19sp" />
 
-            <TextView
-                android:id="@+id/rules_selected_event"
-                style="@style/TextAppearance.App.Subtitle1"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="Rules------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textSize="19sp" />
+                android:orientation="horizontal"
+                android:padding="3dp">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/register_selected_event"
-                style="@style/button_background"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/background_round_btn"
-                android:enabled="false"
-                android:text="@string/not_verfied_string" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/register_selected_event"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_round_btn"
+                    android:enabled="false"
+                    android:text="@string/not_verfied_string" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/cancel_selected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_round_btn"
+                    android:text="@string/cancel" />
+            </LinearLayout>
 
         </LinearLayout>
+
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,6 +25,7 @@ import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.launch
 import java.net.URL
+import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class MainViewModel : ViewModel() {
@@ -32,7 +33,7 @@ class MainViewModel : ViewModel() {
     private val user: FirebaseUser? = Firebase.auth.currentUser // Current User
     private val database = FirebaseDatabase.getInstance() // Database Instance
 
-    //Constructor
+
 
 //========================================Database References=========================================================================================================================================================================================
 
@@ -50,6 +51,7 @@ class MainViewModel : ViewModel() {
     private val sponserReference = database.getReference("Sponsers")
 
     private val teamNameRefrence = database.getReference("teamName")
+    private val resultReference = database.getReference("Result")
 
 //=========================================Listeners========================================================================================================================================================================================
 
@@ -61,12 +63,11 @@ class MainViewModel : ViewModel() {
             val post = snapshot.getValue<LoggedInUserView>()
             Log.w("Post Value", "${post}")
             try {
-                post?.uid = user?.uid!!
-                if (!user.isEmailVerified) {
-                    post?.isVerified = user.isEmailVerified
-                    databaseUser.setValue(post)
+                if(post?.uid?.isEmpty() == true){
+                    post.uid = user?.uid.toString()
+                    editUserDetail(post)
                 }
-                _userData.value = post
+               _userData.value = post
             } catch (e: Exception) {
                 Log.w("Error Loading details", e.message.toString())
             }
@@ -146,12 +147,16 @@ class MainViewModel : ViewModel() {
             val emailFormatted = user?.email.toString().replace("@", "at").replace(".", "dot")
             for (eventName in snapshot.children) {
                 for (id in eventName.children) {
-                    if (id.key == emailFormatted) {
+
+
+                    if (id.key?.lowercase() == emailFormatted.lowercase()) {
+                        Log.w("VSLUES: ","${id.key}::::${emailFormatted}")
                         for (k in id.children) {
                             if (k.hasChildren()) {
                                 // Team
                                 for (teamName in k.children) {
                                     val res = teamName.getValue<TeamMembers>()
+                                    Log.w("RES: ","$res")
                                     eventMember.add(
                                         RegisteredEvents(
                                             eventName = eventName.key.toString(),
@@ -183,6 +188,7 @@ class MainViewModel : ViewModel() {
         }
 
     }
+
     private val developerListener = object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
             if (snapshot.exists()) {
@@ -288,6 +294,29 @@ class MainViewModel : ViewModel() {
         }
 
     }
+
+    //Result Listener
+    private val resultListener = object :ValueEventListener{
+        override fun onDataChange(snapshot: DataSnapshot) {
+            if(snapshot.exists()){
+                //Result is there
+                val resultList = arrayListOf<Score>()
+                for(eventName in snapshot.children){
+                    val res = eventName.getValue<Score>()
+                    if (res != null) {
+                        resultList.add(res)
+                    }
+                }//End Loop
+                //add value to live data
+                scoreLive.value = resultList
+            }
+        }
+
+        override fun onCancelled(error: DatabaseError) {
+            Log.w("Error:","DATA NOT FOUND!!")
+        }
+
+    }
 //================================Live Data====================================================================================================================================================
 
     // User Live Data
@@ -358,6 +387,13 @@ class MainViewModel : ViewModel() {
         }
     }
 
+    private val scoreLive:MutableLiveData<ArrayList<Score>> by lazy {
+        MutableLiveData<ArrayList<Score>>().also {
+            loadScore()
+        }
+    }
+    val liveResult:LiveData<ArrayList<Score>> = scoreLive
+
 //=====================================Loaders============================================================================================================================================================================================
 
     private fun loadList() {
@@ -426,6 +462,9 @@ class MainViewModel : ViewModel() {
 
     private fun loadSponsers() {
         sponserReference.addValueEventListener(sponserListener)
+    }
+    private fun loadScore(){
+        resultReference.addValueEventListener(resultListener)
     }
 
 
@@ -651,7 +690,13 @@ class MainViewModel : ViewModel() {
         /**
          * Log out user.
          */
-        Firebase.auth.signOut()
+        viewModelScope.launch {
+            Firebase.auth.signOut()
+        }
+    }
+
+    fun isVeriFied():Boolean{
+        return user?.isEmailVerified!!
     }
 
 //============================================================END===================================================================================================================================================================================

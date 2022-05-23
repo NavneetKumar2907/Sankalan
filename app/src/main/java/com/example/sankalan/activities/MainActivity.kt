@@ -2,11 +2,16 @@ package com.example.sankalan.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.HandlerCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -17,6 +22,14 @@ import com.example.sankalan.model.MainViewModel
 import com.example.sankalan.R
 import com.example.sankalan.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.util.concurrent.Executor
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
 
@@ -53,6 +66,11 @@ class MainActivity : AppCompatActivity() {
         //Initialising view Model
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
+        //Running Executor for verification
+        Firebase.auth.addAuthStateListener {
+            Log.w("IS","${it.currentUser?.isEmailVerified}")
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -64,10 +82,9 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         if (item.itemId == R.id.action_logout) {
-            Thread(Runnable {
+
                 mainViewModel.logout()
 
-            })
             startActivity(Intent(this, LoginActivity::class.java))
             this.finish()
             return true
