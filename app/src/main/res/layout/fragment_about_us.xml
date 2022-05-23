@@ -40,7 +40,8 @@
                 app:layout_constraintEnd_toEndOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.461" />
+                app:layout_constraintVertical_bias="0.461"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/textView8"
