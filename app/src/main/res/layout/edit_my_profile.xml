@@ -16,34 +16,14 @@
             android:id="@+id/info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
             android:layout_marginTop="8dp"
-            android:text="If you want to edit your details"
-            android:textColor="#000"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/sub_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/info"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="8dp"
-            android:text="You can "
-            android:textColor="#000"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/colored_sub_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/info"
-            android:layout_marginTop="8dp"
-            android:layout_toEndOf="@+id/sub_info"
-            android:text="Edit here!"
-            android:textColor="@color/purple_500"
-            android:textSize="16sp" />
-
+            android:text="Add your new details"
+            android:textColor="@color/yellow_light"
+            android:shadowColor="@color/black"
+            android:shadowRadius="6"
+            android:textAlignment="center"
+            android:textStyle="bold|italic"
+            android:textSize="28sp" />
     </RelativeLayout>
 
 
@@ -58,12 +38,18 @@
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="10dp"
-        android:hint="Enter your username"
+        android:hint="Enter Your Name"
+        android:textColorHint="@color/white"
+        app:startIconTint="@color/white"
         app:startIconDrawable="@drawable/ic_person"
         >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_username"
+            android:textColor="@color/white"
+            android:shadowColor="@color/black"
+            android:shadowRadius="6"
+            android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress" />
@@ -80,11 +66,17 @@
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="10dp"
-        android:hint="Enter your college name"
+        android:hint="Enter Your College Name"
+        android:textColorHint="@color/white"
+        app:startIconTint="@color/white"
         app:startIconDrawable="@drawable/ic_college">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_college_name"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:shadowColor="@color/black"
+            android:shadowRadius="6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress" />
@@ -102,11 +94,17 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="10dp"
         android:hint="Enter your course name"
+        android:textColorHint="@color/white"
+        app:startIconTint="@color/white"
         app:startIconDrawable="@drawable/ic_course">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_course_name"
             android:layout_width="match_parent"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:shadowColor="@color/black"
+            android:shadowRadius="6"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress" />
 
@@ -123,11 +121,17 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="10dp"
         android:hint="Enter your academic year (I/II/III)"
+        android:textColorHint="@color/white"
+        app:startIconTint="@color/white"
         app:startIconDrawable="@drawable/ic_baseline_calendar_today_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_course_year"
             android:layout_width="match_parent"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:shadowColor="@color/black"
+            android:shadowRadius="6"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress" />
 
@@ -144,11 +148,17 @@
         android:layout_marginRight="15dp"
         android:layout_marginBottom="10dp"
         android:hint="Enter mobile no"
+        android:textColorHint="@color/white"
+        app:startIconTint="@color/white"
         app:startIconDrawable="@drawable/ic_call">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edit_mobile_no"
             android:layout_width="match_parent"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:shadowColor="@color/black"
+            android:shadowRadius="6"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress" />
 
@@ -164,7 +174,12 @@
         android:background="@drawable/background_round_btn"
         android:paddingLeft="25sp"
         android:paddingRight="25sp"
-        android:text="Update" />
+        android:text="Update"
+        android:textSize="26dp"
+        android:textColor="@color/yellow_light"
+        android:shadowRadius="6"
+        android:shadowColor="@color/black"
+        android:textStyle="italic"/>
 
 
 </LinearLayout>
