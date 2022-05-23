@@ -133,6 +133,7 @@ A large number of sponsors who financially aid this event form the backbone of t
     <string name="uploadSucces">SuccessFully Uploaded.</string>
     <string name="deleteSuccess">SuccessFully Deleted.</string>
     <string name="ducs_addres">Department of Computer Science, First Floor, Faculty of Mathematical Sciences, Room No . 113, Opposite Daulat Ram College, University of, Delhi, 110007</string>
+    <string name="logout">Logout</string>
 
     <string-array name="eventType">
         <item>Technical</item>
