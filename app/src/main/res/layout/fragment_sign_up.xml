@@ -41,6 +41,7 @@
         android:layout_toEndOf="@+id/message_for_sign_in"
         android:clickable="true"
         android:focusable="true"
+        android:minHeight="48dp"
         android:text="@string/login_here"
         android:textColor="@color/royal_purple"
         android:textSize="20sp"

@@ -22,6 +22,7 @@ class AuthenticationViewModel(private val repository: AuthenticationRepository) 
     private val passwordRegex =
         Regex("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$")
     val result_login = MutableLiveData<LoginResult>()
+    val result_signup = MutableLiveData<LoginResult>()
 
     fun login(email: String, password: String) {
         if (isValidEmail(email) && isValidPassword(password)) {
@@ -42,7 +43,7 @@ class AuthenticationViewModel(private val repository: AuthenticationRepository) 
     fun signUp(email: String, password: String, data: LoggedInUserView) {
         viewModelScope.launch {
             val res: LoginResult = repository.signUp(email, password, data)
-            result_login.value = res
+            result_signup.value = res
         }
 
     }

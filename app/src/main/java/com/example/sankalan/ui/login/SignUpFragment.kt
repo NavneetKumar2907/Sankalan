@@ -107,7 +107,7 @@ class SignUpFragment : Fragment() {
 
         })
         //SignUp Result Observer
-        signupViewmodel.result_login.observe(viewLifecycleOwner, Observer {
+        signupViewmodel.result_signup.observe(viewLifecycleOwner, Observer {
             if (it.success != null) {
                 loadAlert()
             }

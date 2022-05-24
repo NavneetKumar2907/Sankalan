@@ -114,7 +114,6 @@ class LoginFragment : Fragment(), View.OnClickListener {
                             activity?.finish()
                         }else{
                             loading.visibility = View.GONE
-                            Firebase.auth.signOut()
                             loadAlert()
                         }
                     }catch (e:Exception){
@@ -144,6 +143,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
         registerText.setOnClickListener {
             onClick(it)
         }
+
         //Forgot Password Listener
         forgotPassword.setOnClickListener {
             ForgotPassWordFragment().show(
@@ -160,11 +160,17 @@ class LoginFragment : Fragment(), View.OnClickListener {
             .setMessage("Please Verify Account using link send to your Email.")
             .setNegativeButton(resources.getString(R.string.cancel)) { dialog, _ ->
                 // Respond to negative button press
+                Firebase.auth.signOut()
                 dialog.cancel()
             }//End Negative
             .setPositiveButton("Resend Link") { dialog, _ ->
                 // Respond to positive button press
-                Firebase.auth.currentUser!!.sendEmailVerification()
+                try {
+                    Firebase.auth.currentUser!!.sendEmailVerification()
+                    Firebase.auth.signOut()
+                }catch (e:Exception){
+                    Log.w("Error: ",e.message.toString())
+                }
                 dialog.dismiss()
             }.show()
     }
