@@ -27,6 +27,7 @@
                 android:id="@+id/poster_selected_events"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
                 android:scaleType="fitCenter"
                 app:srcCompat="@drawable/valo_wars" />
 
@@ -44,7 +45,10 @@
                     android:layout_weight="1"
                     android:text="Event Name"
                     android:textAllCaps="true"
-                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textColor="@color/yellow_light"
+                    android:shadowRadius="5"
+                    android:shadowColor="@color/black"
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -61,11 +65,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:drawableTint="@color/yellow_light"
                         android:drawableStart="@drawable/ic_baseline_time_24"
                         android:drawablePadding="3dp"
                         android:text="02:00PM"
-                        android:textColor="@android:color/holo_red_dark"
-                        android:textSize="16sp" />
+                        android:shadowRadius="5"
+                        android:shadowColor="@color/black"
+                        android:textColor="@color/yellow_light"
+                        android:textSize="18sp" />
 
 
                     <TextView
@@ -75,10 +82,13 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:drawableStart="@drawable/ic_baseline_location_on_24"
+                        android:drawableTint="@color/yellow_light"
                         android:drawablePadding="3dp"
                         android:text="Online"
-                        android:textColor="@color/glow_green"
-                        android:textSize="16sp" />
+                        android:shadowColor="@color/black"
+                        android:shadowRadius="5"
+                        android:textColor="@color/yellow_light"
+                        android:textSize="18sp" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -98,8 +108,12 @@
                     android:layout_weight="1"
                     android:drawablePadding="3dp"
                     android:gravity="center_vertical"
-                    android:text="CoOrdinator: "
-                    android:textColor="#fff" />
+                    android:text="Co-Ordinators : "
+                    android:textSize="18sp"
+                    android:textColor="@color/yellow_light"
+                    android:shadowRadius="5"
+                    android:shadowColor="@color/black"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/contact_person"
@@ -110,7 +124,9 @@
                     android:gravity="center_vertical"
                     android:text="Rakesh Kumar"
                     android:textAllCaps="true"
-                    android:textColor="@color/white"
+                    android:textColor="@color/yellow_light"
+                    android:shadowRadius="5"
+                    android:shadowColor="@color/black"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -127,7 +143,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="@string/technical"
-                    android:textColor="@color/white"
+                    android:textColor="@color/yellow_light"
+                    android:shadowRadius="5"
+                    android:shadowColor="@color/black"
                     android:textSize="18sp" />
 
                 <TextView
@@ -136,9 +154,12 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:drawableLeft="@drawable/ic_baseline_group_24"
+                    android:drawableTint="@color/yellow_light"
                     android:gravity="center"
                     android:text="@string/team"
-                    android:textColor="@color/white"
+                    android:shadowRadius="5"
+                    android:shadowColor="@color/black"
+                    android:textColor="@color/yellow_light"
                     android:textSize="18sp" />
             </LinearLayout>
 
@@ -148,6 +169,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:textColor="@color/yellow_light"
                 android:text="About This Event------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="19sp" />
@@ -163,7 +185,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_margin="3dp"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/background_round_btn"
                     android:text="@string/register" />
