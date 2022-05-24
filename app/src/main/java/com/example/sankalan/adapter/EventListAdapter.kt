@@ -1,5 +1,6 @@
 package com.example.sankalan.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,7 +50,13 @@ class EventListAdapter(
         if(item.Team != "Team"){
             holder.nos.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_person,0,0,0)
         }
-        val time = "${item.timeHour % 12 } : " + if(item.timeMinute==0) item.timeMinute.toString() + "0" else item.timeMinute.toString() + if(item.timeHour>=12) " PM" else " AM"
+        var time = "${item.timeHour % 12 } : " + if(item.timeMinute==0) item.timeMinute.toString() + "0" else item.timeMinute.toString()
+        time = if(item.timeHour>=12)
+            "$time PM"
+        else
+            "$time PM"
+        
+        Log.w("Time:",time)
         holder.timing.text = time
         holder.venue.text = item.Venue
 

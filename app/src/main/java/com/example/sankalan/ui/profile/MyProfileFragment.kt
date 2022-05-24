@@ -46,12 +46,12 @@ class MyProfileFragment : Fragment() {
         val email = myprofileBinding.emailText
         val editButton = myprofileBinding.editProfileButton
         mainV.userData.observe(viewLifecycleOwner, Observer {
-            name.text = it.name
-            college.text = it.institute
-            course.text = it.course
-            year.text = it.year.toString()
-            mobile.text = it.mobile
-            email.text = it.email
+            name.text = it?.name
+            college.text = it?.institute
+            course.text = it?.course
+            year.text = it?.year.toString()
+            mobile.text = it?.mobile
+            email.text = it?.email
         })
         val dim = LinearLayout.LayoutParams.MATCH_PARENT
         val editPopUp = PopupWindow(popEditView, dim, dim, true)

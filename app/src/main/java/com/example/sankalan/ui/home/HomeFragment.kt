@@ -58,8 +58,8 @@ class HomeFragment : Fragment(), SelectedEventClickListener {
 
         // View Model Observer for getting events
         homeViewModel.getEvent().observe(viewLifecycleOwner, Observer {
-            adapter = EventListAdapter(it, this)
-            recycleEventList.adapter = adapter
+            recycleEventList.adapter =  EventListAdapter(it, this)
+
         })
 
         return root

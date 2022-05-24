@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="20dp"
@@ -9,335 +10,346 @@
     android:orientation="vertical">
 
 
-    <!--    name layout-->
-    <LinearLayout
-        android:layout_marginTop="20dp"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="3dp"
-        android:layout_marginHorizontal="15dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/full_name"
-            android:textColor="#F2EDDB"
-            android:shadowColor="@color/black"
-            android:shadowRadius="6"
-            android:textStyle="bold"
-            android:textSize="24sp"/>
-
+        android:layout_height="match_parent"
+        tools:ignore="UselessParent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:contentDescription="@string/full_name"
-                app:srcCompat="@drawable/ic_person" />
-
-            <TextView
-                android:id="@+id/full_name"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.9"
-                android:textColor="#fff"
-                android:shadowColor="@color/black"
-                android:shadowRadius="6"
-                android:textStyle="italic"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#fff"
-        android:layout_marginHorizontal="15dp"/>
-
-    <!--    college layout-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30sp"
-        android:padding="3dp"
-        android:layout_marginHorizontal="15dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/college_name"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/CollegeName"
-            android:textColor="#F2EDDB"
-            android:shadowColor="@color/black"
-            android:shadowRadius="6"
-            android:textStyle="bold"
-            android:textSize="24sp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:contentDescription="@string/CollegeName"
-                app:srcCompat="@drawable/ic_college" />
-
-            <TextView
-                android:id="@+id/college_name_text"
-                android:layout_width="0dp"
+            android:orientation="vertical">
+            <!--    name layout-->
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.9"
-                android:textColor="#fff"
-                android:shadowColor="@color/black"
-                android:shadowRadius="6"
-                android:textStyle="italic"
-                android:textSize="20sp" />
+                android:padding="3dp"
+                android:layout_marginHorizontal="15dp"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/full_name"
+                    android:textColor="#F2EDDB"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="6"
+                    android:textStyle="bold"
+                    android:textSize="24sp"/>
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    </LinearLayout>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1"
+                        android:contentDescription="@string/full_name"
+                        app:srcCompat="@drawable/ic_person" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#fff"
-        android:layout_marginHorizontal="15dp"/>
+                    <TextView
+                        android:id="@+id/full_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:textColor="#fff"
+                        android:shadowColor="@color/black"
+                        android:shadowRadius="6"
+                        android:textStyle="italic"
+                        android:textSize="20sp" />
 
-    <!--    course layout-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30sp"
-        android:padding="3dp"
-        android:layout_marginHorizontal="15dp"
-        android:orientation="vertical">
+                </LinearLayout>
 
-        <TextView
-            android:id="@+id/course"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/CourseName"
-            android:textColor="#F2EDDB"
-            android:shadowColor="@color/black"
-            android:shadowRadius="6"
-            android:textStyle="bold"
-            android:textSize="24sp"/>
+            </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#fff"
+                android:layout_marginHorizontal="15dp"/>
 
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:contentDescription="@string/CourseName"
-                app:srcCompat="@drawable/ic_course" />
-
-            <TextView
-                android:id="@+id/course_name"
-                android:layout_width="0dp"
+            <!--    college layout-->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.9"
-                android:textColor="#fff"
-                android:shadowColor="@color/black"
-                android:shadowRadius="6"
-                android:textStyle="italic"
-                android:textSize="20sp"/>
+                android:layout_marginTop="30sp"
+                android:padding="3dp"
+                android:layout_marginHorizontal="15dp"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/college_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/CollegeName"
+                    android:textColor="#F2EDDB"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="6"
+                    android:textStyle="bold"
+                    android:textSize="24sp"/>
 
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#fff"
-        android:layout_marginHorizontal="15dp"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1"
+                        android:contentDescription="@string/CollegeName"
+                        app:srcCompat="@drawable/ic_college" />
 
-    <!--    year layout-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30sp"
-        android:orientation="vertical"
-        android:padding="3dp"
-        android:layout_marginHorizontal="15dp">
+                    <TextView
+                        android:id="@+id/college_name_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:textColor="#fff"
+                        android:shadowColor="@color/black"
+                        android:shadowRadius="6"
+                        android:textStyle="italic"
+                        android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/year"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/yoc"
-            android:textColor="#F2EDDB"
-            android:shadowColor="@color/black"
-            android:shadowRadius="6"
-            android:textStyle="bold"
-            android:textSize="24sp"/>
+                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:contentDescription="@string/yoc"
-                app:srcCompat="@drawable/ic_calendar" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/year_text"
-                android:layout_width="0dp"
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#fff"
+                android:layout_marginHorizontal="15dp"/>
+
+            <!--    course layout-->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#fff"
-                android:layout_weight="0.9"
-                android:shadowColor="@color/black"
-                android:shadowRadius="6"
-                android:textStyle="italic"
-                android:textSize="20sp"  />
+                android:layout_marginTop="30sp"
+                android:padding="3dp"
+                android:layout_marginHorizontal="15dp"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/course"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/CourseName"
+                    android:textColor="#F2EDDB"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="6"
+                    android:textStyle="bold"
+                    android:textSize="24sp"/>
 
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#fff"
-        android:layout_marginHorizontal="15dp"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1"
+                        android:contentDescription="@string/CourseName"
+                        app:srcCompat="@drawable/ic_course" />
 
-    <!--    mobile number layout-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30sp"
-        android:orientation="vertical"
-        android:padding="3dp"
-        android:layout_marginHorizontal="15dp">
+                    <TextView
+                        android:id="@+id/course_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:textColor="#fff"
+                        android:shadowColor="@color/black"
+                        android:shadowRadius="6"
+                        android:textStyle="italic"
+                        android:textSize="20sp"/>
 
-        <TextView
-            android:id="@+id/mobile_no"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/mobile"
-            android:textColor="#F2EDDB"
-            android:shadowColor="@color/black"
-            android:shadowRadius="6"
-            android:textStyle="bold"
-            android:textSize="24sp"/>
+                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            </LinearLayout>
 
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:contentDescription="@string/mobile"
-                app:srcCompat="@drawable/ic_call" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#fff"
+                android:layout_marginHorizontal="15dp"/>
 
-            <TextView
-                android:id="@+id/mobile_no_text"
-                android:layout_width="0dp"
+            <!--    year layout-->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#fff"
-                android:layout_weight="0.9"
-                android:shadowColor="@color/black"
-                android:shadowRadius="6"
-                android:textStyle="italic"
-                android:textSize="20sp" />
+                android:layout_marginTop="30sp"
+                android:orientation="vertical"
+                android:padding="3dp"
+                android:layout_marginHorizontal="15dp">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/year"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yoc"
+                    android:textColor="#F2EDDB"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="6"
+                    android:textStyle="bold"
+                    android:textSize="24sp"/>
 
-    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#fff"
-        android:layout_marginHorizontal="15dp"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1"
+                        android:contentDescription="@string/yoc"
+                        app:srcCompat="@drawable/ic_calendar" />
 
-    <!--    email layout-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30sp"
-        android:padding="3dp"
-        android:layout_marginHorizontal="15dp"
-        android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/year_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="#fff"
+                        android:layout_weight="0.9"
+                        android:shadowColor="@color/black"
+                        android:shadowRadius="6"
+                        android:textStyle="italic"
+                        android:textSize="20sp"  />
 
-        <TextView
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/prompt_email"
-            android:textColor="#F2EDDB"
-            android:shadowColor="@color/black"
-            android:shadowRadius="6"
-            android:textStyle="bold"
-            android:textSize="24sp" />
+                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            </LinearLayout>
 
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1"
-                android:contentDescription="@string/prompt_email"
-                app:srcCompat="@drawable/ic_email" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#fff"
+                android:layout_marginHorizontal="15dp"/>
 
-            <TextView
-                android:id="@+id/email_text"
-                android:layout_width="0dp"
+            <!--    mobile number layout-->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.9"
-                android:shadowColor="@color/black"
-                android:textColor="#fff"
-                android:shadowRadius="6"
+                android:layout_marginTop="30sp"
+                android:orientation="vertical"
+                android:padding="3dp"
+                android:layout_marginHorizontal="15dp">
+
+                <TextView
+                    android:id="@+id/mobile_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mobile"
+                    android:textColor="#F2EDDB"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="6"
+                    android:textStyle="bold"
+                    android:textSize="24sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1"
+                        android:contentDescription="@string/mobile"
+                        app:srcCompat="@drawable/ic_call" />
+
+                    <TextView
+                        android:id="@+id/mobile_no_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="#fff"
+                        android:layout_weight="0.9"
+                        android:shadowColor="@color/black"
+                        android:shadowRadius="6"
+                        android:textStyle="italic"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#fff"
+                android:layout_marginHorizontal="15dp"/>
+
+            <!--    email layout-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30sp"
+                android:padding="3dp"
+                android:layout_marginHorizontal="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/prompt_email"
+                    android:textColor="#F2EDDB"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="6"
+                    android:textStyle="bold"
+                    android:textSize="24sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1"
+                        android:contentDescription="@string/prompt_email"
+                        app:srcCompat="@drawable/ic_email" />
+
+                    <TextView
+                        android:id="@+id/email_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:shadowColor="@color/black"
+                        android:textColor="#fff"
+                        android:shadowRadius="6"
+                        android:textStyle="italic"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#fff"
+                android:layout_marginHorizontal="15dp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/edit_profile_button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/forgot_password"
+                android:layout_gravity="bottom|center"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/background_round_btn"
+                android:text="Edit Profile"
                 android:textStyle="italic"
-                android:textSize="20sp" />
-
+                android:textColor="#F2EDDB"
+                android:textSize="24sp"
+                android:textAllCaps="false"
+                android:shadowColor="@color/black"
+                android:shadowRadius="6"/>
         </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#fff"
-        android:layout_marginHorizontal="15dp"/>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/edit_profile_button"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/forgot_password"
-        android:layout_gravity="bottom|center"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/background_round_btn"
-        android:text="Edit Profile"
-        android:textStyle="italic"
-        android:textColor="#F2EDDB"
-        android:textSize="24sp"
-        android:textAllCaps="false"
-        android:shadowColor="@color/black"
-        android:shadowRadius="6"/>
 
 </LinearLayout>

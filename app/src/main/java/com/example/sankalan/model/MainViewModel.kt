@@ -59,7 +59,6 @@ class MainViewModel : ViewModel() {
          */
         override fun onDataChange(snapshot: DataSnapshot) {
             val post = snapshot.getValue<LoggedInUserView>()
-            Log.w("Post Value", "${post}")
             try {
                 if (post?.uid?.isEmpty() == true) {
                     post.uid = user?.uid.toString()
@@ -152,13 +151,13 @@ class MainViewModel : ViewModel() {
 
 
                     if (id.key?.lowercase() == emailFormatted.lowercase()) {
-                        Log.w("VSLUES: ", "${id.key}::::${emailFormatted}")
+
                         for (k in id.children) {
                             if (k.hasChildren()) {
                                 // Team
                                 for (teamName in k.children) {
                                     val res = teamName.getValue<TeamMembers>()
-                                    Log.w("RES: ", "$res")
+
                                     eventMember.add(
                                         RegisteredEvents(
                                             eventName = eventName.key.toString(),
@@ -196,7 +195,7 @@ class MainViewModel : ViewModel() {
             if (snapshot.exists()) {
                 val listDeveloper = arrayListOf<Teams>()
                 for (names in snapshot.children) {
-                    Log.w("v", "$names")
+
                     val res = names.getValue<Teams>()
                     val executer = Executors.newSingleThreadExecutor()
                     val handler = Handler(Looper.getMainLooper())
@@ -705,7 +704,6 @@ class MainViewModel : ViewModel() {
                 if (it.exists()) {
                     //Already Registered for same events
                     def.complete(RegistrationSuccess(failed = "Already Registered"))
-                    Log.w("Success", "Registration Already exist.")
                 } else {
                     //Register
                     if (teamNameLive.value?.find {
