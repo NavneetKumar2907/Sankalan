@@ -12,7 +12,7 @@
         android:id="@+id/about_scroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="70dp"
+        android:layout_marginBottom="15dp"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,14 +29,19 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="397dp"
-                android:layout_height="163dp"
-                android:src="@drawable/sankalan_name_reduced"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:maxWidth="350dp"
+                android:maxHeight="150dp"
+                android:src="@drawable/sankalan_logo_about_us"
                 app:layout_constraintBottom_toTopOf="@+id/about_scroll"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.461" />
+                app:layout_constraintVertical_bias="0.461"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/textView8"
@@ -45,41 +50,62 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="7dp"
+                android:layout_marginTop="12dp"
                 android:lineSpacingMultiplier="1.2"
                 android:text="About Sankalan"
                 android:textAlignment="viewStart"
                 android:textAllCaps="true"
                 android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                android:textColor="#fc60ffc5" />
+                android:textColor="#E0F7FA"
+                android:shadowColor="@color/black"
+                android:shadowRadius="18"
+                android:textSize="28sp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="clip_horizontal"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="7dp"
+                android:layout_marginRight="10dp"
                 android:justificationMode="inter_word"
                 android:text="@string/aboutSanklan"
-                android:textColor="#99a1b3" />
+                android:textColor="#F2EDDB"
+                android:shadowColor="@color/black"
+                android:shadowRadius="6"
+                android:textStyle="bold|italic"
+                android:textSize="20sp"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/TextAppearance.Headline6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="20dp"
                 android:text="What is it ?"
                 android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
-                android:textColor="#fc60ffc5" />
+                android:textColor="#E0F7FA"
+                android:shadowColor="@color/black"
+                android:shadowRadius="18"
+                android:textSize="28sp"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
                 android:justificationMode="inter_word"
                 android:text="@string/what_is_sanlan"
-                android:textColor="#99a1b3" />
+                android:textColor="#F2EDDB"
+                android:shadowColor="@color/black"
+                android:shadowRadius="6"
+                android:textStyle="italic|bold"
+                android:textSize="20sp" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </ScrollView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
