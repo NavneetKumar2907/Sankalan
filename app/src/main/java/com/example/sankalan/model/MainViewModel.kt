@@ -36,6 +36,7 @@ class MainViewModel : ViewModel() {
 //========================================Database References=========================================================================================================================================================================================
 
     // Database References
+    private val timetable = database.getReference("timetable")
     private val databaseUser =
         database.getReference("Users").child(user?.uid.toString()) // User Reference
     private val image_ref = Firebase.storage.reference.child("gallery") // Gallery Reference
@@ -52,6 +53,7 @@ class MainViewModel : ViewModel() {
     private val resultReference = database.getReference("Result")
 
 //=========================================Listeners========================================================================================================================================================================================
+
 
     private val userListener = object : ValueEventListener {
         /**
@@ -396,8 +398,19 @@ class MainViewModel : ViewModel() {
     }
     val liveResult: LiveData<ArrayList<Score>> = scoreLive
 
+    val liveTimeTable:MutableLiveData<String> by lazy {
+        MutableLiveData<String>().also {
+            timetable.get().addOnCompleteListener {task->
+                it.value = task.result.getValue<String>()
+            }
+        }
+    }
+
 
 //=====================================Loaders============================================================================================================================================================================================
+
+
+
 
     private fun loadList() {
         teamNameRefrence.addValueEventListener(teamMemberListener)

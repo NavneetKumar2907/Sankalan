@@ -2,6 +2,7 @@ package com.example.sankalan.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -38,8 +39,12 @@ class AdminActivity : AppCompatActivity() {
         setSupportActionBar(binding.adminToolbar)
 
         binding.adminToolbar.title = "Admin" // Admin ToolBar Title
-        binding.adminToolbar.setTitleTextColor(getColor(R.color.white)) //TextColor
+        try {
+            binding.adminToolbar.setTitleTextColor(getColor(R.color.white)) //TextColor
 
+        }catch (e:Exception){
+            Log.w("Error: ",e.message.toString())
+        }
         //NavHost
         val navHost =
             supportFragmentManager.findFragmentById(R.id.admin_fragment_container) as NavHostFragment
@@ -51,8 +56,9 @@ class AdminActivity : AppCompatActivity() {
 
     //Menu
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
+        // Inflate the menu
+        // this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.admin_menu, menu)
         return true
     }
 

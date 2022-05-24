@@ -1,8 +1,12 @@
 package com.example.sankalan.activities
 
+import android.app.DownloadManager
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -17,9 +21,8 @@ import com.example.sankalan.R
 import com.example.sankalan.databinding.ActivityMainBinding
 import com.example.sankalan.model.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationView
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import java.util.concurrent.Executors
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -83,6 +86,36 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId==R.id.time_table){
+            //Fetch time table
+            try{
+                Log.w("Value: ",mainViewModel.liveTimeTable.value.toString())
+
+                val uri: Uri =
+                    Uri.parse(mainViewModel.liveTimeTable.value)
+
+                Executors.newSingleThreadExecutor().execute {
+                    val manager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+
+                    val request = DownloadManager.Request(uri)
+                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
+                    val reference: Long = manager.enqueue(request)
+                }
+
+                return true
+            }catch (e:Exception){
+                Log.w("Error: ",e.message.toString())
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 

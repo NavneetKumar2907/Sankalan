@@ -2,9 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_logout"
-        android:icon="@drawable/ic_logout_svgrepo_com"
-        android:title="@string/action_user"
-        app:showAsAction="always"
-        android:visible="false"/>
+        android:id="@+id/time_table"
+        android:title="Time Table"
+        app:showAsAction="collapseActionView|withText" />
 </menu>
