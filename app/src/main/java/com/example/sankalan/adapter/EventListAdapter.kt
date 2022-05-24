@@ -54,7 +54,7 @@ class EventListAdapter(
         time = if(item.timeHour>=12)
             "$time PM"
         else
-            "$time PM"
+            "$time AM"
 
         Log.w("Time:",time)
         holder.timing.text = time
