@@ -55,7 +55,7 @@ class EventListAdapter(
             "$time PM"
         else
             "$time PM"
-        
+
         Log.w("Time:",time)
         holder.timing.text = time
         holder.venue.text = item.Venue
