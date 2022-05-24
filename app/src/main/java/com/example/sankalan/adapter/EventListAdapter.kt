@@ -46,7 +46,10 @@ class EventListAdapter(
         holder.title.text = item.eventName
         holder.type.text = item.Type
         holder.nos.text = item.Team
-        val time = "${item.timeHour} : ${item.timeMinute}0 AM"
+        if(item.Team != "Team"){
+            holder.nos.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_person,0,0,0)
+        }
+        val time = "${item.timeHour % 12 } : " + if(item.timeMinute==0) item.timeMinute.toString() + "0" else item.timeMinute.toString() + if(item.timeHour>=12) " PM" else " AM"
         holder.timing.text = time
         holder.venue.text = item.Venue
 

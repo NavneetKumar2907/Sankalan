@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sankalan.R
 import com.example.sankalan.data.*
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -124,10 +125,11 @@ class AdminViewModel : ViewModel() {
                 for (eventName in snapshot.children) {
                     for (id in eventName.children) {
                         for (keys in id.children) {
-                            Log.w("Keys", keys.toString())
+
                             if (keys.hasChildren()) {
                                 for (teamName in keys.children) {
                                     val res = teamName.getValue<TeamMembers>()
+
                                     eventLists.add(
                                         RegisteredEvents(
                                             teamName = teamName.key.toString(),
@@ -576,7 +578,9 @@ class AdminViewModel : ViewModel() {
     }
 
     fun logout() {
-        Firebase.auth.signOut()
+        viewModelScope.launch {
+            Firebase.auth.signOut()
+        }
     }
 
 

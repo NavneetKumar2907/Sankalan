@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "459952147462",
+    "firebase_url": "https://sankalan-cce96-default-rtdb.firebaseio.com",
     "project_id": "sankalan-cce96",
     "storage_bucket": "sankalan-cce96.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:459952147462:android:21b8e5018067b09c90c787",
+        "mobilesdk_app_id": "1:459952147462:android:ec20450e08ab3e9790c787",
         "android_client_info": {
           "package_name": "com.example.sankalan"
         }
