@@ -87,11 +87,12 @@
                 android:layout_marginTop="5dp"
                 android:drawablePadding="3dp"
                 android:fontFamily="sans-serif-medium"
+                android:gravity="center"
                 android:lineSpacingExtra="3sp"
                 android:lines="1"
                 android:text="@string/valo_wars_time"
                 android:textColor="#28917E"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 app:drawableLeftCompat="@drawable/ic_baseline_time_24" />
 
 

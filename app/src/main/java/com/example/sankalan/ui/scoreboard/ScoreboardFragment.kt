@@ -1,12 +1,16 @@
 package com.example.sankalan.ui.scoreboard
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import com.example.sankalan.adapter.ScoreAdapter
 import com.example.sankalan.data.Score
 import com.example.sankalan.databinding.FragmentScoreboardBinding
 import com.example.sankalan.model.MainViewModel
@@ -44,10 +48,10 @@ class ScoreboardFragment : Fragment() {
             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.spinner.adapter = spinnerArrayAdapter
 
-            //Load Results
-            it.find { sco ->
-                sco.eventName == binding.spinner.selectedItem
-            }?.let { it1 -> loadResult(it1) }
+            val r: Score? = it.find {
+                it.eventName == binding.spinner.selectedItem
+            }
+            loadResult(r!!)
         }//End Observer
 
 
@@ -55,10 +59,10 @@ class ScoreboardFragment : Fragment() {
 
     private fun loadResult(score: Score) {
 
-        binding.apply {
-            firstResult.text = score.first
-            secondResult.text = score.second
-            thirdResult.text = score.third
+        binding.scoreList.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            setHasFixedSize(true)
+            adapter = ScoreAdapter(score.result)
         }
     }
 

@@ -19,6 +19,9 @@ import com.example.sankalan.activities.MainActivity
 import com.example.sankalan.data.LoggedInUserView
 import com.example.sankalan.databinding.FragmentSignUpBinding
 import com.example.sankalan.ui.login.model.AuthenticationViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 /**
  * Signup Class
@@ -106,8 +109,7 @@ class SignUpFragment : Fragment() {
         //SignUp Result Observer
         signupViewmodel.result_login.observe(viewLifecycleOwner, Observer {
             if (it.success != null) {
-                startActivity(Intent(activity, MainActivity::class.java))
-                activity?.finish()
+                loadAlert()
             }
             if (it.failed != null) {
                 Toast.makeText(context, it.failed, Toast.LENGTH_SHORT).show()
@@ -155,6 +157,17 @@ class SignUpFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun loadAlert(){
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Verification Alert!")
+            .setMessage("Please Verify Account using link send to your Email.")
+            .setPositiveButton("OK") { dialog, _ ->
+                // Respond to positive button press
+                navController?.navigate(R.id.action_signUpFragment_to_loginFragment)
+                dialog.dismiss()
+            }.show()
     }
 
 }

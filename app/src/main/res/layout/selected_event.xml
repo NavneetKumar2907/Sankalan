@@ -19,13 +19,15 @@
             android:layout_height="wrap_content"
             android:background="@drawable/gradient1"
             android:orientation="vertical"
-            android:padding="2dp">
+            android:paddingStart="3dp"
+            android:paddingEnd="3dp"
+            android:paddingBottom="2dp">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/poster_selected_events"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scaleType="fitXY"
+                android:scaleType="fitCenter"
                 app:srcCompat="@drawable/valo_wars" />
 
             <LinearLayout
@@ -94,6 +96,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:drawablePadding="3dp"
                     android:gravity="center_vertical"
                     android:text="CoOrdinator: "
                     android:textColor="#fff" />
@@ -132,6 +135,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:drawableLeft="@drawable/ic_baseline_group_24"
+                    android:gravity="center"
                     android:text="@string/team"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
@@ -161,8 +166,7 @@
                     android:layout_margin="3dp"
                     android:layout_weight="1"
                     android:background="@drawable/background_round_btn"
-                    android:enabled="false"
-                    android:text="@string/not_verfied_string" />
+                    android:text="@string/register" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/cancel_selected"

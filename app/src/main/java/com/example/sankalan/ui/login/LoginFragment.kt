@@ -5,6 +5,8 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
@@ -25,8 +27,11 @@ import com.example.sankalan.activities.AdminActivity
 import com.example.sankalan.activities.MainActivity
 import com.example.sankalan.databinding.FragmentLoginBinding
 import com.example.sankalan.ui.login.model.AuthenticationViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 /**
  * Login Class
@@ -100,17 +105,31 @@ class LoginFragment : Fragment(), View.OnClickListener {
             if (it.success != null) {
                 if (Firebase.auth.currentUser?.email == "admin@sankalan.com") {
                     startActivity(Intent(activity, AdminActivity::class.java))
+                    activity?.finish()
                 } else {
-                    startActivity(Intent(activity, MainActivity::class.java))
+                    //User login
+                    try{
+                        if(Firebase.auth.currentUser!!.isEmailVerified){
+                            startActivity(Intent(activity, MainActivity::class.java))
+                            activity?.finish()
+                        }else{
+                            loading.visibility = View.GONE
+                            Firebase.auth.signOut()
+                            loadAlert()
+                        }
+                    }catch (e:Exception){
+                        Log.w("Error: ",e.message.toString())
+                    }
                 }
-                activity?.finish()
             }
         })
 
         // Login Button Listener
         loginButton.setOnClickListener {
-            loading.visibility = View.VISIBLE
+
             try {
+                loading.visibility = View.VISIBLE
+
                 authViewModel.login(
                     email = emailEdit.text.toString(),
                     password = passEdit.text.toString()
@@ -120,6 +139,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 loading.visibility = View.GONE
             }
         }
+
         // Register Listener
         registerText.setOnClickListener {
             onClick(it)
@@ -132,6 +152,21 @@ class LoginFragment : Fragment(), View.OnClickListener {
             )
         }
 
+    }
+
+    private fun loadAlert(){
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Verification Alert!")
+            .setMessage("Please Verify Account using link send to your Email.")
+            .setNegativeButton(resources.getString(R.string.cancel)) { dialog, _ ->
+                // Respond to negative button press
+                dialog.cancel()
+            }//End Negative
+            .setPositiveButton("Resend Link") { dialog, _ ->
+                // Respond to positive button press
+                Firebase.auth.currentUser!!.sendEmailVerification()
+                dialog.dismiss()
+            }.show()
     }
 
     // Interface Override for click listener inside login and signup fragment
@@ -182,5 +217,6 @@ class LoginFragment : Fragment(), View.OnClickListener {
             }
             return false
         }
+
     }
 }

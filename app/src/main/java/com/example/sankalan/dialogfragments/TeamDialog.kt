@@ -88,7 +88,7 @@ class TeamDialog(private val teamReg: SelectedEventClickListener, private val te
                         .setPositiveButton("Ok") { dialog, which ->
                             // Respond to positive button press
                             progressBar.visibility=View.VISIBLE
-                            lifecycleScope.launch {
+                            GlobalScope.launch {
                                 val res: RegistrationSuccess = teamReg.Registration(
                                     TeamMembers(
                                         mem1Email,
@@ -99,25 +99,32 @@ class TeamDialog(private val teamReg: SelectedEventClickListener, private val te
                                     , teamNameText//Team Name.
                                 )
                                 Log.w("res", "$res")
-                                Handler(Looper.getMainLooper()).post {
                                     Log.w("res inside loop", "$res")
 
-                                    progressBar.visibility=View.GONE
+
 
                                     if (res.success != null) {
-                                        Toast.makeText(
-                                            context,
-                                            getString(res.success),
-                                            Toast.LENGTH_SHORT
-                                        )
-                                            .show()
-                                        getDialog()?.dismiss()
+                                        Handler(Looper.getMainLooper()).post {
+                                            progressBar.visibility=View.GONE
+                                            Toast.makeText(
+                                                context,
+                                                getString(res.success),
+                                                Toast.LENGTH_SHORT
+                                            )
+                                                .show()
+                                            getDialog()?.dismiss()
+                                        }
+
                                     }
                                     if (res.failed != null) {
-                                        Toast.makeText(context, res.failed, Toast.LENGTH_SHORT)
-                                            .show()
+                                        Handler(Looper.getMainLooper()).post {
+                                            progressBar.visibility=View.GONE
+                                            Toast.makeText(context, res.failed, Toast.LENGTH_SHORT)
+                                                .show()
+                                        }
+
                                     }
-                                }//End Handler
+
                             }//End Coroutines
 
                         }

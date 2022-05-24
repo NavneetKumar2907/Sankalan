@@ -25,14 +25,12 @@ import com.google.firebase.storage.ktx.storage
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.launch
 import java.net.URL
-import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class MainViewModel : ViewModel() {
 
     private val user: FirebaseUser? = Firebase.auth.currentUser // Current User
     private val database = FirebaseDatabase.getInstance() // Database Instance
-
 
 
 //========================================Database References=========================================================================================================================================================================================
@@ -63,11 +61,11 @@ class MainViewModel : ViewModel() {
             val post = snapshot.getValue<LoggedInUserView>()
             Log.w("Post Value", "${post}")
             try {
-                if(post?.uid?.isEmpty() == true){
+                if (post?.uid?.isEmpty() == true) {
                     post.uid = user?.uid.toString()
                     editUserDetail(post)
                 }
-               _userData.value = post
+                _userData.value = post
             } catch (e: Exception) {
                 Log.w("Error Loading details", e.message.toString())
             }
@@ -81,9 +79,13 @@ class MainViewModel : ViewModel() {
     private val teamMemberListener = object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
             if (snapshot.exists()) {
-                val memList = ArrayList<String>()
-                for (teamName in snapshot.children) {
-                    memList.add(teamName.value.toString())
+                val memList = ArrayList<TeamName>()
+                for (eventName in snapshot.children) {
+                    val res = TeamName(eventName = eventName.key.toString())
+                    for (id in eventName.children) {
+                        res.teamName.add(id.getValue<String>()!!)
+                    }
+                    memList.add(res)
                 }
                 teamNameLive.value = memList
             }
@@ -150,13 +152,13 @@ class MainViewModel : ViewModel() {
 
 
                     if (id.key?.lowercase() == emailFormatted.lowercase()) {
-                        Log.w("VSLUES: ","${id.key}::::${emailFormatted}")
+                        Log.w("VSLUES: ", "${id.key}::::${emailFormatted}")
                         for (k in id.children) {
                             if (k.hasChildren()) {
                                 // Team
                                 for (teamName in k.children) {
                                     val res = teamName.getValue<TeamMembers>()
-                                    Log.w("RES: ","$res")
+                                    Log.w("RES: ", "$res")
                                     eventMember.add(
                                         RegisteredEvents(
                                             eventName = eventName.key.toString(),
@@ -296,16 +298,17 @@ class MainViewModel : ViewModel() {
     }
 
     //Result Listener
-    private val resultListener = object :ValueEventListener{
+    private val resultListener = object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
-            if(snapshot.exists()){
+            if (snapshot.exists()) {
                 //Result is there
                 val resultList = arrayListOf<Score>()
-                for(eventName in snapshot.children){
-                    val res = eventName.getValue<Score>()
-                    if (res != null) {
-                        resultList.add(res)
+                for (eventName in snapshot.children) {
+                    val res =Score(eventName = eventName.key.toString())
+                    for(id in eventName.children){
+                        id.getValue<String>()?.let { res.result.add(it) }
                     }
+                    resultList.add(res)
                 }//End Loop
                 //add value to live data
                 scoreLive.value = resultList
@@ -313,7 +316,7 @@ class MainViewModel : ViewModel() {
         }
 
         override fun onCancelled(error: DatabaseError) {
-            Log.w("Error:","DATA NOT FOUND!!")
+            Log.w("Error:", "DATA NOT FOUND!!")
         }
 
     }
@@ -381,18 +384,19 @@ class MainViewModel : ViewModel() {
     }
     val liveSponser: LiveData<ArrayList<Sponsers>> = sponsersLive
 
-    private val teamNameLive: MutableLiveData<ArrayList<String>> by lazy {
-        MutableLiveData<ArrayList<String>>().also {
+    private val teamNameLive: MutableLiveData<ArrayList<TeamName>> by lazy {
+        MutableLiveData<ArrayList<TeamName>>().also {
             loadList()
         }
     }
 
-    private val scoreLive:MutableLiveData<ArrayList<Score>> by lazy {
+    private val scoreLive: MutableLiveData<ArrayList<Score>> by lazy {
         MutableLiveData<ArrayList<Score>>().also {
             loadScore()
         }
     }
-    val liveResult:LiveData<ArrayList<Score>> = scoreLive
+    val liveResult: LiveData<ArrayList<Score>> = scoreLive
+
 
 //=====================================Loaders============================================================================================================================================================================================
 
@@ -463,7 +467,8 @@ class MainViewModel : ViewModel() {
     private fun loadSponsers() {
         sponserReference.addValueEventListener(sponserListener)
     }
-    private fun loadScore(){
+
+    private fun loadScore() {
         resultReference.addValueEventListener(resultListener)
     }
 
@@ -518,91 +523,130 @@ class MainViewModel : ViewModel() {
          * Validation of Members email and registration.
          */
         val def = CompletableDeferred<RegistrationSuccess>()
-
+        val aboutEvent = eventList.value?.find {
+            it.eventName == eventName
+        }
         if (team) {
             // Check if user is registered.
             members.apply {
+                //Check Member registration
+                if(aboutEvent?.teamSize == 2){
+                    //Two Member
+                    //Check If Registered
+                    if (member2.isNotEmpty() && !isRegistered(member2)) {
+                        def.complete(RegistrationSuccess(failed = "Member 2 is Not Registered."))
+                        return def.await()
+                    }
+                }else{
+                    //Four Member
+                    if (member2.isNotEmpty() && !isRegistered(member2)) {
+                        def.complete(RegistrationSuccess(failed = "Member 2 is Not Registered."))
+                        return def.await()
+                    }
+                    if (member3.isNotEmpty() && !isRegistered(member3)) {
+                        def.complete(RegistrationSuccess(failed = "Member 3 is Not Registered."))
+                        return def.await()
+                    }
+                    if (member4.isNotEmpty() && !isRegistered(member4)) {
+                        def.complete(RegistrationSuccess(failed = "Member 4 is Not Registered."))
+                        return def.await()
+                    }
+                }
 
-                if (member2.isNotEmpty() && !isRegistered(member2)) {
-                    def.complete(RegistrationSuccess(failed = "Member 2 is Not Registered."))
-                    return def.await()
-                }
-                if (member3.isNotEmpty() && !isRegistered(member3)) {
-                    def.complete(RegistrationSuccess(failed = "Member 3 is Not Registered."))
-                    return def.await()
-                }
-                if (member4.isNotEmpty() && !isRegistered(member4)) {
-                    def.complete(RegistrationSuccess(failed = "Member 4 is Not Registered."))
-                    return def.await()
-                }
                 if (teamName.isEmpty()) {
                     def.complete(RegistrationSuccess(failed = "Team Name Required."))
+                    return def.await()
                 }
-            }
-            // check if members are already registered
-            members.apply {
-
-                if (member2.isNotEmpty()) {
-                    databaseRegisterEvent.child(eventName)
-                        .child(member2.replace("@", "at").replace(".", "dot"))
-                        .get()
-                        .addOnCompleteListener {
-                            if (it.result.hasChildren()) {
-                                def.complete(RegistrationSuccess(failed = "$member2 is already registered in another team."))
-                            } else {
-                                def.complete(RegistrationSuccess())
-                            }
+                else {
+                    //Check if team Already Exist
+                    val v = teamNameLive.value?.filter {
+                        it.eventName == eventName
+                    }
+                    if (v != null) {
+                        if (v.isNotEmpty() && v[0].teamName.contains(teamName)) {
+                            def.complete(RegistrationSuccess(failed = "Team Name Already Exist."))
+                            return def.await()
                         }
-
-                }
-                if (member3.isNotEmpty()) {
-                    databaseRegisterEvent.child(eventName)
-                        .child(member3.replace("@", "at").replace(".", "dot"))
-                        .get()
-                        .addOnCompleteListener {
-                            if (it.result.hasChildren()) {
-                                def.complete(RegistrationSuccess(failed = "$member3 is already registered in another team."))
-                            } else {
-                                def.complete(RegistrationSuccess())
-                            }
-                        }
-                }
-                if (member4.isNotEmpty()) {
-                    databaseRegisterEvent.child(eventName)
-                        .child(member2.replace("@", "at").replace(".", "dot"))
-                        .get()
-                        .addOnCompleteListener {
-                            if (it.result.hasChildren()) {
-                                def.complete(RegistrationSuccess(failed = "$member4 is already registered in another team."))
-                            } else {
-                                try {
-                                    def.complete(RegistrationSuccess(failed = null))
-                                } catch (e: Exception) {
-                                    Log.w("Error", e.message.toString())
-                                }
-                            }
-                        }
-                }
-                //Check if team Already Exist
-                if (teamName.isNotEmpty()) {
-                    if (teamNameLive.value != null && teamNameLive.value!!.contains(teamName)) {
-                        def.complete(RegistrationSuccess(failed = "Team Name Already Exist."))
                     }
                 }
             }
 
+            // check if members are already registered For the Event
+            members.apply {
 
-            if (def.await().failed != null) {
-                stuckLog("Inside active")
-            } else {
-                stuckLog("Inside Not active.")
+                if(aboutEvent?.teamSize == 2){
+                    //Two Member Event
+                    if (member2.isNotEmpty()) {
+                        databaseRegisterEvent.child(eventName)
+                            .child(member2.replace("@", "at").replace(".", "dot"))
+                            .get()
+                            .addOnCompleteListener {
+                                if (it.result.hasChildren()) {
+                                    def.complete(RegistrationSuccess(failed = "$member2 is already registered in another team."))
+                                }
+                            }
+                        if(def.isCompleted){
+                            return def.await()
+                        }
+
+                    }
+                }else{
+                    //Four member
+                    if (member2.isNotEmpty()) {
+                        databaseRegisterEvent.child(eventName)
+                            .child(member2.replace("@", "at").replace(".", "dot"))
+                            .get()
+                            .addOnCompleteListener {
+                                if (it.result.hasChildren()) {
+                                    def.complete(RegistrationSuccess(failed = "$member2 is already registered in another team."))
+                                } else {
+                                    def.complete(RegistrationSuccess())
+                                }
+                            }
+
+                    }
+                    if (member3.isNotEmpty()) {
+                        databaseRegisterEvent.child(eventName)
+                            .child(member3.replace("@", "at").replace(".", "dot"))
+                            .get()
+                            .addOnCompleteListener {
+                                if (it.result.hasChildren()) {
+                                    def.complete(RegistrationSuccess(failed = "$member3 is already registered in another team."))
+                                } else {
+                                    def.complete(RegistrationSuccess())
+                                }
+                            }
+                    }
+                    if (member4.isNotEmpty()) {
+                        databaseRegisterEvent.child(eventName)
+                            .child(member2.replace("@", "at").replace(".", "dot"))
+                            .get()
+                            .addOnCompleteListener {
+                                if (it.result.hasChildren()) {
+                                    def.complete(RegistrationSuccess(failed = "$member4 is already registered in another team."))
+                                } else {
+                                    try {
+                                        def.complete(RegistrationSuccess(failed = null))
+                                    } catch (e: Exception) {
+                                        Log.w("Error", e.message.toString())
+                                    }
+                                }
+                            }
+                    }//End Member 4
+                    if(def.isCompleted){
+                        return def.await()
+                    }
+                }//End if else
+
+            }//End Apply
+
+
                 // add team name
-                def.complete(RegistrationSuccess(success = R.string.sucess_register))
+                teamNameRefrence.child(eventName).push().setValue(teamName)
 
                 databaseRegisterEvent.child(eventName)
                     .child(user?.email.toString().replace("@", "at").replace(".", "dot")).push()
                     .child(teamName).setValue(members)
-                teamNameRefrence.push().setValue(teamName)
                 members.apply {
                     if (member2.isNotEmpty()) {
                         uploadMemberValue(
@@ -631,7 +675,8 @@ class MainViewModel : ViewModel() {
                     }
 
                 }//end apply
-            }
+                def.complete(RegistrationSuccess(success = R.string.sucess_register))
+                return def.await()
 
         } else {
             databaseRegisterEvent.child(eventName)
@@ -663,20 +708,26 @@ class MainViewModel : ViewModel() {
                     Log.w("Success", "Registration Already exist.")
                 } else {
                     //Register
-
                     if (teamNameLive.value?.find {
-                            it == teamName
+                            it.eventName == eventName && it.teamName.contains(teamName)
                         } != null) {
                         // Team Name Already Exist
                         def.complete(RegistrationSuccess(failed = "Team Name ALready Exist."))
                     } else {
                         viewModelScope.launch {
-                            def.complete(register(team, members, eventName, teamName.trim().lowercase()))
+                            def.complete(
+                                register(
+                                    team,
+                                    members,
+                                    eventName,
+                                    teamName.trim().lowercase()
+                                )
+                            )
                         }
                     }
 
 
-                }
+                }//End Else
             }
             .addOnFailureListener {
                 def.complete(RegistrationSuccess(failed = it.message.toString()))
@@ -695,15 +746,10 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    fun isVeriFied():Boolean{
-        return user?.isEmailVerified!!
-    }
 
 //============================================================END===================================================================================================================================================================================
 
-    fun stuckLog(m: String) {
-        Log.w("Stuck", m)
-    }
+
 
     fun
             uploadMemberValue(

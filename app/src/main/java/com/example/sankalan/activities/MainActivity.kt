@@ -2,34 +2,24 @@ package com.example.sankalan.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.HandlerCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.sankalan.model.MainViewModel
 import com.example.sankalan.R
 import com.example.sankalan.databinding.ActivityMainBinding
+import com.example.sankalan.model.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.FirebaseAuth
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.util.concurrent.Executor
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 class MainActivity : AppCompatActivity() {
 
@@ -60,37 +50,38 @@ class MainActivity : AppCompatActivity() {
 
         //drawer layout
         appBarConfiguration = AppBarConfiguration(navControl.graph, binding.drawerLayout)
-        setupActionBarWithNavController(navControl, binding.drawerLayout)
-        binding.navView.setupWithNavController(navControl)
 
         //Initialising view Model
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         //Running Executor for verification
         Firebase.auth.addAuthStateListener {
-            Log.w("IS","${it.currentUser?.isEmailVerified}")
+            Log.w("IS", "${it.currentUser?.isEmailVerified}")
         }
+
+        binding.navView.setNavigationItemSelectedListener { item ->
+
+            when(item.itemId){
+                R.id.logout-> {
+                    log()
+                }
+                else -> {
+                    false
+                }
+            }
+        }
+        setupActionBarWithNavController(navControl, binding.drawerLayout)
+        binding.navView.setupWithNavController(navControl)
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
+    fun log(): Boolean {
+        mainViewModel.logout()
+        startActivity(Intent(this, LoginActivity::class.java))
+        this.finish()
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        if (item.itemId == R.id.action_logout) {
-
-                mainViewModel.logout()
-
-            startActivity(Intent(this, LoginActivity::class.java))
-            this.finish()
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
