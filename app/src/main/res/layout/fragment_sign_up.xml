@@ -15,7 +15,9 @@
         android:layout_marginEnd="24sp"
         android:layout_marginBottom="24sp"
         android:text="@string/sign_up"
-        android:textColor="@color/white"
+        android:textColor="@color/yellow_light"
+        android:shadowColor="@color/black"
+        android:shadowRadius="2"
         android:textSize="34sp"
         android:textStyle="bold" />
 
@@ -26,10 +28,12 @@
         android:layout_below="@+id/sign_up"
         android:layout_marginStart="25sp"
         android:layout_marginTop="18sp"
+        android:shadowColor="@color/black"
+        android:shadowRadius="6"
         android:text="@string/already_registered_login"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="italic" />
+        android:textColor="@color/yellow_light"
+        android:textSize="24sp"
+        android:textStyle="italic|bold" />
 
     <TextView
         android:id="@+id/loginHere"
@@ -44,13 +48,13 @@
         android:minHeight="48dp"
         android:text="@string/login_here"
         android:textColor="@color/royal_purple"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="italic|bold" />
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/message_for_sign_in"
         android:layout_marginTop="18sp">
 
@@ -67,20 +71,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24sp"
                 android:layout_marginEnd="20sp"
-                android:layout_marginBottom="10sp"
+                android:layout_marginBottom="20sp"
                 android:hint="@string/Enter_Name"
+                android:textColorHint="@color/light_gray"
                 app:boxBackgroundColor="@color/white"
                 app:hintTextColor="@color/royal_purple"
-                android:textColorHint="@color/light_gray"
-                app:startIconTint="@color/light_gray"
-                app:startIconDrawable="@drawable/ic_person">
+                app:startIconDrawable="@drawable/ic_person"
+                app:startIconTint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/FullName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/light_gray"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,20 +97,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24sp"
                 android:layout_marginEnd="20sp"
-                android:layout_marginBottom="10sp"
+                android:layout_marginBottom="20sp"
                 android:hint="@string/College_Name"
+                android:textColorHint="@color/light_gray"
                 app:boxBackgroundColor="@color/white"
                 app:hintTextColor="@color/royal_purple"
-                android:textColorHint="@color/light_gray"
-                app:startIconTint="@color/light_gray"
-                app:startIconDrawable="@drawable/ic_college">
+                app:startIconDrawable="@drawable/ic_college"
+                app:startIconTint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/CollegeName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/light_gray"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,20 +123,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24sp"
                 android:layout_marginEnd="20sp"
-                android:layout_marginBottom="10sp"
+                android:layout_marginBottom="20sp"
                 android:hint="@string/Enter_course"
+                android:textColorHint="@color/light_gray"
                 app:boxBackgroundColor="@color/white"
                 app:hintTextColor="@color/royal_purple"
-                android:textColorHint="@color/light_gray"
-                app:startIconTint="@color/light_gray"
-                app:startIconDrawable="@drawable/ic_course">
+                app:startIconDrawable="@drawable/ic_course"
+                app:startIconTint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/CourseName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/light_gray"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -139,20 +149,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24sp"
                 android:layout_marginEnd="20sp"
-                android:layout_marginBottom="10sp"
+                android:layout_marginBottom="20sp"
                 android:hint="@string/Enter_Course_year"
+                android:textColorHint="@color/light_gray"
                 app:boxBackgroundColor="@color/white"
                 app:hintTextColor="@color/royal_purple"
-                android:textColorHint="@color/light_gray"
-                app:startIconTint="@color/light_gray"
-                app:startIconDrawable="@drawable/ic_calendar">
+                app:startIconDrawable="@drawable/ic_calendar"
+                app:startIconTint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/courseYear"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/light_gray"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -163,20 +175,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24sp"
                 android:layout_marginEnd="20sp"
-                android:layout_marginBottom="10sp"
+                android:layout_marginBottom="20sp"
                 android:hint="@string/Enter_Mobile_Num"
+                android:textColorHint="@color/light_gray"
                 app:boxBackgroundColor="@color/white"
                 app:hintTextColor="@color/royal_purple"
-                android:textColorHint="@color/light_gray"
-                app:startIconTint="@color/light_gray"
-                app:startIconDrawable="@drawable/ic_call">
+                app:startIconDrawable="@drawable/ic_call"
+                app:startIconTint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/mobileNum"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/light_gray"
-                    android:inputType="phone" />
+                    android:inputType="phone"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -187,22 +201,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24sp"
                 android:layout_marginEnd="20sp"
-                android:layout_marginBottom="10sp"
+                android:layout_marginBottom="20sp"
 
 
                 android:hint="@string/Enter_Email"
+                android:textColorHint="@color/light_gray"
                 app:boxBackgroundColor="@color/white"
                 app:hintTextColor="@color/royal_purple"
-                android:textColorHint="@color/light_gray"
-                app:startIconTint="@color/light_gray"
-                app:startIconDrawable="@drawable/ic_email">
+                app:startIconDrawable="@drawable/ic_email"
+                app:startIconTint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/enterEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/light_gray"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -213,20 +229,22 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24sp"
                 android:layout_marginEnd="20sp"
-                android:layout_marginBottom="10sp"
+                android:layout_marginBottom="20sp"
                 android:hint="@string/enter_password"
+                android:textColorHint="@color/light_gray"
                 app:boxBackgroundColor="@color/white"
                 app:hintTextColor="@color/royal_purple"
-                android:textColorHint="@color/light_gray"
-                app:startIconTint="@color/light_gray"
-                app:startIconDrawable="@drawable/ic_baseline_lock_24">
+                app:startIconDrawable="@drawable/ic_baseline_lock_24"
+                app:startIconTint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/createPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/light_gray"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:textSize="20sp"
+                    android:textStyle="bold|italic"
+                    android:textColor="@color/black" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -239,12 +257,17 @@
                 android:layout_marginStart="30sp"
                 android:layout_marginTop="18sp"
                 android:layout_marginEnd="30sp"
+                android:layout_marginBottom="20sp"
                 android:background="@drawable/background_round_btn"
                 android:paddingLeft="25sp"
                 android:paddingRight="25sp"
                 android:text="@string/sign_up"
-                android:textColor="@color/white"
-                />
+                android:textSize="26sp"
+                android:textAllCaps="false"
+                android:shadowColor="@color/black"
+                android:shadowRadius="6"
+                android:textStyle="bold|italic"
+                android:textColor="@color/yellow_light" />
 
         </LinearLayout>
     </ScrollView>

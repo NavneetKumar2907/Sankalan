@@ -134,9 +134,12 @@
         <entry key="app/src/main/res/layout/fragment_my_events.xml" value="0.2558876811594203" />
         <entry key="app/src/main/res/layout/fragment_my_profile.xml" value="0.264" />
         <entry key="app/src/main/res/layout/fragment_scoreboard.xml" value="0.2558876811594203" />
+        <entry key="app/src/main/res/layout/fragment_sign_up.xml" value="0.2558876811594203" />
         <entry key="app/src/main/res/layout/fragment_sponsers.xml" value="0.32135416666666666" />
         <entry key="app/src/main/res/layout/login_activity.xml" value="0.2558876811594203" />
+        <entry key="app/src/main/res/layout/my_event_card_layout.xml" value="0.2558876811594203" />
         <entry key="app/src/main/res/layout/register_team.xml" value="0.32135416666666666" />
+        <entry key="app/src/main/res/layout/selected_event.xml" value="0.2558876811594203" />
         <entry key="app/src/main/res/layout/signin.xml" value="0.3229166666666667" />
         <entry key="app/src/main/res/layout/signup.xml" value="0.3229166666666667" />
         <entry key="app/src/main/res/layout/signup2.xml" value="0.15" />
@@ -147,7 +150,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
