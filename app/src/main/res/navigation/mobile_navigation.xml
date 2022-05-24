@@ -36,11 +36,7 @@
         android:name="com.example.sankalan.ui.helpandfeedback.HelpFragment"
         android:label="@string/HelpandFeedBack"
         tools:layout="@layout/fragment_help" />
-    <fragment
-        android:id="@+id/myTeamFragment"
-        android:name="com.example.sankalan.ui.myteam.MyTeamFragment"
-        android:label="@string/MyTeam"
-        tools:layout="@layout/fragment_my_team" />
+
     <fragment
         android:id="@+id/scoreboardFragment"
         android:name="com.example.sankalan.ui.scoreboard.ScoreboardFragment"

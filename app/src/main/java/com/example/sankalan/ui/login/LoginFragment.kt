@@ -131,7 +131,7 @@ class LoginFragment : Fragment(), View.OnClickListener {
                 loading.visibility = View.VISIBLE
 
                 authViewModel.login(
-                    email = emailEdit.text.toString(),
+                    email = emailEdit.text.toString().lowercase(),
                     password = passEdit.text.toString()
                 )
             } catch (e: Exception) {

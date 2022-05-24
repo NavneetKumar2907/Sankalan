@@ -53,6 +53,7 @@ class TeamDialog(private val teamReg: SelectedEventClickListener, private val te
         teamName = teamView.findViewById(R.id.teamName)
         progressBar = teamView.findViewById(R.id.progressBarTeam)
         member1.text = activityViewModels<MainViewModel>().value.userData.value?.email
+        teamView.findViewById<TextView>(R.id.heading).text = "You can Have $teamSize Members."
 
         if(teamSize == 2){
             member3.visibility = View.GONE
@@ -61,10 +62,10 @@ class TeamDialog(private val teamReg: SelectedEventClickListener, private val te
         teamView.findViewById<Button>(R.id.submit_team)//On Submit CLicked
             .setOnClickListener {
                 var count = 0
-                val mem1Email = member1.text.toString()
-                val mem2Email = member2.text.toString()
-                val mem3Email = member3.text.toString()
-                val mem4Email = member4.text.toString()
+                val mem1Email = member1.text.toString().lowercase()
+                val mem2Email = member2.text.toString().lowercase()
+                val mem3Email = member3.text.toString().lowercase()
+                val mem4Email = member4.text.toString().lowercase()
                 val teamNameText = teamName.text.toString()
                 //To Check 2 and 4 member register only.
                 if (mem2Email.isNotEmpty() && member2.error == null) {
@@ -134,7 +135,7 @@ class TeamDialog(private val teamReg: SelectedEventClickListener, private val te
                 } else {
                     Toast.makeText(
                         context,
-                        "You can Have Two or Four Members.",
+                        "You can Have ${teamSize} Members.",
                         Toast.LENGTH_SHORT
                     ).show()
                 }

@@ -141,13 +141,13 @@ class SignUpFragment : Fragment() {
                     year = year.text.toString().toInt(),
                     mobile = mobile.text.toString(),
                     isVerified = false,
-                    email = email.text.toString()
+                    email = email.text.toString().lowercase()
                 )
                 try {
                     loading.visibility = View.VISIBLE
 
                     signupViewmodel.signUp(
-                        email = email.text.toString(),
+                        email = email.text.toString().lowercase(),
                         password = password.text.toString(),
                         data = data
                     )

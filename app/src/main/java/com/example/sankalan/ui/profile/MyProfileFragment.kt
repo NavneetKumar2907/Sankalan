@@ -55,16 +55,25 @@ class MyProfileFragment : Fragment() {
         })
         val dim = LinearLayout.LayoutParams.MATCH_PARENT
         val editPopUp = PopupWindow(popEditView, dim, dim, true)
-        editButton.setOnClickListener {
-            //Edit Profile Popup
-            editPopUp.showAtLocation(view, Gravity.CENTER, 0, 0)
-        }
         val name_edit = popEditView.findViewById<EditText>(R.id.edit_username)
         val college_edit = popEditView.findViewById<EditText>(R.id.edit_college_name)
         val course_edit = popEditView.findViewById<EditText>(R.id.edit_course_name)
         val year_edit = popEditView.findViewById<EditText>(R.id.edit_course_year)
         val mobile_edit = popEditView.findViewById<EditText>(R.id.edit_mobile_no)
         val update = popEditView.findViewById<Button>(R.id.saveBtnTask)
+
+        editButton.setOnClickListener {
+            //Edit Profile Popup
+            name_edit.setText(name.text)
+            college_edit.setText(college.text)
+            course_edit.setText(course.text)
+            year_edit.setText(year.text)
+            mobile_edit.setText(mobile.text)
+            editPopUp.showAtLocation(view, Gravity.CENTER, 0, 0)
+        }
+
+
+
 
         year_edit.addTextChangedListener {
             try {

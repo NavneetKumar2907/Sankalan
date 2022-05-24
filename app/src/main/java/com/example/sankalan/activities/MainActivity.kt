@@ -45,6 +45,9 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
         val navControl = navHost.navController
 
+        setupActionBarWithNavController(navControl, binding.drawerLayout)
+        binding.navView.setupWithNavController(navControl)
+
         bottom = findViewById(R.id.bottom_navigation)
         bottom.setupWithNavController(navControl)
 
@@ -54,32 +57,25 @@ class MainActivity : AppCompatActivity() {
         //Initialising view Model
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
-        //Running Executor for verification
-        Firebase.auth.addAuthStateListener {
-            Log.w("IS", "${it.currentUser?.isEmailVerified}")
-        }
 
-        binding.navView.setNavigationItemSelectedListener { item ->
-
-            when(item.itemId){
-                R.id.logout-> {
-                    log()
-                }
-                else -> {
-                    false
-                }
+        binding.navView.menu.findItem(R.id.logout).setOnMenuItemClickListener {
+            if(it.itemId == R.id.logout){
+                log()
+                true
+            }else{
+                false
             }
         }
-        setupActionBarWithNavController(navControl, binding.drawerLayout)
-        binding.navView.setupWithNavController(navControl)
+
+
 
     }
 
-    fun log(): Boolean {
+    fun log() {
         mainViewModel.logout()
         startActivity(Intent(this, LoginActivity::class.java))
         this.finish()
-        return true
+
     }
 
 
