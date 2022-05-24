@@ -7,27 +7,27 @@
 
     <fragment
         android:id="@+id/eventsFragment"
-        android:name="com.example.sankalan.fragmentsadmin.EventsFragment"
+        android:name="com.sankalan.fragmentsadmin.EventsFragment"
         android:label="fragment_events_admin"
         tools:layout="@layout/fragment_events_admin" />
     <fragment
         android:id="@+id/galleryFragmentAdmin"
-        android:name="com.example.sankalan.fragmentsadmin.GalleryFragmentAdmin"
+        android:name="com.sankalan.fragmentsadmin.GalleryFragmentAdmin"
         android:label="fragment_gallery_admin"
         tools:layout="@layout/fragment_gallery_admin" />
     <fragment
         android:id="@+id/usersFragment"
-        android:name="com.example.sankalan.fragmentsadmin.UsersFragment"
+        android:name="com.sankalan.fragmentsadmin.UsersFragment"
         android:label="fragment_users_admin"
         tools:layout="@layout/fragment_users_admin" />
     <fragment
         android:id="@+id/registeredEventAdminFragment"
-        android:name="com.example.sankalan.fragmentsadmin.RegisteredEventAdminFragment"
+        android:name="com.sankalan.fragmentsadmin.RegisteredEventAdminFragment"
         android:label="fragment_registered_event_admin"
         tools:layout="@layout/fragment_registered_event_admin" />
     <fragment
         android:id="@+id/adminTeamFragment"
-        android:name="com.example.sankalan.fragmentsadmin.AdminTeamFragment"
+        android:name="com.sankalan.fragmentsadmin.AdminTeamFragment"
         android:label="fragment_admin_team"
         tools:layout="@layout/fragment_admin_team" />
 </navigation>
