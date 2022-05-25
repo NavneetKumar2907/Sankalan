@@ -1,5 +1,7 @@
 # Sankalan
 
+Download [Sankalan_2022](https://github.com/NavneetKumar2907/Sankalan/releases/download/v2/Sankalan2022.apk) 
+
 ![poster_2020](https://user-images.githubusercontent.com/76484161/161380657-5395e660-6afb-4406-aff9-c8d8e3721936.jpg)
 
 
