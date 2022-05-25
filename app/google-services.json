@@ -8,38 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:459952147462:android:ec20450e08ab3e9790c787",
+        "mobilesdk_app_id": "1:459952147462:android:525b8c019e8edc0a90c787",
         "android_client_info": {
-          "package_name": "com.example.sankalan"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "459952147462-6rkpchdt8jncd1t1mu6fd9ujje4bi7ou.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBQZuNTaaeUmGoPmDRqggcYZNQ9caTL-bs"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "459952147462-6rkpchdt8jncd1t1mu6fd9ujje4bi7ou.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:459952147462:android:3be67637670b611c90c787",
-        "android_client_info": {
-          "package_name": "com.sankalan"
+          "package_name": "com.main.sankalan"
         }
       },
       "oauth_client": [

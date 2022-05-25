@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,14 +9,16 @@
         android:id="@+id/logo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24sp"
+        android:layout_marginTop="70sp"
         android:fontFamily="@font/rubik_semibold"
         android:gravity="center"
+        android:shadowColor="@color/black"
+        android:shadowRadius="6"
         android:text="@string/sankalan_2022"
-        android:textColor="@color/white"
+        android:textColor="@color/yellow_light"
         android:textSize="36sp"
-        android:textStyle="normal"
-        />
+        android:textStyle="bold|italic"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/sign_in"
@@ -24,10 +27,13 @@
         android:layout_below="@id/logo"
         android:layout_marginStart="24sp"
         android:layout_marginTop="34sp"
+        android:shadowColor="@color/black"
+        android:shadowRadius="4"
         android:text="@string/sign_in"
-        android:textColor="@color/white"
-        android:textSize="34sp"
-        android:textStyle="bold" />
+        android:textColor="@color/yellow_light"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:ignore="TextContrastCheck" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -43,10 +49,13 @@
             android:id="@+id/message_for_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:shadowColor="@color/black"
+            android:shadowRadius="1"
             android:text="@string/not_registered_yet_message"
             android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="italic" />
+            android:textSize="24sp"
+            android:textStyle="italic"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/register_here"
@@ -55,11 +64,14 @@
             android:layout_marginStart="5sp"
             android:clickable="true"
             android:focusable="true"
-            android:text="@string/register_here"
             android:minHeight="48dp"
+            android:shadowColor="@color/black"
+            android:shadowRadius="1"
+            android:text="@string/register_here"
             android:textColor="@color/purple_200"
-            android:textSize="20sp"
-            android:textStyle="italic|bold" />
+            android:textSize="24sp"
+            android:textStyle="italic|bold"
+            tools:ignore="TextContrastCheck" />
     </LinearLayout>
 
 
@@ -74,18 +86,20 @@
         android:layout_marginEnd="20sp"
         android:layout_marginBottom="10sp"
         android:hint="@string/Enter_Email"
-    
         app:boxBackgroundColor="@color/white"
         app:hintTextColor="@color/royal_purple"
         android:textColorHint="@color/light_gray"
-        app:startIconTint="@color/light_gray"
+        app:startIconTint="@color/black"
         app:startIconDrawable="@drawable/ic_baseline_email_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/EmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/light_gray"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:shadowRadius="2"
+            android:shadowColor="@color/yellow_light"
             android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -103,15 +117,18 @@
         app:boxBackgroundColor="@color/white"
         app:hintTextColor="@color/royal_purple"
         android:textColorHint="@color/light_gray"
-        app:startIconTint="@color/light_gray"
+        app:startIconTint="@color/black"
         app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/light_gray"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:shadowColor="@color/yellow_light"
+            android:shadowRadius="2"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -128,10 +145,13 @@
         android:clickable="true"
         android:focusable="true"
         android:minHeight="48dp"
+        android:shadowColor="@color/black"
+        android:shadowRadius="2"
         android:text="@string/forgotPassword"
-        android:textColor="@color/white"
+        android:textColor="@color/yellow_light"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="italic"
+        tools:ignore="TextContrastCheck" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/login"
@@ -143,9 +163,14 @@
         android:layout_marginTop="18sp"
         android:layout_marginEnd="30sp"
         android:background="@drawable/background_round_btn"
+        android:minHeight="48dp"
+        android:shadowColor="@color/black"
+        android:shadowRadius="5"
         android:text="@string/login"
-        android:textColor="@color/white"
-        android:textStyle="normal|bold"
+        android:textAllCaps="false"
+        android:textColor="@color/yellow_light"
+        android:textSize="22sp"
+        android:textStyle="bold|italic"
         app:icon="@drawable/ic_baseline_login_24" />
 
     <ProgressBar

@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -109,6 +110,7 @@ class MainActivity : AppCompatActivity() {
                     request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
                     val reference: Long = manager.enqueue(request)
                 }
+                Toast.makeText(this,"Downloaded", Toast.LENGTH_SHORT).show()
 
                 return true
             }catch (e:Exception){

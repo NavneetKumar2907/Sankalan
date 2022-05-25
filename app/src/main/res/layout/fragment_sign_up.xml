@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -14,12 +15,13 @@
         android:layout_marginTop="24sp"
         android:layout_marginEnd="24sp"
         android:layout_marginBottom="24sp"
-        android:text="@string/sign_up"
-        android:textColor="@color/yellow_light"
         android:shadowColor="@color/black"
         android:shadowRadius="2"
+        android:text="@string/sign_up"
+        android:textColor="@color/yellow_light"
         android:textSize="34sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/message_for_sign_in"
@@ -33,7 +35,8 @@
         android:text="@string/already_registered_login"
         android:textColor="@color/yellow_light"
         android:textSize="24sp"
-        android:textStyle="italic|bold" />
+        android:textStyle="italic|bold"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/loginHere"
@@ -259,15 +262,16 @@
                 android:layout_marginEnd="30sp"
                 android:layout_marginBottom="20sp"
                 android:background="@drawable/background_round_btn"
+                android:minHeight="48dp"
                 android:paddingLeft="25sp"
                 android:paddingRight="25sp"
-                android:text="@string/sign_up"
-                android:textSize="26sp"
-                android:textAllCaps="false"
                 android:shadowColor="@color/black"
                 android:shadowRadius="6"
-                android:textStyle="bold|italic"
-                android:textColor="@color/yellow_light" />
+                android:text="@string/sign_up"
+                android:textAllCaps="false"
+                android:textColor="@color/yellow_light"
+                android:textSize="26sp"
+                android:textStyle="bold|italic" />
 
         </LinearLayout>
     </ScrollView>

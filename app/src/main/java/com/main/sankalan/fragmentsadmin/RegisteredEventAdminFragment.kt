@@ -33,7 +33,7 @@ class RegisteredEventAdminFragment : Fragment(), AdapterView.OnItemSelectedListe
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         registeredEvents = FragmentRegisteredEventAdminBinding.inflate(layoutInflater)
         return registeredEvents.root
@@ -60,12 +60,8 @@ class RegisteredEventAdminFragment : Fragment(), AdapterView.OnItemSelectedListe
 
         registeredEvents.eventRegisteredEventSpinner.onItemSelectedListener = this
 
-
-
-        regViewModel.regEvent.observe(viewLifecycleOwner, Observer {
-            uniqueAllRegEvent = it.distinctBy {
-                if (it.teamName.isEmpty()) it.individual else it.teamName
-            }
+        regViewModel.regEvent.observe(viewLifecycleOwner, Observer { ev ->
+            uniqueAllRegEvent = ev
         })
 
         registeredEvents.printRegEvent.setOnClickListener {
@@ -79,7 +75,7 @@ class RegisteredEventAdminFragment : Fragment(), AdapterView.OnItemSelectedListe
         }
     }
 
-    fun loadAdapter(listRegEvent: List<RegisteredEvents>) {
+    private fun loadAdapter(listRegEvent: List<RegisteredEvents>) {
 
         registeredEvents.registeredCount.text = listRegEvent.size.toString()
         registeredEvents.registeredEventsList.adapter =
@@ -88,14 +84,19 @@ class RegisteredEventAdminFragment : Fragment(), AdapterView.OnItemSelectedListe
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
-        val filRes = uniqueAllRegEvent.filter {
+        var filRes = uniqueAllRegEvent.filter {
             it.eventName == eventNames[p2]
+        }
+
+        if(regViewModel.getEvent().value?.find {
+                it.eventName==eventNames[p2]
+            }?.Team == "Team"
+        ){
+            filRes = filRes.distinctBy { it.teamName }
         }
 
         Log.w("filter", filRes.toString())
         loadAdapter(filRes)
-
-
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {

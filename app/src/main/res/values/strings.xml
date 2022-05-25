@@ -11,7 +11,7 @@
     <string name="view_Password">View Password</string>
     <string name="Remember_me">Remember me</string>
     <string name="forgotPassword"><u>Forgot Password ?</u></string>
-    <string name="login">LogIn</string>
+    <string name="login">Log In</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -107,8 +107,7 @@
     <string name="desc">none</string>
     <string name="scroll_description">Selected Event  Details</string>
     <string name="sucess_register">Registered Successfully.</string>
-    <string name="sankalan_2022"><u>Sankalan \'22</u></string>
-
+    <string name="sankalan_2022">Sankalan \'22</string>
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
     <string name="add_member">Add Member</string>

@@ -93,7 +93,7 @@ class MainViewModel : ViewModel() {
         }
 
         override fun onCancelled(error: DatabaseError) {
-            TODO("Not yet implemented")
+          Log.w("Error:",error.message.toString())
         }
 
     }
