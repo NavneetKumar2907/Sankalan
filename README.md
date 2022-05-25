@@ -1,6 +1,6 @@
 # Sankalan
 
-Download [sankalan 2022](https://github.com/NavneetKumar2907/Sankalan/releases/download/v2/app-release.apk) app here.
+Download [sankalan 2022](https://github.com/NavneetKumar2907/Sankalan/releases/download/v2/Sankalan2022.apk) app here.
 
 <b>The application is intended for registration in technical events and non-technical events in the Sankalan festival.</b>
 
