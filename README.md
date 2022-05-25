@@ -1,8 +1,10 @@
 # Sankalan
 
-Download [Sankalan_2022](https://github.com/NavneetKumar2907/Sankalan/releases/download/v2/Sankalan2022.apk) 
+Download [Sankalan 2022](https://github.com/NavneetKumar2907/Sankalan/releases/download/v2/Sankalan2022.apk) app here.
 
-![poster_2020](https://user-images.githubusercontent.com/76484161/161380657-5395e660-6afb-4406-aff9-c8d8e3721936.jpg)
+<b>The application is intended for registration in technical events and non-technical events in the Sankalan festival.</b>
+
+![sankalan main](https://user-images.githubusercontent.com/96334182/170192820-611d2318-1e0c-443f-bd23-e521c52f5c93.png)
 
 
 Sankalan is the annual tech fest of DUCS which has been our pride for more than a decade now.
@@ -14,13 +16,6 @@ This is the time when everyone works together as a team and is dedicated towards
 The sole reason for this event is to nurture qualities of participants.
 
 This App is for registration and Event details of Sankalan.
-
-Rules:
-1. Ids - Seperated by underSore
-2. Constants - Capital Letters
-3. Proper Comments
-4. Functions End Seperated by commented Hypen //------------------------------------------------------------------- 
-5. Variable Name Should be camelCase
 
 LOGIN: 
 
