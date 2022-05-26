@@ -135,6 +135,13 @@ A large number of sponsors who financially aid this event form the backbone of t
     <string name="logout">Logout</string>
     <string name="time_table">Time Table</string>
     <string name="string_time_table">Time Table</string>
+    <string name="help_message">For General Queries, Feel Free to Reach us on</string>
+    <string name="sankalan_facebook">Sankalan Facebook :</string>
+    <string name="sankalan_instagram">Sankalan Instagram:</string>
+    <string name="sankalan_email">Sankalan Email:</string>
+    <string name="contact_us">Contact Us:</string>
+    <string name="ducs_address">DUCS Address:</string>
+    <string name="ducs_location">DUCS Location:</string>
 
     <string-array name="eventType">
         <item>Technical</item>

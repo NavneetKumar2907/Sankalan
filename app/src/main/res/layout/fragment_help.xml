@@ -8,167 +8,214 @@
     tools:context=".ui.helpandfeedback.HelpFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            style="@style/TextAppearance.Material3.BodyMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="20dp"
-            android:paddingTop="15dp"
-            android:text="For General Queries, Feel Free to Reach us:"
-            android:textColor="@color/gray" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            >
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextAppearance.Material3.BodyMedium"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingTop="15dp"
-                android:text="Sankalan Facebook: "
-                android:textColor="@color/gray" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/faceBook_sankalan"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_gravity="center"
-                android:layout_marginEnd="30dp"
-                app:icon="@drawable/ic__facebook"
-                tools:ignore="SpeakableTextPresentCheck" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp">
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextAppearance.Material3.BodyMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingTop="15dp"
-                android:text="Sankalan Instagram: "
-                android:textColor="@color/gray" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/instagram_sankalan"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="30dp"
-                app:icon="@drawable/ic_icons8_instagram"
-                tools:ignore="SpeakableTextPresentCheck" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-           >
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextAppearance.Material3.BodyMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingTop="15dp"
-                android:text="Sankalan Email Address: "
-                android:textColor="@color/gray" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/gmail_sankalan"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="30dp"
-                app:icon="@drawable/ic_email"
-                tools:ignore="SpeakableTextPresentCheck" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextAppearance.Material3.BodyMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingTop="15dp"
-                android:text="Our Location: "
-                android:textColor="@color/gray" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/location_ducs"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="30dp"
-                app:icon="@drawable/ic_baseline_location_on_24" />
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextAppearance.Material3.BodyMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingTop="15dp"
-                android:text="Contact Us: "
-                android:textColor="@color/gray" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/phone_sankalan"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="30dp"
-                app:icon="@drawable/ic_call" />
-        </RelativeLayout>
+        tools:ignore="UselessParent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginTop="25dp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextAppearance.Material3.BodyMedium"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:shadowColor="@color/black"
+                android:shadowRadius="5"
+                android:text="@string/help_message"
+                android:textColor="@color/yellow_light"
+                android:textSize="32sp"
+                android:textStyle="bold|italic" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                >
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextAppearance.Material3.BodyMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="6dp"
+                    android:layout_marginStart="20dp"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="6"
+                    android:text="@string/sankalan_facebook"
+                    android:textColor="@color/yellow_light"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/faceBook_sankalan"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="30dp"
+                    app:icon="@drawable/ic__facebook"
+                    app:iconTint="@color/yellow_light"
+                    tools:ignore="RelativeOverlap,SpeakableTextPresentCheck" />
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                android:paddingTop="15dp"
-                android:text="Our Address: "
-                android:textColor="@color/gray" />
+                android:layout_marginTop="30dp">
 
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextAppearance.Material3.BodyMedium"
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextAppearance.Material3.BodyMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="6dp"
+                    android:layout_marginStart="20dp"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="6"
+                    android:text="@string/sankalan_instagram"
+                    android:textColor="@color/yellow_light"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/instagram_sankalan"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="30dp"
+                    app:icon="@drawable/ic_icons8_instagram"
+                    app:iconTint="@color/yellow_light"
+                    tools:ignore="RelativeOverlap,SpeakableTextPresentCheck" />
+            </RelativeLayout>
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
-                android:paddingStart="20dp"
-                android:paddingTop="15dp"
-                android:text="@string/ducs_addres"
-                android:textColor="@color/gray" />
+                android:layout_marginTop="30dp"
+                >
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextAppearance.Material3.BodyMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="6dp"
+                    android:layout_marginStart="20dp"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="6"
+                    android:text="@string/sankalan_email"
+                    android:textColor="@color/yellow_light"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/gmail_sankalan"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="30dp"
+                    app:icon="@drawable/ic_email"
+                    app:iconTint="@color/white"
+                    tools:ignore="RelativeOverlap,SpeakableTextPresentCheck" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextAppearance.Material3.BodyMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:layout_marginStart="20dp"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="6"
+                    android:text="@string/ducs_location"
+                    android:textColor="@color/yellow_light"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/location_ducs"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="30dp"
+                    app:icon="@drawable/ic_baseline_location_on_24"
+                    app:iconTint="@color/yellow_light"
+                    tools:ignore="RelativeOverlap" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextAppearance.Material3.BodyMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contact_us"
+                    android:layout_marginStart="20dp"
+                    android:textSize="24sp"
+                    android:layout_marginVertical="5dp"
+                    android:shadowRadius="6"
+                    android:textStyle="bold"
+                    android:shadowColor="@color/black"
+                    android:textColor="@color/yellow_light"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/phone_sankalan"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="30dp"
+                    app:iconTint="@color/yellow_light"
+                    app:icon="@drawable/ic_call"
+                    tools:ignore="RelativeOverlap" />
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="25dp">
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextAppearance.Material3.BodyMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/ducs_address"
+                    android:textSize="23sp"
+                    android:layout_marginVertical="6dp"
+                    android:shadowRadius="5"
+                    android:textStyle="bold"
+                    android:shadowColor="@color/black"
+                    android:textColor="@color/yellow_light"/>
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/TextAppearance.Material3.BodyMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="30dp"
+                    android:text="@string/ducs_addres"
+                    android:textColor="@color/yellow_light"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="2"
+                    android:textSize="19sp"/>
+            </LinearLayout>
+
         </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
