@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +46,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="Name"
-            android:textColor="@color/white" />
+            android:textSize="20sp"
+            android:shadowColor="@color/black"
+            android:shadowRadius="3"
+            android:textColor="@color/yellow_light" />
 
         <TextView
             android:id="@+id/position_team"
@@ -73,6 +77,7 @@
                 android:minWidth="48dp"
                 android:minHeight="48dp"
                 app:icon="@drawable/ic_github"
+                app:backgroundTint="@color/yellow_light"
                 app:iconPadding="0dp"
                 tools:ignore="SpeakableTextPresentCheck" />
 
@@ -92,6 +97,7 @@
                 android:minWidth="48dp"
                 android:minHeight="48dp"
                 app:icon="@drawable/linked_in"
+                app:backgroundTint="@color/yellow_light"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <View
@@ -110,6 +116,7 @@
                 android:minWidth="48dp"
                 android:minHeight="48dp"
                 android:visibility="gone"
+                app:backgroundTint="@color/yellow_light"
                 app:icon="@drawable/ic_call"
                 tools:ignore="SpeakableTextPresentCheck" />
 
@@ -121,6 +128,7 @@
                 android:layout_marginStart="4dp"
                 android:minWidth="48dp"
                 android:minHeight="48dp"
+                app:backgroundTint="@color/yellow_light"
                 app:icon="@drawable/ic_icons8_instagram"
                 tools:ignore="SpeakableTextPresentCheck" />
         </LinearLayout>
@@ -140,7 +148,7 @@
         android:layout_marginStart="10dp"
         android:background="?android:attr/listDivider"
         android:outlineAmbientShadowColor="@color/gray"
-        android:outlineSpotShadowColor="@color/light_gray"
+        android:outlineSpotShadowColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/linearLayout2"
