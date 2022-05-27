@@ -142,6 +142,8 @@ A large number of sponsors who financially aid this event form the backbone of t
     <string name="contact_us">Contact Us:</string>
     <string name="ducs_address">DUCS Address:</string>
     <string name="ducs_location">DUCS Location:</string>
+    <string name="developer_team">Developer Team</string>
+    <string name="panel_team">Panel Team</string>
 
     <string-array name="eventType">
         <item>Technical</item>

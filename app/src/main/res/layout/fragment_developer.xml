@@ -5,45 +5,62 @@
     android:layout_height="match_parent"
     tools:context=".ui.developers.DeveloperFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        tools:ignore="UselessParent">
 
-        <TextView
-            android:layout_marginTop="10dp"
-            style="@style/TextAppearance.Headline6"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:text="Developer Team" />
+            android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/developer_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal" >
+            <TextView
+                android:layout_marginTop="20dp"
+                style="@style/TextAppearance.Headline6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="@string/developer_team"
+                android:textColor="@color/yellow_light"
+                android:shadowRadius="6"
+                android:textSize="38sp"
+                android:shadowColor="@color/black"
+                android:textStyle="bold"/>
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/developer_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal" >
 
-        <TextView
+            </androidx.recyclerview.widget.RecyclerView>
 
-            style="@style/TextAppearance.Headline6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:text="Panel Team" />
+            <TextView
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/panel_list"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal" />
-    </LinearLayout>
+                style="@style/TextAppearance.Headline6"
+                android:layout_width="match_parent"
+                android:layout_marginTop="90dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:text="@string/panel_team"
+                android:textColor="@color/yellow_light"
+                android:shadowRadius="6"
+                android:textSize="38sp"
+                android:shadowColor="@color/black"
+                android:textStyle="bold"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/panel_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal" />
+        </LinearLayout>
+    </ScrollView>
 
 
 </FrameLayout>
