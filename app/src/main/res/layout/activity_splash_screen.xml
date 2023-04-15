@@ -9,6 +9,7 @@
     tools:context=".activities.SplashScreen">
 
 
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,33 +19,37 @@
         android:src="@drawable/department_reduced" />
 
 
-    <ImageView
-        android:id="@+id/rotator_one_iv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="rotating"
-        app:srcCompat="@drawable/ic_group_four" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/rotator_one_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="rotating"
+            app:srcCompat="@drawable/ic_group_four" />
 
-    <ImageView
-        android:id="@+id/rotator_two_iv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="rotating"
-        app:srcCompat="@drawable/ic_group_two" />
+        <ImageView
+            android:id="@+id/rotator_two_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="rotating"
+            app:srcCompat="@drawable/ic_group_two" />
 
-    <ImageView
-        android:id="@+id/rotator_three_iv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="rotating"
-        app:srcCompat="@drawable/ic_group_three" />
+        <ImageView
+            android:id="@+id/rotator_three_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="rotating"
+            app:srcCompat="@drawable/ic_group_three" />
 
-    <ImageView
-        android:id="@+id/rotator_four_iv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="rotating"
-        app:srcCompat="@drawable/ic_group_four" />
+        <ImageView
+            android:id="@+id/rotator_four_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="rotating"
+            app:srcCompat="@drawable/ic_group_four" />
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/rotator_five_iv"

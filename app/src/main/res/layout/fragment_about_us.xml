@@ -35,7 +35,7 @@
                 android:adjustViewBounds="true"
                 android:maxWidth="355dp"
                 android:maxHeight="300dp"
-                android:src="@drawable/about_us_logo_3"
+                android:src="@drawable/sankalan_name_reduced"
                 app:layout_constraintBottom_toTopOf="@+id/about_scroll"
                 app:layout_constraintEnd_toEndOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
