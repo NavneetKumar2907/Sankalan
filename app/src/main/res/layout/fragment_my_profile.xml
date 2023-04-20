@@ -14,29 +14,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:ignore="UselessParent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:orientation="vertical">
             <!--    name layout-->
             <LinearLayout
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="3dp"
                 android:layout_marginHorizontal="15dp"
-                android:orientation="vertical">
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:padding="3dp">
 
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/full_name"
-                    android:textColor="#F2EDDB"
                     android:shadowColor="@color/black"
                     android:shadowRadius="6"
-                    android:textStyle="bold"
-                    android:textSize="24sp"/>
+                    android:text="@string/full_name"
+                    android:textColor="#F2EDDB"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -54,11 +57,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.9"
-                        android:textColor="#fff"
                         android:shadowColor="@color/black"
                         android:shadowRadius="6"
-                        android:textStyle="italic"
-                        android:textSize="20sp" />
+                        android:textColor="#fff"
+                        android:textSize="20sp"
+                        android:textStyle="italic" />
 
                 </LinearLayout>
 
@@ -67,28 +70,28 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#fff"
-                android:layout_marginHorizontal="15dp"/>
+                android:layout_marginHorizontal="15dp"
+                android:background="#fff" />
 
             <!--    college layout-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30sp"
-                android:padding="3dp"
                 android:layout_marginHorizontal="15dp"
-                android:orientation="vertical">
+                android:layout_marginTop="30sp"
+                android:orientation="vertical"
+                android:padding="3dp">
 
                 <TextView
                     android:id="@+id/college_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/CollegeName"
-                    android:textColor="#F2EDDB"
                     android:shadowColor="@color/black"
                     android:shadowRadius="6"
-                    android:textStyle="bold"
-                    android:textSize="24sp"/>
+                    android:text="@string/CollegeName"
+                    android:textColor="#F2EDDB"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -106,11 +109,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.9"
-                        android:textColor="#fff"
                         android:shadowColor="@color/black"
                         android:shadowRadius="6"
-                        android:textStyle="italic"
-                        android:textSize="20sp" />
+                        android:textColor="#fff"
+                        android:textSize="20sp"
+                        android:textStyle="italic" />
 
                 </LinearLayout>
 
@@ -120,132 +123,44 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#fff"
-                android:layout_marginHorizontal="15dp"/>
+                android:layout_marginHorizontal="15dp"
+                android:background="#fff" />
 
             <!--    course layout-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30sp"
-                android:padding="3dp"
-                android:layout_marginHorizontal="15dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/course"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/CourseName"
-                    android:textColor="#F2EDDB"
-                    android:shadowColor="@color/black"
-                    android:shadowRadius="6"
-                    android:textStyle="bold"
-                    android:textSize="24sp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.1"
-                        android:contentDescription="@string/CourseName"
-                        app:srcCompat="@drawable/ic_course" />
-
-                    <TextView
-                        android:id="@+id/course_name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.9"
-                        android:textColor="#fff"
-                        android:shadowColor="@color/black"
-                        android:shadowRadius="6"
-                        android:textStyle="italic"
-                        android:textSize="20sp"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#fff"
-                android:layout_marginHorizontal="15dp"/>
+                android:layout_marginHorizontal="15dp"
+                android:background="#fff" />
 
             <!--    year layout-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30sp"
-                android:orientation="vertical"
-                android:padding="3dp"
-                android:layout_marginHorizontal="15dp">
-
-                <TextView
-                    android:id="@+id/year"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/yoc"
-                    android:textColor="#F2EDDB"
-                    android:shadowColor="@color/black"
-                    android:shadowRadius="6"
-                    android:textStyle="bold"
-                    android:textSize="24sp"/>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.1"
-                        android:contentDescription="@string/yoc"
-                        app:srcCompat="@drawable/ic_calendar" />
-
-                    <TextView
-                        android:id="@+id/year_text"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:textColor="#fff"
-                        android:layout_weight="0.9"
-                        android:shadowColor="@color/black"
-                        android:shadowRadius="6"
-                        android:textStyle="italic"
-                        android:textSize="20sp"  />
-
-                </LinearLayout>
-
-            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#fff"
-                android:layout_marginHorizontal="15dp"/>
+                android:layout_marginHorizontal="15dp"
+                android:background="#fff" />
 
             <!--    mobile number layout-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="30sp"
                 android:orientation="vertical"
-                android:padding="3dp"
-                android:layout_marginHorizontal="15dp">
+                android:padding="3dp">
 
                 <TextView
                     android:id="@+id/mobile_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/mobile"
-                    android:textColor="#F2EDDB"
                     android:shadowColor="@color/black"
                     android:shadowRadius="6"
-                    android:textStyle="bold"
-                    android:textSize="24sp"/>
+                    android:text="@string/mobile"
+                    android:textColor="#F2EDDB"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -262,12 +177,12 @@
                         android:id="@+id/mobile_no_text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:textColor="#fff"
                         android:layout_weight="0.9"
                         android:shadowColor="@color/black"
                         android:shadowRadius="6"
-                        android:textStyle="italic"
-                        android:textSize="20sp" />
+                        android:textColor="#fff"
+                        android:textSize="20sp"
+                        android:textStyle="italic" />
 
                 </LinearLayout>
 
@@ -276,28 +191,28 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#fff"
-                android:layout_marginHorizontal="15dp"/>
+                android:layout_marginHorizontal="15dp"
+                android:background="#fff" />
 
             <!--    email layout-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30sp"
-                android:padding="3dp"
                 android:layout_marginHorizontal="15dp"
-                android:orientation="vertical">
+                android:layout_marginTop="30sp"
+                android:orientation="vertical"
+                android:padding="3dp">
 
                 <TextView
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/prompt_email"
-                    android:textColor="#F2EDDB"
                     android:shadowColor="@color/black"
                     android:shadowRadius="6"
-                    android:textStyle="bold"
-                    android:textSize="24sp" />
+                    android:text="@string/prompt_email"
+                    android:textColor="#F2EDDB"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -316,19 +231,21 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.9"
                         android:shadowColor="@color/black"
-                        android:textColor="#fff"
                         android:shadowRadius="6"
-                        android:textStyle="italic"
-                        android:textSize="20sp" />
+                        android:textColor="#fff"
+                        android:textSize="20sp"
+                        android:textStyle="italic" />
 
                 </LinearLayout>
 
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#fff"
-                android:layout_marginHorizontal="15dp"/>
+                android:layout_marginHorizontal="15dp"
+                android:background="#fff" />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/edit_profile_button"
                 android:layout_width="150dp"
@@ -340,13 +257,13 @@
                 android:layout_marginEnd="30dp"
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/background_round_btn"
+                android:shadowColor="@color/black"
+                android:shadowRadius="6"
                 android:text="Edit Profile"
-                android:textStyle="italic"
+                android:textAllCaps="false"
                 android:textColor="#F2EDDB"
                 android:textSize="24sp"
-                android:textAllCaps="false"
-                android:shadowColor="@color/black"
-                android:shadowRadius="6"/>
+                android:textStyle="italic" />
         </LinearLayout>
     </ScrollView>
 

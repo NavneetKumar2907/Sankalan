@@ -144,6 +144,7 @@ A large number of sponsors who financially aid this event form the backbone of t
     <string name="ducs_location">DUCS Location:</string>
     <string name="developer_team">Developer Team</string>
     <string name="panel_team">Panel Team</string>
+    <string name="fixed_verification_instruction">Please Bring Your College Id and Government Id For Verification.</string>
 
     <string-array name="eventType">
         <item>Technical</item>

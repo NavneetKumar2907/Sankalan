@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.main.sankalan.R
 import com.main.sankalan.databinding.ActivityAdminBinding
 import com.main.sankalan.model.AdminViewModel
@@ -34,6 +36,7 @@ class AdminActivity : AppCompatActivity() {
         binding = ActivityAdminBinding.inflate(layoutInflater)
         //Initializing ViewModel
         adminViewModel = ViewModelProvider(this).get(AdminViewModel::class.java)
+
         setContentView(binding.root)//SetUp View
         setSupportActionBar(binding.adminToolbar)
 

@@ -48,8 +48,8 @@ class SignUpFragment : Fragment() {
         val name = signupBinding.FullName
         val mobile = signupBinding.mobileNum
         val institute = signupBinding.CollegeName
-        val year = signupBinding.courseYear
-        val course = signupBinding.CourseName
+
+
         val email = signupBinding.enterEmail
         val password = signupBinding.createPassword
         val loginHere = signupBinding.loginHere
@@ -65,16 +65,7 @@ class SignUpFragment : Fragment() {
                 mobile.error = getString(R.string.invalid_mobile)
             }
         }
-        //Year text Change Listener
-        year.addTextChangedListener {
-            try {
-                if (it.toString().toLong() !in 1..4) {
-                    year.error = getString(R.string.invalid_course_year)
-                }
-            } catch (e: Exception) {
-                year.error = getString(R.string.invalid_course_year)
-            }
-        }
+
         //Email Text Change Listener
         email.addTextChangedListener {
             signupViewmodel.onLoginDataChange(
@@ -121,20 +112,16 @@ class SignUpFragment : Fragment() {
         //Signup Button listener
         signUpButton.setOnClickListener {
             if (name.text.isNullOrBlank() ||
-                course.text.isNullOrBlank() ||
                 institute.text.isNullOrBlank() ||
-                year.text.isNullOrBlank() ||
                 mobile.text.isNullOrBlank() ||
                 email.text.isNullOrBlank() ||
-                password.text.isNullOrBlank() || year.error != null
+                password.text.isNullOrBlank()
             ) {
                 Toast.makeText(context, "Require ALl Fields Correct.", Toast.LENGTH_SHORT).show()
             } else {
                 data = LoggedInUserView(
                     name = name.text.toString(),
-                    course = course.text.toString(),
                     institute = institute.text.toString(),
-                    year = year.text.toString().toInt(),
                     mobile = mobile.text.toString(),
                     isVerified = false,
                     email = email.text.toString().lowercase()

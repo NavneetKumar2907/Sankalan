@@ -20,6 +20,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.main.sankalan.R
 import com.main.sankalan.databinding.ActivityMainBinding
 import com.main.sankalan.model.MainViewModel
@@ -62,6 +64,7 @@ class MainActivity : AppCompatActivity() {
 
         //Initialising view Model
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        //Firebase persistence
 
 
         binding.navView.menu.findItem(R.id.logout).setOnMenuItemClickListener {

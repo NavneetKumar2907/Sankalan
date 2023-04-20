@@ -306,14 +306,17 @@ class AdminViewModel : ViewModel() {
          * Load Events.
          */
         databaseEvent.addValueEventListener(eventListener)
+        databaseEvent.keepSynced(true)
     }
 
     private fun loadUser() {
         databaseUser.addValueEventListener(userListener)
+        databaseUser.keepSynced(true)
     }
 
     private fun loadReg() {
         databaseRegisterEvent.addValueEventListener(regEventListener)
+        databaseRegisterEvent.keepSynced(true)
     }
 
     private fun loadGallery() {
@@ -348,12 +351,17 @@ class AdminViewModel : ViewModel() {
 
     private fun loadDeveloper() {
         developerTeamReference.addValueEventListener(developerListener)
+        developerTeamReference.keepSynced(true)
     }
 
     private fun loadPanel() {
         panelTeamReference.addValueEventListener(panelListener)
+        panelTeamReference.keepSynced(true)
     }
 
+
+    //=========================================Function========================================================================================================================================================================================
+    //Edit User
     suspend fun editUser(data: LoggedInUserView): Upload {
         val def = CompletableDeferred<Upload>()
         databaseUser.child(data.uid).removeValue()
@@ -366,7 +374,6 @@ class AdminViewModel : ViewModel() {
             }
         return def.await()
     }
-//=========================================Function========================================================================================================================================================================================
 
     // Edit Event
     suspend fun editEvent(event: Events, eventName: String? = null): Upload {

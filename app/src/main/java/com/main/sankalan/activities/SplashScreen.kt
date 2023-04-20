@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import com.main.sankalan.R
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 class SplashScreen : AppCompatActivity() {
@@ -17,6 +18,7 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
+        Firebase.database.setPersistenceEnabled(true)
 
         //Animators
         val animRotatorOne = AnimationUtils.loadAnimation(this,R.anim.rotator_one)

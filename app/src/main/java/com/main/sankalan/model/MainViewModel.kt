@@ -52,7 +52,7 @@ class MainViewModel : ViewModel() {
     private val teamNameRefrence = database.getReference("teamName")
     private val resultReference = database.getReference("Result")
 
-    
+
 
 //=========================================Listeners========================================================================================================================================================================================
 
@@ -416,6 +416,7 @@ class MainViewModel : ViewModel() {
 
     private fun loadList() {
         teamNameRefrence.addValueEventListener(teamMemberListener)
+        teamNameRefrence.keepSynced(true)
     }
 
     private fun loadUserDetails() {
@@ -423,6 +424,7 @@ class MainViewModel : ViewModel() {
          * Load User Details.
          */
         databaseUser.addValueEventListener(userListener)
+        databaseUser.keepSynced(true)
     }
 
     private fun loadEvent() {
@@ -430,6 +432,7 @@ class MainViewModel : ViewModel() {
          * Load Events.
          */
         databaseEvent.addValueEventListener(eventListener)
+        databaseEvent.keepSynced(true)
     }
 
     fun loadImages() {
@@ -437,6 +440,7 @@ class MainViewModel : ViewModel() {
          *Load Gallery Images.
          */
         val temp = arrayListOf<Bitmap>()
+
         image_ref.listAll()
             .addOnSuccessListener {
                 it.items.forEach { sto ->
@@ -464,26 +468,32 @@ class MainViewModel : ViewModel() {
             .addOnFailureListener {
                 Log.w("Faield List", it.message.toString())
             }
+
     }
 
     private fun loadRegisteredEvents() {
         databaseRegisterEvent.addValueEventListener(registeredEventValueListener)
+        databaseRegisterEvent.keepSynced(true)
     }
 
     private fun loadDeveloper() {
         developerTeamReference.addValueEventListener(developerListener)
+        developerTeamReference.keepSynced(true)
     }
 
     private fun loadPanel() {
         panelTeamReference.addValueEventListener(panelListener)
+        panelTeamReference.keepSynced(true)
     }
 
     private fun loadSponsers() {
         sponserReference.addValueEventListener(sponserListener)
+        sponserReference.keepSynced(true)
     }
 
     private fun loadScore() {
         resultReference.addValueEventListener(resultListener)
+        resultReference.keepSynced(true)
     }
 
 
