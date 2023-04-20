@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import com.main.sankalan.R
@@ -16,6 +17,9 @@ class SplashScreen : AppCompatActivity() {
     private val firebaseAuth = Firebase.auth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+
         setContentView(R.layout.activity_splash_screen)
 
         Firebase.database.setPersistenceEnabled(true)

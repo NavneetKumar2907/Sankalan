@@ -6,7 +6,7 @@
         android:duration="3000"/>
     <item
         android:drawable="@drawable/gradient2"
-        android:duration="3000"/>
+        android:duration="2000"/>
     <item
         android:drawable="@drawable/gradient3"
         android:duration="3000"/>

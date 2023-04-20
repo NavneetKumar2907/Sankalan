@@ -23,7 +23,7 @@ A large number of sponsors who financially aid this event form the backbone of t
 <b>Sign UP:</b>
 
 
-<img src="https://user-images.githubusercontent.com/96334182/170208938-d75dabd5-dcd3-4ebc-99bb-409114484617.jpg" width=357 height=774>
+<img src="https://user-images.githubusercon tent.com/96334182/170208938-d75dabd5-dcd3-4ebc-99bb-409114484617.jpg" width=357 height=774>
 
 <b>Events:</b>
 
