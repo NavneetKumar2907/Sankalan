@@ -12,7 +12,7 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/gradient_animation"
+        android:background="#61000000"
         android:textAlignment="center"
         android:theme="@style/ThemeOverlay.App.Toolbar">
 
@@ -21,7 +21,7 @@
             style="@style/Widget.App.Toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/gradient_animation"
+            android:background="#66000000"
             app:titleCentered="true" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -32,9 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@drawable/gradient_animation"
-        app:itemIconTint="@color/navigation_selector"
-        app:itemTextColor="@color/navigation_selector"
+        android:background="#000000"
         app:labelVisibilityMode="auto"
         app:menu="@menu/bottom_navigation_menu" />
 
