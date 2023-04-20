@@ -1,11 +1,8 @@
 package com.main.sankalan.activities
 
-import android.app.DownloadManager
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -20,13 +17,9 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import com.main.sankalan.R
 import com.main.sankalan.databinding.ActivityMainBinding
 import com.main.sankalan.model.MainViewModel
-import java.io.File
-import java.util.concurrent.Executors
 
 
 class MainActivity : AppCompatActivity() {
@@ -41,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-        actionBar?.hide()
+        supportActionBar?.hide()
         //setting Up UI
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -108,15 +101,10 @@ class MainActivity : AppCompatActivity() {
                 val uri: Uri =
                     Uri.parse(mainViewModel.liveTimeTable.value)
 
-                Executors.newSingleThreadExecutor().execute {
-                    val manager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+                val intent = Intent(Intent.ACTION_VIEW, uri)
 
-                    val request = DownloadManager.Request(uri)
-                    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-                    val reference: Long = manager.enqueue(request)
-
-                }
-                Toast.makeText(this,"Downloaded", Toast.LENGTH_SHORT).show()
+                // start activity
+                startActivity(intent)
 
                 return true
             }catch (e:Exception){

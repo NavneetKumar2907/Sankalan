@@ -66,6 +66,7 @@ class TeamDialog(private val teamReg: SelectedEventClickListener, private val te
                 val mem3Email = member3.text.toString().lowercase()
                 val mem4Email = member4.text.toString().lowercase()
                 val teamNameText = teamName.text.toString()
+
                 //To Check 2 and 4 member register only.
                 if (mem2Email.isNotEmpty() && member2.error == null) {
                     count += 1
@@ -152,6 +153,9 @@ class TeamDialog(private val teamReg: SelectedEventClickListener, private val te
                 if (!isValidEmail(it.toString())) {
                     member2.error = requireActivity().getString(R.string.invalid_email)
                 }
+                if(it.toString()==member1.text.toString()){
+                    member2.error = "You cannot become the member also."
+                }
             } catch (e: Exception) {
                 Log.w("error", e.message.toString())
             }
@@ -159,7 +163,13 @@ class TeamDialog(private val teamReg: SelectedEventClickListener, private val te
         member3.addTextChangedListener {
             try {
                 if (!isValidEmail(it.toString())) {
-                    member2.error = requireActivity().getString(R.string.invalid_email)
+                    member3.error = requireActivity().getString(R.string.invalid_email)
+                }
+                if(it.toString()==member1.text.toString()){
+                    member3.error = "You cannot become the member also."
+                }
+                if(it.toString() == member2.text.toString()){
+                    member3.error = "Different Members are Required."
                 }
             } catch (e: Exception) {
                 Log.w("error", e.message.toString())
@@ -168,7 +178,16 @@ class TeamDialog(private val teamReg: SelectedEventClickListener, private val te
         member4.addTextChangedListener {
             try {
                 if (!isValidEmail(it.toString())) {
-                    member2.error = requireActivity().getString(R.string.invalid_email)
+                    member4.error = requireActivity().getString(R.string.invalid_email)
+                }
+                if(it.toString()==member1.text.toString()){
+                    member4.error = "You cannot become the member also."
+                }
+                if(it.toString() == member2.text.toString()){
+                    member4.error = "Different Members are Required."
+                }
+                if(it.toString() == member3.text.toString()){
+                    member4.error = "Different Members are Required."
                 }
             } catch (e: Exception) {
                 Log.w("error", e.message.toString())

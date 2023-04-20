@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,6 +40,7 @@ class ScoreboardFragment : Fragment() {
 
             //For Spinner
             val eventNames = arrayListOf<String>()
+
             for (e in it.distinctBy { it.eventName }) {
                 eventNames.add(e.eventName)
             }
@@ -46,11 +49,20 @@ class ScoreboardFragment : Fragment() {
             spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.spinner.adapter = spinnerArrayAdapter
 
-            val r: Score? = it.find {
-                it.eventName == binding.spinner.selectedItem
+            binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    val score:Score? = it.find { it.eventName==binding.spinner.selectedItem }
+                    loadResult(score!!)
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                    Toast.makeText(context, "No Results", Toast.LENGTH_SHORT).show()
+                }
+
             }
-            loadResult(r!!)
         }//End Observer
+
+
 
 
     }
