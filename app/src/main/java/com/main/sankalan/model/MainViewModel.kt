@@ -52,6 +52,8 @@ class MainViewModel : ViewModel() {
     private val teamNameRefrence = database.getReference("teamName")
     private val resultReference = database.getReference("Result")
 
+    
+
 //=========================================Listeners========================================================================================================================================================================================
 
 
@@ -307,7 +309,7 @@ class MainViewModel : ViewModel() {
                 for (eventName in snapshot.children) {
                     val res =Score(eventName = eventName.key.toString())
                     for(id in eventName.children){
-                        id.getValue<String>()?.let { res.result.add(it) }
+                        id.getValue<String>()?.let { res.result.add(it) } // Iterate over values
                     }
                     resultList.add(res)
                 }//End Loop

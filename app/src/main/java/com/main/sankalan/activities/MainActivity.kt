@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -18,10 +19,11 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.main.sankalan.R
 import com.main.sankalan.databinding.ActivityMainBinding
 import com.main.sankalan.model.MainViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.io.File
 import java.util.concurrent.Executors
 
 
@@ -109,6 +111,7 @@ class MainActivity : AppCompatActivity() {
                     val request = DownloadManager.Request(uri)
                     request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
                     val reference: Long = manager.enqueue(request)
+
                 }
                 Toast.makeText(this,"Downloaded", Toast.LENGTH_SHORT).show()
 
