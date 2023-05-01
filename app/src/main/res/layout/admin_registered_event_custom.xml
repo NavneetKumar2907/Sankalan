@@ -21,7 +21,7 @@
             style="@style/TextAppearance.Material3.TitleLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
+
             android:textAllCaps="true" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -35,28 +35,28 @@
                 style="@style/TextAppearance.Material3.BodyMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                 />
 
             <TextView
                 android:id="@+id/member2_admin"
                 style="@style/TextAppearance.Material3.BodyMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                 />
 
             <TextView
                 android:id="@+id/member3_admin"
                 style="@style/TextAppearance.Material3.BodyMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                />
 
             <TextView
                 android:id="@+id/member4_admin"
                 style="@style/TextAppearance.Material3.BodyMedium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView" />
+                />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </LinearLayout>
 
@@ -78,7 +78,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
+
             android:textAllCaps="true" />
 
         <TextView
@@ -87,7 +87,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
-            android:text="TextView" />
+             />
 
         <TextView
             android:id="@+id/individual_email"
@@ -95,7 +95,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
-            android:text="TextView" />
+             />
 
     </LinearLayout>
 

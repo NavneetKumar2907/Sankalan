@@ -7,49 +7,49 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.main.sankalan.ui.home.HomeFragment"
+        android:name="com.ducs.sankalan.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/galleryFragment"
-        android:name="com.main.sankalan.ui.gallery.GalleryFragment"
+        android:name="com.ducs.sankalan.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_gallery" />
     <fragment
         android:id="@+id/aboutUsFragment"
-        android:name="com.main.sankalan.ui.about.AboutUsFragment"
+        android:name="com.ducs.sankalan.ui.about.AboutUsFragment"
         android:label="@string/AboutUs"
         tools:layout="@layout/fragment_about_us" />
     <fragment
         android:id="@+id/myEventsFragment"
-        android:name="com.main.sankalan.ui.myevents.MyEventsFragment"
+        android:name="com.ducs.sankalan.ui.myevents.MyEventsFragment"
         android:label="@string/MyEvents"
         tools:layout="@layout/fragment_my_events" />
     <fragment
         android:id="@+id/myProfileFragment"
-        android:name="com.main.sankalan.ui.profile.MyProfileFragment"
+        android:name="com.ducs.sankalan.ui.profile.MyProfileFragment"
         android:label="@string/MyProfile"
         tools:layout="@layout/fragment_my_profile" />
     <fragment
         android:id="@+id/helpFragment"
-        android:name="com.main.sankalan.ui.helpandfeedback.HelpFragment"
+        android:name="com.ducs.sankalan.ui.helpandfeedback.HelpFragment"
         android:label="@string/HelpandFeedBack"
         tools:layout="@layout/fragment_help" />
 
     <fragment
         android:id="@+id/scoreboardFragment"
-        android:name="com.main.sankalan.ui.scoreboard.ScoreboardFragment"
+        android:name="com.ducs.sankalan.ui.scoreboard.ScoreboardFragment"
         android:label="@string/ScoreBoard"
         tools:layout="@layout/fragment_scoreboard" />
     <fragment
         android:id="@+id/developerFragment"
-        android:name="com.main.sankalan.ui.developers.DeveloperFragment"
+        android:name="com.ducs.sankalan.ui.developers.DeveloperFragment"
         android:label="Meet Teams"
         tools:layout="@layout/fragment_developer" />
     <fragment
         android:id="@+id/sponsersFragment"
-        android:name="com.main.sankalan.ui.sponsers.SponsersFragment"
+        android:name="com.ducs.sankalan.ui.sponsers.SponsersFragment"
         android:label="Sponsers"
         tools:layout="@layout/fragment_sponsers" />
 

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.main.sankalan.ui.login.LoginFragment"
+        android:name="com.ducs.sankalan.ui.login.LoginFragment"
         android:label="LoginFragment" >
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.main.sankalan.ui.login.SignUpFragment"
+        android:name="com.ducs.sankalan.ui.login.SignUpFragment"
         android:label="SignUpFragment" >
         <action
             android:id="@+id/action_signUpFragment_to_loginFragment"
